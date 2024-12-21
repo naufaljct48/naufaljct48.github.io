@@ -3,11 +3,12 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="refresh" content="0;url=https://naufaljct48.vercel.app/">
   <title>Redirecting...</title>
   <script>
-    // Redirect secara manual jika meta refresh tidak berjalan
-    window.location.href = "https://naufaljct48.vercel.app/";
+    // Cek jika URL saat ini bukan Vercel, lakukan redirect
+    if (window.location.hostname !== "naufaljct48.vercel.app") {
+      window.location.href = "https://naufaljct48.vercel.app/";
+    }
   </script>
 </head>
 <body>
