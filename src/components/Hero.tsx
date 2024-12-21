@@ -50,7 +50,7 @@ const Hero = () => {
             <div className="relative w-[80%] h-auto lg:w-[70%]">
               <div className="aspect-square rounded-full overflow-hidden">
                 <img
-                  src="/public/images/naufal.png"
+                  src="https://naufaljct48.github.io/public/images/naufal.png"
                   alt="Profile"
                   className="w-full h-full object-contain"
                 />
