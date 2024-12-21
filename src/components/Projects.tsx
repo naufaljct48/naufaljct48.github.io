@@ -12,7 +12,7 @@ const Projects = () => {
     id: 1,
     title: "ATiDar",
     description: "Aplikasi Transfusi Darah untuk mempermudah pengelolaan donor darah.",
-    image: "/public/images/atidar.png",
+    image: "https://naufaljct48.github.io/public/images/atidar.png",
     technologies: ["Bootstrap 5", "PHP", "CodeIgniter", "MySQL"],
     link: "#"
   },
@@ -20,7 +20,7 @@ const Projects = () => {
     id: 2,
     title: "SiKevin",
     description: "Sistem Informasi Keuangan & Verifikasi Pasien yang modern dan efisien.",
-    image: "/public/images/sikevin.png",
+    image: "https://naufaljct48.github.io/public/images/sikevin.png",
     technologies: ["Bootstrap 5", "PHP", "Laravel", "Express.js", "MySQL"],
     link: "#"
   },
@@ -28,7 +28,7 @@ const Projects = () => {
     id: 3,
     title: "SiKetik",
     description: "Sistem Informasi Komite Etik untuk mengelola data dan proses etika secara digital.",
-    image: "/public/images/siketik.png",
+    image: "https://naufaljct48.github.io/public/images/siketik.png",
     technologies: ["Bootstrap 5", "PHP", "CodeIgniter", "MySQL"],
     link: "#"
   },
@@ -36,7 +36,7 @@ const Projects = () => {
     id: 4,
     title: "LookitCCTV",
     description: "Jasa pemasangan CCTV profesional dengan solusi keamanan modern.",
-    image: "/public/images/lookit.png",
+    image: "https://naufaljct48.github.io/public/images/lookit.png",
     technologies: ["WordPress", "YoastSEO", "Elementor"],
     link: "https://lookitcctv.id/"
   },
@@ -44,7 +44,7 @@ const Projects = () => {
     id: 5,
     title: "iStudy.id",
     description: "Platform les private dan bimbel online untuk semua jenjang dan kurikulum.",
-    image: "/public/images/istudy.png",
+    image: "https://naufaljct48.github.io/public/images/istudy.png",
     technologies: ["WordPress", "YoastSEO", "Elementor"],
     link: "https://iStudy.id"
   },
@@ -52,7 +52,7 @@ const Projects = () => {
     id: 6,
     title: "PD. Batara Membangun",
     description: "Perusahaan daerah yang berfokus pada pembangunan wilayah Barito Utara.",
-    image: "/public/images/pdbm.jpg",
+    image: "https://naufaljct48.github.io/public/images/pdbm.jpg",
     technologies: ["WordPress", "YoastSEO", "Elementor"],
     link: "https://pdbm.co.id/"
   },
@@ -60,7 +60,7 @@ const Projects = () => {
     id: 7,
     title: "Forecasting Pertumbuhan Penduduk",
     description: "Aplikasi prediksi populasi menggunakan metode Least Square.",
-    image: "/public/images/forecasting.png",
+    image: "https://naufaljct48.github.io/public/images/forecasting.png",
     technologies: ["Bootstrap", "CodeIgniter", "MySQL"],
     link: "#"
   },
@@ -68,7 +68,7 @@ const Projects = () => {
     id: 8,
     title: "XGamingStore",
     description: "Toko online game yang modern dan interaktif.",
-    image: "/public/images/xgamingstore.png",
+    image: "https://naufaljct48.github.io/public/images/xgamingstore.png",
     technologies: ["VueJS", "Bootstrap", "jQuery"],
     link: "#"
   },
@@ -76,7 +76,7 @@ const Projects = () => {
     id: 9,
     title: "Turbo Panel",
     description: "Platform SMM untuk pembelian followers, likes, dan kebutuhan media sosial lainnya.",
-    image: "/public/images/turbo.jpg",
+    image: "https://naufaljct48.github.io/public/images/turbo.jpg",
     technologies: ["Laravel", "Bootstrap", "MySQL"],
     link: "#"
   },
@@ -84,7 +84,7 @@ const Projects = () => {
     id: 10,
     title: "Aidoku Indonesian Sources",
     description: "Library scraping web manga pihak ketiga untuk Aidoku.",
-    image: "/public/images/aidoku.png",
+    image: "https://naufaljct48.github.io/public/images/aidoku.png",
     technologies: ["Rust"],
     link: "#"
   }

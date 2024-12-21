@@ -83,7 +83,7 @@ const Navbar = () => {
               <Github className="w-5 h-5" />
             </motion.a>
             <motion.a
-              href="/public/Resume.pdf"
+              href="https://naufaljct48.github.io/public/Resume.pdf"
               target="_blank"
               rel="noopener noreferrer"
               whileHover={{ scale: 1.1 }}
@@ -135,7 +135,7 @@ const Navbar = () => {
                 ))}
                 <div className="border-t border-gray-300 dark:border-gray-600 my-4"></div>
                 <motion.a
-                  href="https://github.com"
+                  href="https://github.com/naufaljct48"
                   target="_blank"
                   rel="noopener noreferrer"
                   whileHover={{ scale: 1.1 }}
@@ -146,7 +146,7 @@ const Navbar = () => {
                   <span>GitHub</span>
                 </motion.a>
                 <motion.a
-                  href="/public/Resume.pdf"
+                  href="https://naufaljct48.github.io/public/Resume.pdf"
                   target="_blank"
                   rel="noopener noreferrer"
                   whileHover={{ scale: 1.1 }}
