@@ -1,19 +1,20 @@
-module.exports = {
-  content: ['index.html'],
+/** @type {import('tailwindcss').Config} */
+export default {
+  content: ['./index.html', './src/**/*.{js,ts,jsx,tsx}'],
   darkMode: 'class',
   theme: {
-    container: {
-      center: true,
-      padding: '16px',
-    },
     extend: {
-      colors: {
-        primary: '#14b8a6',
-        secondary: '#64748b',
-        dark: '#0f172a',
+      fontFamily: {
+        sans: ['Poppins', 'sans-serif'],
       },
-      screens: {
-        '2xl': '1320px',
+      colors: {
+        gray: {
+          800: '#2d2d2d', // Gelap tapi tidak terlalu pekat
+          900: '#222222', // Sedikit lebih terang dari sebelumnya
+        },
+      },
+      backgroundImage: {
+        'dark-gradient': 'linear-gradient(to bottom, #222222, #2d2d2d)',
       },
     },
   },
