@@ -1,5 +1,5 @@
+import type { NextApiRequest, NextApiResponse } from "next";
 import { GoogleGenerativeAI } from "@google/generative-ai";
-import type { Request, Response } from "express";
 
 const CV_URL = "https://naufaljct48.github.io/public/Resume.pdf";
 
@@ -61,7 +61,10 @@ As an AI assistant, you should:
 
 const chatHistories = new Map<string, any>();
 
-export const handler = async (req: Request, res: Response) => {
+export default async function handler(
+  req: NextApiRequest,
+  res: NextApiResponse
+) {
   if (req.method !== "POST") {
     return res.status(405).json({ error: "Method not allowed" });
   }
@@ -111,4 +114,4 @@ export const handler = async (req: Request, res: Response) => {
     console.error("Error:", error);
     return res.status(500).json({ error: "Internal server error" });
   }
-};
+}
