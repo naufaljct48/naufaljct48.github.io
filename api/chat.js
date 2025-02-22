@@ -1,4 +1,3 @@
-import type { NextApiRequest, NextApiResponse } from "next";
 import { GoogleGenerativeAI } from "@google/generative-ai";
 
 const CV_URL = "https://naufaljct48.github.io/public/Resume.pdf";
@@ -52,12 +51,9 @@ As an AI assistant, you should:
 6. If unsure about something, suggest contacting Naufal directly
 7. When asked about connecting with Naufal, provide his relevant social media links`;
 
-const chatHistories = new Map<string, any>();
+const chatHistories = new Map();
 
-export default async function handler(
-  req: NextApiRequest,
-  res: NextApiResponse
-) {
+export default async function handler(req, res) {
   if (req.method !== "POST") {
     return res.status(405).json({ error: "Method not allowed" });
   }
@@ -115,7 +111,7 @@ export default async function handler(
       console.error("Chat Error:", chatError);
       throw new Error("Failed to process chat message");
     }
-  } catch (error: any) {
+  } catch (error) {
     console.error("Error:", error);
     return res.status(500).json({
       error: "Internal server error",
