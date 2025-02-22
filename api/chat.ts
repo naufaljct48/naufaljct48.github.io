@@ -17,13 +17,6 @@ Work Experience:
    - Built Regforis (Hospital Formulary Registration)
    - Developed SiKevin (Patient Finance & Verification System)
 
-Work Experience:
-1. RS Kanker Dharmais (Jan 2024 - Present):
-   - Developed AIS (AI Agent Dharmais)
-   - Created ATiDar (Blood Transfusion Application)
-   - Built Regforis (Hospital Formulary Registration)
-   - Developed SiKevin (Patient Finance & Verification System)
-
 2. PD. BATARA MEMBANGUN (Jan 2023 - Dec 2023):
    - Designed engaging landing pages using WordPress CMS
    - Enhanced user engagement and digital footprint
@@ -70,48 +63,63 @@ export default async function handler(
   }
 
   try {
+    if (!process.env.GEMINI_API_KEY) {
+      throw new Error("GEMINI_API_KEY is not configured");
+    }
+
     const {
       message,
       isFirstMessage,
       sessionId = Date.now().toString(),
     } = req.body;
 
-    const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY!);
-    const model = genAI.getGenerativeModel({ model: "gemini-pro" });
-
-    // Get or create chat session
-    let chat;
-    if (chatHistories.has(sessionId)) {
-      chat = chatHistories.get(sessionId);
-    } else {
-      chat = model.startChat({
-        history: [
-          {
-            role: "user",
-            parts: [{ text: BASE_PROMPT }],
-          },
-          {
-            role: "model",
-            parts: [
-              {
-                text: "I understand my role. I will assist visitors with information about Naufal and can refer them to his CV for more details.",
-              },
-            ],
-          },
-        ],
-      });
-      chatHistories.set(sessionId, chat);
+    if (!message) {
+      return res.status(400).json({ error: "Message is required" });
     }
 
-    const result = await chat.sendMessage([{ text: message }]);
-    const response = await result.response;
+    const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
+    const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
 
-    return res.status(200).json({
-      response: response.text(),
-      sessionId,
-    });
-  } catch (error) {
+    let chat;
+    try {
+      if (chatHistories.has(sessionId)) {
+        chat = chatHistories.get(sessionId);
+      } else {
+        chat = model.startChat({
+          history: [
+            {
+              role: "user",
+              parts: [{ text: BASE_PROMPT }],
+            },
+            {
+              role: "model",
+              parts: [
+                {
+                  text: "I understand my role. I will assist visitors with information about Naufal and can refer them to his CV for more details.",
+                },
+              ],
+            },
+          ],
+        });
+        chatHistories.set(sessionId, chat);
+      }
+
+      const result = await chat.sendMessage([{ text: message }]);
+      const response = await result.response;
+
+      return res.status(200).json({
+        response: response.text(),
+        sessionId,
+      });
+    } catch (chatError) {
+      console.error("Chat Error:", chatError);
+      throw new Error("Failed to process chat message");
+    }
+  } catch (error: any) {
     console.error("Error:", error);
-    return res.status(500).json({ error: "Internal server error" });
+    return res.status(500).json({
+      error: "Internal server error",
+      message: error.message,
+    });
   }
 }
