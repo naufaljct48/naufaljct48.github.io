@@ -25,10 +25,10 @@ const Projects = () => {
       description:
         "Aplikasi Transfusi Darah untuk mempermudah pengelolaan donor darah.",
       images: [
-        "https://naufaljct48.github.io/public/images/atidar.png",
         "https://naufaljct48.github.io/public/images/utdreg.png",
+        "https://naufaljct48.github.io/public/images/atidar.png",
       ],
-      image: "https://naufaljct48.github.io/public/images/atidar.png", // Fallback image
+      image: "https://naufaljct48.github.io/public/images/utdreg.png", // Fallback image
       technologies: ["Bootstrap 5", "PHP", "CodeIgniter", "MySQL"],
       link: "#",
     },
