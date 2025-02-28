@@ -1,108 +1,151 @@
-import React, { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { X, ChevronLeft, ChevronRight } from 'lucide-react';
+import React, { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { X, ChevronLeft, ChevronRight } from "lucide-react";
+
+interface Project {
+  id: number;
+  title: string;
+  description: string;
+  image: string;
+  images?: string[];
+  technologies: string[];
+  link: string;
+}
 
 const Projects = () => {
-  const [selectedProject, setSelectedProject] = useState(null);
+  const [selectedProject, setSelectedProject] = useState<Project | null>(null);
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [atidarImageIndex, setAtidarImageIndex] = useState(0);
   const [isDragging, setIsDragging] = useState(false);
 
   const projects = [
-  {
-    id: 1,
-    title: "ATiDar",
-    description: "Aplikasi Transfusi Darah untuk mempermudah pengelolaan donor darah.",
-    image: "https://naufaljct48.github.io/public/images/atidar.png",
-    technologies: ["Bootstrap 5", "PHP", "CodeIgniter", "MySQL"],
-    link: "#"
-  },
-  {
-    id: 2,
-    title: "SiKevin",
-    description: "Sistem Informasi Keuangan & Verifikasi Pasien yang modern dan efisien.",
-    image: "https://naufaljct48.github.io/public/images/sikevin.png",
-    technologies: ["Bootstrap 5", "PHP", "Laravel", "Express.js", "MySQL"],
-    link: "#"
-  },
-  {
-    id: 3,
-    title: "SiKetik",
-    description: "Sistem Informasi Komite Etik untuk mengelola data dan proses etika secara digital.",
-    image: "https://naufaljct48.github.io/public/images/siketik.png",
-    technologies: ["Bootstrap 5", "PHP", "CodeIgniter", "MySQL"],
-    link: "#"
-  },
-  {
-    id: 4,
-    title: "LookitCCTV",
-    description: "Jasa pemasangan CCTV profesional dengan solusi keamanan modern.",
-    image: "https://naufaljct48.github.io/public/images/lookit.png",
-    technologies: ["WordPress", "YoastSEO", "Elementor"],
-    link: "https://lookitcctv.id/"
-  },
-  {
-    id: 5,
-    title: "iStudy.id",
-    description: "Platform les private dan bimbel online untuk semua jenjang dan kurikulum.",
-    image: "https://naufaljct48.github.io/public/images/istudy.png",
-    technologies: ["WordPress", "YoastSEO", "Elementor"],
-    link: "https://iStudy.id"
-  },
-  {
-    id: 6,
-    title: "PD. Batara Membangun",
-    description: "Perusahaan daerah yang berfokus pada pembangunan wilayah Barito Utara.",
-    image: "https://naufaljct48.github.io/public/images/pdbm.jpg",
-    technologies: ["WordPress", "YoastSEO", "Elementor"],
-    link: "https://pdbm.co.id/"
-  },
-  {
-    id: 7,
-    title: "Forecasting Pertumbuhan Penduduk",
-    description: "Aplikasi prediksi populasi menggunakan metode Least Square.",
-    image: "https://naufaljct48.github.io/public/images/forecasting.png",
-    technologies: ["Bootstrap", "CodeIgniter", "MySQL"],
-    link: "#"
-  },
-  {
-    id: 8,
-    title: "XGamingStore",
-    description: "Toko online game yang modern dan interaktif.",
-    image: "https://naufaljct48.github.io/public/images/xgamingstore.png",
-    technologies: ["VueJS", "Bootstrap", "jQuery"],
-    link: "#"
-  },
-  {
-    id: 9,
-    title: "Turbo Panel",
-    description: "Platform SMM untuk pembelian followers, likes, dan kebutuhan media sosial lainnya.",
-    image: "https://naufaljct48.github.io/public/images/turbo.jpg",
-    technologies: ["Laravel", "Bootstrap", "MySQL"],
-    link: "#"
-  },
-  {
-    id: 10,
-    title: "Aidoku Indonesian Sources",
-    description: "Library scraping web manga pihak ketiga untuk Aidoku.",
-    image: "https://naufaljct48.github.io/public/images/aidoku.png",
-    technologies: ["Rust"],
-    link: "#"
-  }
-];
+    {
+      id: 1,
+      title: "ATiDar",
+      description:
+        "Aplikasi Transfusi Darah untuk mempermudah pengelolaan donor darah.",
+      images: [
+        "https://naufaljct48.github.io/public/images/atidar.png",
+        "https://naufaljct48.github.io/public/images/utdreg.png",
+      ],
+      image: "https://naufaljct48.github.io/public/images/atidar.png", // Fallback image
+      technologies: ["Bootstrap 5", "PHP", "CodeIgniter", "MySQL"],
+      link: "#",
+    },
+    {
+      id: 2,
+      title: "SiKevin",
+      description:
+        "Sistem Informasi Keuangan & Verifikasi Pasien yang modern dan efisien.",
+      image: "https://naufaljct48.github.io/public/images/sikevin.png",
+      technologies: ["Bootstrap 5", "PHP", "Laravel", "Express.js", "MySQL"],
+      link: "#",
+    },
+    {
+      id: 3,
+      title: "SiKetik",
+      description:
+        "Sistem Informasi Komite Etik untuk mengelola data dan proses etika secara digital.",
+      image: "https://naufaljct48.github.io/public/images/siketik.png",
+      technologies: ["Bootstrap 5", "PHP", "CodeIgniter", "MySQL"],
+      link: "#",
+    },
+    {
+      id: 4,
+      title: "Library Management System",
+      description: "Library Management System untuk mengelola data buku.",
+      image: "https://naufaljct48.github.io/public/images/LMS.png",
+      technologies: ["Bootstrap 5", "PHP", "Laravel", "MySQL"],
+      link: "#",
+    },
+    {
+      id: 5,
+      title: "LookitCCTV",
+      description:
+        "Jasa pemasangan CCTV profesional dengan solusi keamanan modern.",
+      image: "https://naufaljct48.github.io/public/images/lookit.png",
+      technologies: ["WordPress", "YoastSEO", "Elementor"],
+      link: "https://lookitcctv.id/",
+    },
+    {
+      id: 6,
+      title: "iStudy.id",
+      description:
+        "Platform les private dan bimbel online untuk semua jenjang dan kurikulum.",
+      image: "https://naufaljct48.github.io/public/images/istudy.png",
+      technologies: ["WordPress", "YoastSEO", "Elementor"],
+      link: "https://iStudy.id",
+    },
+    {
+      id: 7,
+      title: "PD. Batara Membangun",
+      description:
+        "Perusahaan daerah yang berfokus pada pembangunan wilayah Barito Utara.",
+      image: "https://naufaljct48.github.io/public/images/pdbm.jpg",
+      technologies: ["WordPress", "YoastSEO", "Elementor"],
+      link: "https://pdbm.co.id/",
+    },
+    {
+      id: 8,
+      title: "Forecasting Pertumbuhan Penduduk",
+      description:
+        "Aplikasi prediksi populasi menggunakan metode Least Square.",
+      image: "https://naufaljct48.github.io/public/images/forecasting.png",
+      technologies: ["Bootstrap", "CodeIgniter", "MySQL"],
+      link: "#",
+    },
+    {
+      id: 9,
+      title: "XGamingStore",
+      description: "Toko online game yang modern dan interaktif.",
+      image: "https://naufaljct48.github.io/public/images/xgamingstore.png",
+      technologies: ["VueJS", "Bootstrap", "jQuery"],
+      link: "#",
+    },
+    {
+      id: 10,
+      title: "Turbo Panel",
+      description:
+        "Platform SMM untuk pembelian followers, likes, dan kebutuhan media sosial lainnya.",
+      image: "https://naufaljct48.github.io/public/images/turbo.jpg",
+      technologies: ["Laravel", "Bootstrap", "MySQL"],
+      link: "#",
+    },
+    {
+      id: 11,
+      title: "Aidoku Indonesian Sources",
+      description: "Library scraping web manga pihak ketiga untuk Aidoku.",
+      image: "https://naufaljct48.github.io/public/images/aidoku.png",
+      technologies: ["Rust"],
+      link: "#",
+    },
+  ];
 
   const nextSlide = () => {
-    setCurrentIndex((prevIndex) => 
+    setCurrentIndex((prevIndex) =>
       prevIndex + 1 >= projects.length ? 0 : prevIndex + 1
     );
   };
 
   const prevSlide = () => {
-    setCurrentIndex((prevIndex) => 
+    setCurrentIndex((prevIndex) =>
       prevIndex - 1 < 0 ? projects.length - 1 : prevIndex - 1
     );
   };
 
-  const handleDragEnd = (event, info) => {
+  const handleAtidarImageNext = () => {
+    setAtidarImageIndex((prevIndex) =>
+      prevIndex + 1 >= projects[0].images!.length ? 0 : prevIndex + 1
+    );
+  };
+
+  const handleAtidarImagePrev = () => {
+    setAtidarImageIndex((prevIndex) =>
+      prevIndex - 1 < 0 ? projects[0].images!.length - 1 : prevIndex - 1
+    );
+  };
+
+  const handleDragEnd = (event: any, info: any) => {
     setIsDragging(false);
     const swipeThreshold = 50;
     if (Math.abs(info.offset.x) > swipeThreshold) {
@@ -132,10 +175,12 @@ const Projects = () => {
         viewport={{ once: true }}
         className="max-w-7xl mx-auto"
       >
-        <h2 className="text-3xl md:text-4xl font-bold text-center mb-12">My Projects</h2>
-        
+        <h2 className="text-3xl md:text-4xl font-bold text-center mb-12">
+          My Projects
+        </h2>
+
         <div className="relative">
-          <motion.div 
+          <motion.div
             className="flex gap-6 overflow-hidden px-4"
             drag="x"
             dragConstraints={{ left: 0, right: 0 }}
@@ -160,18 +205,29 @@ const Projects = () => {
                   >
                     {/* Image Container dengan rasio tetap */}
                     <div className="relative pt-[56.25%] w-full overflow-hidden">
-                      <img
-                        src={project.image}
-                        alt={project.title}
-                        className="absolute inset-0 w-full h-full object-cover"
-                        draggable="false"
-                      />
+                      {project.id === 1 && project.images ? (
+                        <img
+                          src={project.images[atidarImageIndex]}
+                          alt={project.title}
+                          className="absolute inset-0 w-full h-full object-cover"
+                          draggable="false"
+                        />
+                      ) : (
+                        <img
+                          src={project.image}
+                          alt={project.title}
+                          className="absolute inset-0 w-full h-full object-cover"
+                          draggable="false"
+                        />
+                      )}
                       <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                     </div>
-                    
+
                     {/* Content Container dengan tinggi yang fleksibel */}
                     <div className="p-6 flex-1 flex flex-col">
-                      <h3 className="text-xl font-semibold mb-2">{project.title}</h3>
+                      <h3 className="text-xl font-semibold mb-2">
+                        {project.title}
+                      </h3>
                       <p className="text-gray-600 dark:text-gray-300 line-clamp-2 mb-4 flex-1">
                         {project.description}
                       </p>
@@ -234,11 +290,37 @@ const Projects = () => {
               </div>
               {/* Modal image dengan rasio tetap */}
               <div className="relative pt-[56.25%] w-full mb-4 rounded-lg overflow-hidden">
-                <img
-                  src={selectedProject.image}
-                  alt={selectedProject.title}
-                  className="absolute inset-0 w-full h-full object-cover"
-                />
+                {selectedProject.id === 1 && selectedProject.images ? (
+                  <>
+                    <img
+                      src={selectedProject.images[atidarImageIndex]}
+                      alt={selectedProject.title}
+                      className="absolute inset-0 w-full h-full object-cover"
+                    />
+                    <div className="absolute top-1/2 left-2 -translate-y-1/2 z-10">
+                      <button
+                        onClick={handleAtidarImagePrev}
+                        className="bg-white dark:bg-gray-800 shadow-lg p-3 rounded-full hover:scale-110 transition-transform"
+                      >
+                        <ChevronLeft className="w-6 h-6" />
+                      </button>
+                    </div>
+                    <div className="absolute top-1/2 right-2 -translate-y-1/2 z-10">
+                      <button
+                        onClick={handleAtidarImageNext}
+                        className="bg-white dark:bg-gray-800 shadow-lg p-3 rounded-full hover:scale-110 transition-transform"
+                      >
+                        <ChevronRight className="w-6 h-6" />
+                      </button>
+                    </div>
+                  </>
+                ) : (
+                  <img
+                    src={selectedProject.image}
+                    alt={selectedProject.title}
+                    className="absolute inset-0 w-full h-full object-cover"
+                  />
+                )}
               </div>
               <p className="text-gray-600 dark:text-gray-300 mb-4">
                 {selectedProject.description}
