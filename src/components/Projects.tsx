@@ -56,7 +56,7 @@ const Projects = () => {
       description: "Library Management System untuk mengelola data buku.",
       image: "https://naufaljct48.github.io/public/images/LMS.png",
       technologies: ["Bootstrap 5", "PHP", "Laravel", "MySQL"],
-      link: "#",
+      link: "https://github.com/naufaljct48/library",
     },
     {
       id: 5,
@@ -117,7 +117,7 @@ const Projects = () => {
       description: "Library scraping web manga pihak ketiga untuk Aidoku.",
       image: "https://naufaljct48.github.io/public/images/aidoku.png",
       technologies: ["Rust"],
-      link: "#",
+      link: "https://github.com/naufaljct48/aidoku-community-sources",
     },
   ];
 
