@@ -21,101 +21,143 @@ const Projects = () => {
   const projects = [
     {
       id: 1,
-      title: "ATiDar",
+      title: "Dharmais Cendana (Mobile-first App)",
       description:
-        "Aplikasi Transfusi Darah untuk mempermudah pengelolaan donor darah.",
-      images: [
-        "https://naufaljct48.github.io/public/images/utdreg.png",
-        "https://naufaljct48.github.io/public/images/atidar.png",
+        "Aplikasi kesehatan digital mobile-first dengan layanan janji temu online, akses rekam medis, check-in mandiri, notifikasi, dan pengelolaan profil pasien menggunakan teknologi frontend modern.",
+      image: "/images/cendana.webp",
+      technologies: [
+        "Next.js",
+        "React",
+        "TypeScript",
+        "Tailwind CSS",
+        "Radix UI",
+        "Shadcn/UI",
+        "Framer Motion",
+        "Express.js",
+        "Bun Runtime",
       ],
-      image: "https://naufaljct48.github.io/public/images/utdreg.png", // Fallback image
-      technologies: ["Bootstrap 5", "PHP", "CodeIgniter", "MySQL"],
       link: "#",
     },
     {
       id: 2,
-      title: "SiKevin",
+      title: "Hospital AIS RAG System",
       description:
-        "Sistem Informasi Keuangan & Verifikasi Pasien yang modern dan efisien.",
-      image: "https://naufaljct48.github.io/public/images/sikevin.png",
-      technologies: ["Bootstrap 5", "PHP", "Laravel", "Express.js", "MySQL"],
+        "Sistem chatbot rumah sakit modern dengan kemampuan AI untuk retrieval informasi medis dan manajemen jadwal dokter menggunakan Google Gemini AI dan ChromaDB untuk RAG.",
+      image: "/images/ais.webp",
+      technologies: [
+        "React",
+        "TypeScript",
+        "TailwindCSS",
+        "Express.js",
+        "Bun Runtime",
+        "Prisma ORM",
+        "MySQL",
+        "Google Gemini AI",
+        "ChromaDB",
+      ],
       link: "#",
     },
     {
       id: 3,
-      title: "SiKetik",
+      title: "iStudy - Platform Edukasi",
       description:
-        "Sistem Informasi Komite Etik untuk mengelola data dan proses etika secara digital.",
-      image: "https://naufaljct48.github.io/public/images/siketik.png",
+        "Aplikasi web edukasi dengan fitur modular, integrasi Google Analytics, dan proses deployment terotomasi. Dilengkapi script utilitas untuk update tracking ID dan dokumentasi deployment.",
+      image: "/images/istudy.webp",
+      technologies: [
+        "React",
+        "TypeScript",
+        "Vite",
+        "Tailwind CSS",
+        "PostCSS",
+        "Google Analytics",
+      ],
+      link: "https://iStudy.id",
+    },
+    {
+      id: 4,
+      title: "ATiDar",
+      description:
+        "Aplikasi Transfusi Darah untuk mempermudah pengelolaan donor darah.",
+      images: ["/images/utdreg.webp", "/images/atidar.webp"],
+      image: "/images/utdreg.webp", // Fallback image
       technologies: ["Bootstrap 5", "PHP", "CodeIgniter", "MySQL"],
       link: "#",
     },
     {
-      id: 4,
+      id: 5,
+      title: "SiKevin",
+      description:
+        "Sistem Informasi Keuangan & Verifikasi Pasien yang modern dan efisien.",
+      image: "/images/sikevin.webp",
+      technologies: ["Bootstrap 5", "PHP", "Laravel", "Express.js", "MySQL"],
+      link: "#",
+    },
+    {
+      id: 6,
+      title: "SiKetik",
+      description:
+        "Sistem Informasi Komite Etik untuk mengelola data dan proses etika secara digital.",
+      image: "/images/siketik.webp",
+      technologies: ["Bootstrap 5", "PHP", "CodeIgniter", "MySQL"],
+      link: "#",
+    },
+    {
+      id: 7,
       title: "Library Management System",
       description: "Library Management System untuk mengelola data buku.",
-      image: "https://naufaljct48.github.io/public/images/LMS.png",
+      image: "/images/LMS.webp",
       technologies: ["Bootstrap 5", "PHP", "Laravel", "MySQL"],
       link: "https://github.com/naufaljct48/library",
     },
     {
-      id: 5,
+      id: 8,
       title: "LookitCCTV",
       description:
         "Jasa pemasangan CCTV profesional dengan solusi keamanan modern.",
-      image: "https://naufaljct48.github.io/public/images/lookit.png",
+      image: "/images/lookit.webp",
       technologies: ["WordPress", "YoastSEO", "Elementor"],
       link: "https://lookitcctv.id/",
     },
     {
-      id: 6,
-      title: "iStudy.id",
-      description:
-        "Platform les private dan bimbel online untuk semua jenjang dan kurikulum.",
-      image: "https://naufaljct48.github.io/public/images/istudy.png",
-      technologies: ["WordPress", "YoastSEO", "Elementor"],
-      link: "https://iStudy.id",
-    },
-    {
-      id: 7,
+      id: 9,
       title: "PD. Batara Membangun",
       description:
         "Perusahaan daerah yang berfokus pada pembangunan wilayah Barito Utara.",
-      image: "https://naufaljct48.github.io/public/images/pdbm.jpg",
+      image: "/images/pdbm.webp",
       technologies: ["WordPress", "YoastSEO", "Elementor"],
       link: "https://pdbm.co.id/",
     },
     {
-      id: 8,
+      id: 10,
       title: "Forecasting Pertumbuhan Penduduk",
       description:
         "Aplikasi prediksi populasi menggunakan metode Least Square.",
-      image: "https://naufaljct48.github.io/public/images/forecasting.png",
+      image: "/images/forecasting.webp",
       technologies: ["Bootstrap", "CodeIgniter", "MySQL"],
       link: "#",
     },
     {
-      id: 9,
+      id: 11,
       title: "XGamingStore",
       description: "Toko online game yang modern dan interaktif.",
-      image: "https://naufaljct48.github.io/public/images/xgamingstore.png",
+      image: "/images/xgamingstore.webp",
       technologies: ["VueJS", "Bootstrap", "jQuery"],
       link: "#",
     },
     {
-      id: 10,
+      id: 12,
       title: "Turbo Panel",
       description:
         "Platform SMM untuk pembelian followers, likes, dan kebutuhan media sosial lainnya.",
-      image: "https://naufaljct48.github.io/public/images/turbo.jpg",
+      image: "/images/turbo.webp",
       technologies: ["Laravel", "Bootstrap", "MySQL"],
       link: "#",
     },
     {
-      id: 11,
+      id: 13,
       title: "Aidoku Indonesian Sources",
       description: "Library scraping web manga pihak ketiga untuk Aidoku.",
-      image: "https://naufaljct48.github.io/public/images/aidoku.png",
+      image: "/images/aidoku.webp",
       technologies: ["Rust"],
       link: "https://github.com/naufaljct48/aidoku-community-sources",
     },
@@ -134,15 +176,21 @@ const Projects = () => {
   };
 
   const handleAtidarImageNext = () => {
-    setAtidarImageIndex((prevIndex) =>
-      prevIndex + 1 >= projects[0].images!.length ? 0 : prevIndex + 1
-    );
+    const atidarProject = projects.find((p) => p.id === 4);
+    if (atidarProject?.images) {
+      setAtidarImageIndex((prevIndex) =>
+        prevIndex + 1 >= atidarProject.images!.length ? 0 : prevIndex + 1
+      );
+    }
   };
 
   const handleAtidarImagePrev = () => {
-    setAtidarImageIndex((prevIndex) =>
-      prevIndex - 1 < 0 ? projects[0].images!.length - 1 : prevIndex - 1
-    );
+    const atidarProject = projects.find((p) => p.id === 4);
+    if (atidarProject?.images) {
+      setAtidarImageIndex((prevIndex) =>
+        prevIndex - 1 < 0 ? atidarProject.images!.length - 1 : prevIndex - 1
+      );
+    }
   };
 
   const handleDragEnd = (event: any, info: any) => {
@@ -205,7 +253,7 @@ const Projects = () => {
                   >
                     {/* Image Container dengan rasio tetap */}
                     <div className="relative pt-[56.25%] w-full overflow-hidden">
-                      {project.id === 1 && project.images ? (
+                      {project.id === 4 && project.images ? (
                         <img
                           src={project.images[atidarImageIndex]}
                           alt={project.title}
@@ -290,7 +338,7 @@ const Projects = () => {
               </div>
               {/* Modal image dengan rasio tetap */}
               <div className="relative pt-[56.25%] w-full mb-4 rounded-lg overflow-hidden">
-                {selectedProject.id === 1 && selectedProject.images ? (
+                {selectedProject.id === 4 && selectedProject.images ? (
                   <>
                     <img
                       src={selectedProject.images[atidarImageIndex]}

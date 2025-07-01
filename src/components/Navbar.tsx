@@ -1,24 +1,24 @@
-import React from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { Sun, Moon, Github, FileText, Menu, X } from 'lucide-react';
-import { useLocalStorage } from 'react-use';
+import React from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { Sun, Moon, Github, FileText, Menu, X } from "lucide-react";
+import { useLocalStorage } from "react-use";
 
 const Navbar = () => {
-  const [isDark, setIsDark] = useLocalStorage('darkMode', true);
+  const [isDark, setIsDark] = useLocalStorage("darkMode", true);
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
 
   React.useEffect(() => {
     if (isDark) {
-      document.documentElement.classList.add('dark');
+      document.documentElement.classList.add("dark");
     } else {
-      document.documentElement.classList.remove('dark');
+      document.documentElement.classList.remove("dark");
     }
   }, [isDark]);
 
   const menuItems = [
-    { name: 'Home', href: '#home' },
-    { name: 'About', href: '#about' },
-    { name: 'Projects', href: '#projects' },
+    { name: "Home", href: "#home" },
+    { name: "About", href: "#about" },
+    { name: "Projects", href: "#projects" },
   ];
 
   const closeMenu = () => setIsMenuOpen(false);
@@ -36,7 +36,11 @@ const Navbar = () => {
             className="lg:hidden p-2 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-full"
             onClick={() => setIsMenuOpen(!isMenuOpen)}
           >
-            {isMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+            {isMenuOpen ? (
+              <X className="w-5 h-5" />
+            ) : (
+              <Menu className="w-5 h-5" />
+            )}
           </button>
 
           {/* Desktop menu (visible above 1024px) */}
@@ -82,7 +86,7 @@ const Navbar = () => {
               <Github className="w-5 h-5" />
             </motion.a>
             <motion.a
-              href="https://naufaljct48.github.io/public/Resume.pdf"
+              href="/Resume.pdf"
               target="_blank"
               rel="noopener noreferrer"
               whileHover={{ scale: 1.1 }}
@@ -98,7 +102,11 @@ const Navbar = () => {
               onClick={() => setIsDark(!isDark)}
               className="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
             >
-              {isDark ? <Sun className="w-5 h-5" /> : <Moon className="w-5 h-5" />}
+              {isDark ? (
+                <Sun className="w-5 h-5" />
+              ) : (
+                <Moon className="w-5 h-5" />
+              )}
             </motion.button>
           </div>
         </div>
@@ -115,9 +123,9 @@ const Navbar = () => {
             onClick={closeMenu}
           >
             <motion.div
-              initial={{ y: '-100%' }}
+              initial={{ y: "-100%" }}
               animate={{ y: 0 }}
-              exit={{ y: '-100%' }}
+              exit={{ y: "-100%" }}
               className="absolute top-[4rem] right-2 w-[calc(50%-2rem)] sm:w-[320px] bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg"
               onClick={(e) => e.stopPropagation()}
             >
@@ -135,9 +143,9 @@ const Navbar = () => {
                     {item.name}
                   </motion.a>
                 ))}
-                
+
                 <div className="border-t border-gray-300 dark:border-gray-600 my-4" />
-                
+
                 {/* Social & Utility Links */}
                 <motion.a
                   href="https://github.com/naufaljct48"
@@ -150,7 +158,7 @@ const Navbar = () => {
                   <Github className="w-5 h-5" />
                   <span className="font-medium">GitHub</span>
                 </motion.a>
-                
+
                 <motion.a
                   href="https://naufaljct48.github.io/public/Resume.pdf"
                   target="_blank"
@@ -162,9 +170,9 @@ const Navbar = () => {
                   <FileText className="w-5 h-5" />
                   <span className="font-medium">CV</span>
                 </motion.a>
-                
+
                 <div className="border-t border-gray-300 dark:border-gray-600 my-4" />
-                
+
                 {/* Theme Toggle */}
                 <motion.button
                   onClick={() => {
@@ -175,8 +183,14 @@ const Navbar = () => {
                   whileTap={{ scale: 0.95 }}
                   className="flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
                 >
-                  {isDark ? <Sun className="w-5 h-5" /> : <Moon className="w-5 h-5" />}
-                  <span className="font-medium">{isDark ? 'Light Mode' : 'Dark Mode'}</span>
+                  {isDark ? (
+                    <Sun className="w-5 h-5" />
+                  ) : (
+                    <Moon className="w-5 h-5" />
+                  )}
+                  <span className="font-medium">
+                    {isDark ? "Light Mode" : "Dark Mode"}
+                  </span>
                 </motion.button>
               </div>
             </motion.div>

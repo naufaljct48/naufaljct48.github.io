@@ -1,6 +1,6 @@
-import React from 'react';
-import { motion } from 'framer-motion';
-import { Github, Linkedin, Mail } from 'lucide-react';
+import React from "react";
+import { motion } from "framer-motion";
+import { Github, Linkedin, Mail } from "lucide-react";
 
 const Hero = () => {
   return (
@@ -14,11 +14,11 @@ const Hero = () => {
             transition={{ duration: 0.5 }}
             className="lg:col-start-1"
           >
-            <h1 className="text-4xl md:text-4xl font-bold">
-              Halo 👋, saya
-            </h1>
+            <h1 className="text-4xl md:text-4xl font-bold">Halo 👋, saya</h1>
             <h1 className="text-4xl md:text-4xl font-bold mb-6">
-              <span className="text-blue-600 dark:text-blue-400">Naufal Aziz Albaaqie</span>
+              <span className="text-blue-600 dark:text-blue-400">
+                Naufal Aziz Albaaqie
+              </span>
             </h1>
           </motion.div>
 
@@ -50,7 +50,7 @@ const Hero = () => {
             <div className="relative w-[80%] h-auto lg:w-[70%]">
               <div className="aspect-square rounded-full overflow-hidden">
                 <img
-                  src="https://naufaljct48.github.io/public/images/naufal.png"
+                  src="/images/naufal.webp"
                   alt="Profile"
                   className="w-full h-full object-contain"
                 />
@@ -66,7 +66,8 @@ const Hero = () => {
             className="lg:col-start-1"
           >
             <p className="text-xl md:text-2xl text-gray-600 dark:text-gray-300 mb-8">
-              Seorang Full Stack Developer yang antusias dalam menciptakan pengalaman web yang user-friendly dan modern.
+              Seorang Full Stack Developer yang antusias dalam menciptakan
+              pengalaman web yang user-friendly dan modern.
             </p>
             <div className="flex gap-4">
               <motion.a
