@@ -21,20 +21,20 @@ const Projects = () => {
   const projects = [
     {
       id: 1,
-      title: "Dharmais Cendana (Mobile-first App)",
+      title: "ByteLaunch",
       description:
-        "Aplikasi kesehatan digital mobile-first dengan layanan janji temu online, akses rekam medis, check-in mandiri, notifikasi, dan pengelolaan profil pasien menggunakan teknologi frontend modern.",
-      image: "/images/cendana.webp",
+        "Platform yang memudahkan pengguna untuk membuat token di blockchain Solana, mengelola portofolio aset, serta menyediakan sistem afiliasi dan fitur analitik. Platform ini juga memungkinkan pembuatan dan pengelolaan liquidity pool di Raydium DEX.",
+      image: "/images/bytelaunch.webp",
       technologies: [
-        "Next.js",
-        "React",
+        "Nuxt.js 3",
+        "Vue 3",
         "TypeScript",
         "Tailwind CSS",
-        "Radix UI",
-        "Shadcn/UI",
-        "Framer Motion",
-        "Express.js",
-        "Bun Runtime",
+        "Nuxt UI",
+        "Bun",
+        "Solana",
+        "Jupiter API",
+        "Raydium DEX",
       ],
       link: "#",
     },
@@ -75,6 +75,25 @@ const Projects = () => {
     },
     {
       id: 4,
+      title: "Dharmais Cendana (Mobile-first App)",
+      description:
+        "Aplikasi kesehatan digital mobile-first dengan layanan janji temu online, akses rekam medis, check-in mandiri, notifikasi, dan pengelolaan profil pasien menggunakan teknologi frontend modern.",
+      image: "/images/cendana.webp",
+      technologies: [
+        "Next.js",
+        "React",
+        "TypeScript",
+        "Tailwind CSS",
+        "Radix UI",
+        "Shadcn/UI",
+        "Framer Motion",
+        "Express.js",
+        "Bun Runtime",
+      ],
+      link: "#",
+    },
+    {
+      id: 5,
       title: "ATiDar",
       description:
         "Aplikasi Transfusi Darah untuk mempermudah pengelolaan donor darah.",
@@ -84,7 +103,7 @@ const Projects = () => {
       link: "#",
     },
     {
-      id: 5,
+      id: 6,
       title: "SiKevin",
       description:
         "Sistem Informasi Keuangan & Verifikasi Pasien yang modern dan efisien.",
@@ -93,7 +112,7 @@ const Projects = () => {
       link: "#",
     },
     {
-      id: 6,
+      id: 7,
       title: "SiKetik",
       description:
         "Sistem Informasi Komite Etik untuk mengelola data dan proses etika secara digital.",
@@ -102,7 +121,7 @@ const Projects = () => {
       link: "#",
     },
     {
-      id: 7,
+      id: 8,
       title: "Library Management System",
       description: "Library Management System untuk mengelola data buku.",
       image: "/images/LMS.webp",
@@ -110,7 +129,7 @@ const Projects = () => {
       link: "https://github.com/naufaljct48/library",
     },
     {
-      id: 8,
+      id: 9,
       title: "LookitCCTV",
       description:
         "Jasa pemasangan CCTV profesional dengan solusi keamanan modern.",
@@ -119,7 +138,7 @@ const Projects = () => {
       link: "https://lookitcctv.id/",
     },
     {
-      id: 9,
+      id: 10,
       title: "PD. Batara Membangun",
       description:
         "Perusahaan daerah yang berfokus pada pembangunan wilayah Barito Utara.",
@@ -128,7 +147,7 @@ const Projects = () => {
       link: "https://pdbm.co.id/",
     },
     {
-      id: 10,
+      id: 11,
       title: "Forecasting Pertumbuhan Penduduk",
       description:
         "Aplikasi prediksi populasi menggunakan metode Least Square.",
@@ -137,7 +156,7 @@ const Projects = () => {
       link: "#",
     },
     {
-      id: 11,
+      id: 12,
       title: "XGamingStore",
       description: "Toko online game yang modern dan interaktif.",
       image: "/images/xgamingstore.webp",
@@ -145,7 +164,7 @@ const Projects = () => {
       link: "#",
     },
     {
-      id: 12,
+      id: 13,
       title: "Turbo Panel",
       description:
         "Platform SMM untuk pembelian followers, likes, dan kebutuhan media sosial lainnya.",
@@ -154,7 +173,7 @@ const Projects = () => {
       link: "#",
     },
     {
-      id: 13,
+      id: 14,
       title: "Aidoku Indonesian Sources",
       description: "Library scraping web manga pihak ketiga untuk Aidoku.",
       image: "/images/aidoku.webp",
@@ -176,7 +195,7 @@ const Projects = () => {
   };
 
   const handleAtidarImageNext = () => {
-    const atidarProject = projects.find((p) => p.id === 4);
+    const atidarProject = projects.find((p) => p.id === 5);
     if (atidarProject?.images) {
       setAtidarImageIndex((prevIndex) =>
         prevIndex + 1 >= atidarProject.images!.length ? 0 : prevIndex + 1
@@ -185,7 +204,7 @@ const Projects = () => {
   };
 
   const handleAtidarImagePrev = () => {
-    const atidarProject = projects.find((p) => p.id === 4);
+    const atidarProject = projects.find((p) => p.id === 5);
     if (atidarProject?.images) {
       setAtidarImageIndex((prevIndex) =>
         prevIndex - 1 < 0 ? atidarProject.images!.length - 1 : prevIndex - 1
@@ -253,7 +272,7 @@ const Projects = () => {
                   >
                     {/* Image Container dengan rasio tetap */}
                     <div className="relative pt-[56.25%] w-full overflow-hidden">
-                      {project.id === 4 && project.images ? (
+                      {project.id === 5 && project.images ? (
                         <img
                           src={project.images[atidarImageIndex]}
                           alt={project.title}
@@ -338,7 +357,7 @@ const Projects = () => {
               </div>
               {/* Modal image dengan rasio tetap */}
               <div className="relative pt-[56.25%] w-full mb-4 rounded-lg overflow-hidden">
-                {selectedProject.id === 4 && selectedProject.images ? (
+                {selectedProject.id === 5 && selectedProject.images ? (
                   <>
                     <img
                       src={selectedProject.images[atidarImageIndex]}
