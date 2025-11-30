@@ -15,8 +15,10 @@ interface Project {
 const Projects = () => {
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [atidarImageIndex, setAtidarImageIndex] = useState(0);
+  const [projectImageIndices, setProjectImageIndices] = useState<Record<number, number>>({});
   const [isDragging, setIsDragging] = useState(false);
+
+  const getProjectImageIndex = (projectId: number) => projectImageIndices[projectId] || 0;
 
   const projects = [
     {
@@ -35,6 +37,56 @@ const Projects = () => {
         "Solana",
         "Jupiter API",
         "Raydium DEX",
+      ],
+      link: "#",
+    },
+    {
+      id: 15,
+      title: "AIS Kiosk (AI Companion)",
+      description:
+        "3D interactive AI assistant untuk KIOSK rumah sakit menggunakan Three.js dan Gemini 2.5 Live API dengan kemampuan real-time lip-sync dan native voice conversation untuk membantu pasien dan pengunjung.",
+      images: ["/images/ais1.webp", "/images/ais2.webp"],
+      image: "/images/ais1.webp",
+      technologies: [
+        "React",
+        "TypeScript",
+        "Three.js",
+        "Gemini 2.5 Live API",
+        "TailwindCSS",
+        "WebGL",
+      ],
+      link: "#",
+    },
+    {
+      id: 16,
+      title: "DEMON (Database Environment Monitoring)",
+      description:
+        "Real-time MySQL dashboard dengan AI-powered query analysis dan fitur 'Auto-Kill' protocols untuk mengoptimasi performa database rumah sakit.",
+      images: ["/images/demon1.webp", "/images/demon2.webp"],
+      image: "/images/demon1.webp",
+      technologies: [
+        "React",
+        "TypeScript",
+        "TailwindCSS",
+        "Express.js",
+        "MySQL",
+        "Google Gemini AI",
+      ],
+      link: "#",
+    },
+    {
+      id: 17,
+      title: "Dimensi HRIS Mobile",
+      description:
+        "Aplikasi mobile HRIS multi-tenant dengan fitur Face Recognition attendance, GPS geofencing, employee self-service untuk absensi, pengajuan cuti, dan akses slip gaji.",
+      images: ["/images/dimensi1.webp", "/images/dimensi2.webp", "/images/dimensi3.webp"],
+      image: "/images/dimensi1.webp",
+      technologies: [
+        "React Native",
+        "Expo",
+        "TypeScript",
+        "Face Recognition",
+        "GPS Geofencing",
       ],
       link: "#",
     },
@@ -194,21 +246,29 @@ const Projects = () => {
     );
   };
 
-  const handleAtidarImageNext = () => {
-    const atidarProject = projects.find((p) => p.id === 5);
-    if (atidarProject?.images) {
-      setAtidarImageIndex((prevIndex) =>
-        prevIndex + 1 >= atidarProject.images!.length ? 0 : prevIndex + 1
-      );
+  const handleProjectImageNext = (projectId: number) => {
+    const project = projects.find((p) => p.id === projectId);
+    if (project?.images) {
+      setProjectImageIndices((prev) => {
+        const currentIdx = prev[projectId] || 0;
+        return {
+          ...prev,
+          [projectId]: currentIdx + 1 >= project.images!.length ? 0 : currentIdx + 1,
+        };
+      });
     }
   };
 
-  const handleAtidarImagePrev = () => {
-    const atidarProject = projects.find((p) => p.id === 5);
-    if (atidarProject?.images) {
-      setAtidarImageIndex((prevIndex) =>
-        prevIndex - 1 < 0 ? atidarProject.images!.length - 1 : prevIndex - 1
-      );
+  const handleProjectImagePrev = (projectId: number) => {
+    const project = projects.find((p) => p.id === projectId);
+    if (project?.images) {
+      setProjectImageIndices((prev) => {
+        const currentIdx = prev[projectId] || 0;
+        return {
+          ...prev,
+          [projectId]: currentIdx - 1 < 0 ? project.images!.length - 1 : currentIdx - 1,
+        };
+      });
     }
   };
 
@@ -272,21 +332,12 @@ const Projects = () => {
                   >
                     {/* Image Container dengan rasio tetap */}
                     <div className="relative pt-[56.25%] w-full overflow-hidden">
-                      {project.id === 5 && project.images ? (
-                        <img
-                          src={project.images[atidarImageIndex]}
-                          alt={project.title}
-                          className="absolute inset-0 w-full h-full object-cover"
-                          draggable="false"
-                        />
-                      ) : (
-                        <img
-                          src={project.image}
-                          alt={project.title}
-                          className="absolute inset-0 w-full h-full object-cover"
-                          draggable="false"
-                        />
-                      )}
+                      <img
+                        src={project.images ? project.images[getProjectImageIndex(project.id)] : project.image}
+                        alt={project.title}
+                        className="absolute inset-0 w-full h-full object-cover"
+                        draggable="false"
+                      />
                       <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                     </div>
 
@@ -357,16 +408,16 @@ const Projects = () => {
               </div>
               {/* Modal image dengan rasio tetap */}
               <div className="relative pt-[56.25%] w-full mb-4 rounded-lg overflow-hidden">
-                {selectedProject.id === 5 && selectedProject.images ? (
+                <img
+                  src={selectedProject.images ? selectedProject.images[getProjectImageIndex(selectedProject.id)] : selectedProject.image}
+                  alt={selectedProject.title}
+                  className="absolute inset-0 w-full h-full object-cover"
+                />
+                {selectedProject.images && selectedProject.images.length > 1 && (
                   <>
-                    <img
-                      src={selectedProject.images[atidarImageIndex]}
-                      alt={selectedProject.title}
-                      className="absolute inset-0 w-full h-full object-cover"
-                    />
                     <div className="absolute top-1/2 left-2 -translate-y-1/2 z-10">
                       <button
-                        onClick={handleAtidarImagePrev}
+                        onClick={() => handleProjectImagePrev(selectedProject.id)}
                         className="bg-white dark:bg-gray-800 shadow-lg p-3 rounded-full hover:scale-110 transition-transform"
                       >
                         <ChevronLeft className="w-6 h-6" />
@@ -374,19 +425,13 @@ const Projects = () => {
                     </div>
                     <div className="absolute top-1/2 right-2 -translate-y-1/2 z-10">
                       <button
-                        onClick={handleAtidarImageNext}
+                        onClick={() => handleProjectImageNext(selectedProject.id)}
                         className="bg-white dark:bg-gray-800 shadow-lg p-3 rounded-full hover:scale-110 transition-transform"
                       >
                         <ChevronRight className="w-6 h-6" />
                       </button>
                     </div>
                   </>
-                ) : (
-                  <img
-                    src={selectedProject.image}
-                    alt={selectedProject.title}
-                    className="absolute inset-0 w-full h-full object-cover"
-                  />
                 )}
               </div>
               <p className="text-gray-600 dark:text-gray-300 mb-4">
