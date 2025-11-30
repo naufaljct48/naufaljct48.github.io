@@ -1,6 +1,12 @@
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { X, ChevronLeft, ChevronRight, ExternalLink, Sparkles } from "lucide-react";
+import {
+  X,
+  ChevronLeft,
+  ChevronRight,
+  ExternalLink,
+  Sparkles,
+} from "lucide-react";
 import { useLanguage } from "../context/LanguageContext";
 
 interface Project {
@@ -17,10 +23,13 @@ interface Project {
 const Projects = () => {
   const { t } = useLanguage();
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
-  const [projectImageIndices, setProjectImageIndices] = useState<Record<number, number>>({});
+  const [projectImageIndices, setProjectImageIndices] = useState<
+    Record<number, number>
+  >({});
   const [filter, setFilter] = useState<string>("all");
 
-  const getProjectImageIndex = (projectId: number) => projectImageIndices[projectId] || 0;
+  const getProjectImageIndex = (projectId: number) =>
+    projectImageIndices[projectId] || 0;
 
   const projects: Project[] = [
     {
@@ -29,7 +38,13 @@ const Projects = () => {
       description:
         "Platform for creating tokens on Solana blockchain, managing asset portfolios, and providing affiliate systems with analytics features.",
       image: "/images/bytelaunch.webp",
-      technologies: ["Nuxt.js 3", "Vue 3", "TypeScript", "Solana", "Raydium DEX"],
+      technologies: [
+        "Nuxt.js 3",
+        "Vue 3",
+        "TypeScript",
+        "Solana",
+        "Raydium DEX",
+      ],
       link: "#",
       featured: true,
     },
@@ -37,10 +52,10 @@ const Projects = () => {
       id: 15,
       title: "AIS Kiosk (AI Companion)",
       description:
-        "3D interactive AI assistant for hospital KIOSK using Three.js and Gemini 2.5 Live API with real-time lip-sync.",
+        "3D interactive AI assistant for hospital KIOSK using Three.js and Gemini with real-time lip-sync.",
       images: ["/images/ais1.webp", "/images/ais2.webp"],
       image: "/images/ais1.webp",
-      technologies: ["React", "Three.js", "Gemini 2.5 Live API", "WebGL"],
+      technologies: ["React", "Three.js", "Gemini", "WebGL"],
       link: "#",
       featured: true,
     },
@@ -60,7 +75,11 @@ const Projects = () => {
       title: "Dimensi HRIS Mobile",
       description:
         "Multi-tenant HRIS mobile app with Face Recognition attendance, GPS geofencing, and employee self-service.",
-      images: ["/images/dimensi1.webp", "/images/dimensi2.webp", "/images/dimensi3.webp"],
+      images: [
+        "/images/dimensi1.webp",
+        "/images/dimensi2.webp",
+        "/images/dimensi3.webp",
+      ],
       image: "/images/dimensi1.webp",
       technologies: ["React Native", "Expo", "TypeScript", "Face Recognition"],
       link: "#",
@@ -78,7 +97,8 @@ const Projects = () => {
     {
       id: 3,
       title: "iStudy",
-      description: "Education platform with modular features and Google Analytics integration.",
+      description:
+        "Education platform with modular features and Google Analytics integration.",
       image: "/images/istudy.webp",
       technologies: ["React", "TypeScript", "Vite", "Tailwind CSS"],
       link: "https://iStudy.id",
@@ -86,7 +106,8 @@ const Projects = () => {
     {
       id: 4,
       title: "Dharmais Cendana",
-      description: "Mobile-first digital health app with online appointments and medical record access.",
+      description:
+        "Mobile-first digital health app with online appointments and medical record access.",
       image: "/images/cendana.webp",
       technologies: ["Next.js", "React", "TypeScript", "Shadcn/UI"],
       link: "#",
@@ -94,7 +115,8 @@ const Projects = () => {
     {
       id: 5,
       title: "ATiDar",
-      description: "Blood Transfusion Application to simplify blood donor management.",
+      description:
+        "Blood Transfusion Application to simplify blood donor management.",
       images: ["/images/utdreg.webp", "/images/atidar.webp"],
       image: "/images/utdreg.webp",
       technologies: ["Bootstrap 5", "PHP", "CodeIgniter", "MySQL"],
@@ -103,15 +125,17 @@ const Projects = () => {
     {
       id: 6,
       title: "SiKevin",
-      description: "Modern and efficient Financial & Patient Verification Information System.",
+      description:
+        "Modern and efficient Financial & Patient Verification Information System.",
       image: "/images/sikevin.webp",
-      technologies: ["Bootstrap 5", "PHP", "Laravel", "Express.js"],
+      technologies: ["Bootstrap 5", "PHP", "Laravel"],
       link: "#",
     },
     {
       id: 7,
       title: "SiKetik",
-      description: "Ethics Committee Information System for digital ethics management.",
+      description:
+        "Ethics Committee Information System for digital ethics management.",
       image: "/images/siketik.webp",
       technologies: ["Bootstrap 5", "PHP", "CodeIgniter", "MySQL"],
       link: "#",
@@ -127,7 +151,8 @@ const Projects = () => {
     {
       id: 9,
       title: "LookitCCTV",
-      description: "Professional CCTV installation services with modern security solutions.",
+      description:
+        "Professional CCTV installation services with modern security solutions.",
       image: "/images/lookit.webp",
       technologies: ["WordPress", "YoastSEO", "Elementor"],
       link: "https://lookitcctv.id/",
@@ -135,7 +160,8 @@ const Projects = () => {
     {
       id: 10,
       title: "PD. Batara Membangun",
-      description: "Regional company focused on North Barito regional development.",
+      description:
+        "Regional company focused on North Barito regional development.",
       image: "/images/pdbm.webp",
       technologies: ["WordPress", "YoastSEO", "Elementor"],
       link: "https://pdbm.co.id/",
@@ -157,7 +183,8 @@ const Projects = () => {
         const currentIdx = prev[projectId] || 0;
         return {
           ...prev,
-          [projectId]: currentIdx + 1 >= project.images!.length ? 0 : currentIdx + 1,
+          [projectId]:
+            currentIdx + 1 >= project.images!.length ? 0 : currentIdx + 1,
         };
       });
     }
@@ -170,15 +197,15 @@ const Projects = () => {
         const currentIdx = prev[projectId] || 0;
         return {
           ...prev,
-          [projectId]: currentIdx - 1 < 0 ? project.images!.length - 1 : currentIdx - 1,
+          [projectId]:
+            currentIdx - 1 < 0 ? project.images!.length - 1 : currentIdx - 1,
         };
       });
     }
   };
 
-  const filteredProjects = filter === "featured" 
-    ? projects.filter(p => p.featured) 
-    : projects;
+  const filteredProjects =
+    filter === "featured" ? projects.filter((p) => p.featured) : projects;
 
   return (
     <section id="projects" className="py-20 px-4">
@@ -191,7 +218,8 @@ const Projects = () => {
           className="text-center mb-12"
         >
           <h2 className="text-3xl md:text-4xl font-bold mb-4 text-gray-900 dark:text-white">
-            {t("projects.title")} <span className="text-accent">{t("projects.highlight")}</span>
+            {t("projects.title")}{" "}
+            <span className="text-accent">{t("projects.highlight")}</span>
           </h2>
           <p className="text-gray-600 dark:text-gray-400 max-w-2xl mx-auto mb-8">
             {t("projects.subtitle")}
@@ -238,11 +266,15 @@ const Projects = () => {
               {/* Image */}
               <div className="relative aspect-video overflow-hidden">
                 <img
-                  src={project.images ? project.images[getProjectImageIndex(project.id)] : project.image}
+                  src={
+                    project.images
+                      ? project.images[getProjectImageIndex(project.id)]
+                      : project.image
+                  }
                   alt={project.title}
                   className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                 />
-                
+
                 {project.featured && (
                   <div className="absolute top-3 right-3">
                     <span className="inline-flex items-center gap-1 px-2 py-1 rounded-full bg-accent text-white text-xs font-medium">
@@ -317,7 +349,9 @@ const Projects = () => {
               {/* Header */}
               <div className="flex justify-between items-start mb-4">
                 <div>
-                  <h3 className="text-2xl font-bold text-gray-900 dark:text-white">{selectedProject.title}</h3>
+                  <h3 className="text-2xl font-bold text-gray-900 dark:text-white">
+                    {selectedProject.title}
+                  </h3>
                   {selectedProject.featured && (
                     <span className="inline-flex items-center gap-1 px-2 py-1 mt-2 rounded-full bg-accent/10 text-accent text-xs font-medium">
                       <Sparkles className="w-3 h-3" />
@@ -336,38 +370,49 @@ const Projects = () => {
               {/* Image */}
               <div className="relative aspect-video rounded-xl overflow-hidden mb-6">
                 <img
-                  src={selectedProject.images ? selectedProject.images[getProjectImageIndex(selectedProject.id)] : selectedProject.image}
+                  src={
+                    selectedProject.images
+                      ? selectedProject.images[
+                          getProjectImageIndex(selectedProject.id)
+                        ]
+                      : selectedProject.image
+                  }
                   alt={selectedProject.title}
                   className="w-full h-full object-cover"
                 />
-                {selectedProject.images && selectedProject.images.length > 1 && (
-                  <>
-                    <button
-                      onClick={() => handleProjectImagePrev(selectedProject.id)}
-                      className="absolute left-3 top-1/2 -translate-y-1/2 p-2 bg-white/90 dark:bg-dark-200/90 rounded-full shadow-lg hover:scale-110 transition-transform"
-                    >
-                      <ChevronLeft className="w-5 h-5" />
-                    </button>
-                    <button
-                      onClick={() => handleProjectImageNext(selectedProject.id)}
-                      className="absolute right-3 top-1/2 -translate-y-1/2 p-2 bg-white/90 dark:bg-dark-200/90 rounded-full shadow-lg hover:scale-110 transition-transform"
-                    >
-                      <ChevronRight className="w-5 h-5" />
-                    </button>
-                    <div className="absolute bottom-3 left-1/2 -translate-x-1/2 flex gap-1.5">
-                      {selectedProject.images.map((_, idx) => (
-                        <div
-                          key={idx}
-                          className={`w-2 h-2 rounded-full transition-colors ${
-                            idx === getProjectImageIndex(selectedProject.id)
-                              ? "bg-white"
-                              : "bg-white/50"
-                          }`}
-                        />
-                      ))}
-                    </div>
-                  </>
-                )}
+                {selectedProject.images &&
+                  selectedProject.images.length > 1 && (
+                    <>
+                      <button
+                        onClick={() =>
+                          handleProjectImagePrev(selectedProject.id)
+                        }
+                        className="absolute left-3 top-1/2 -translate-y-1/2 p-2 bg-white/90 dark:bg-dark-200/90 rounded-full shadow-lg hover:scale-110 transition-transform"
+                      >
+                        <ChevronLeft className="w-5 h-5" />
+                      </button>
+                      <button
+                        onClick={() =>
+                          handleProjectImageNext(selectedProject.id)
+                        }
+                        className="absolute right-3 top-1/2 -translate-y-1/2 p-2 bg-white/90 dark:bg-dark-200/90 rounded-full shadow-lg hover:scale-110 transition-transform"
+                      >
+                        <ChevronRight className="w-5 h-5" />
+                      </button>
+                      <div className="absolute bottom-3 left-1/2 -translate-x-1/2 flex gap-1.5">
+                        {selectedProject.images.map((_, idx) => (
+                          <div
+                            key={idx}
+                            className={`w-2 h-2 rounded-full transition-colors ${
+                              idx === getProjectImageIndex(selectedProject.id)
+                                ? "bg-white"
+                                : "bg-white/50"
+                            }`}
+                          />
+                        ))}
+                      </div>
+                    </>
+                  )}
               </div>
 
               {/* Description */}
@@ -377,7 +422,9 @@ const Projects = () => {
 
               {/* Technologies */}
               <div className="mb-6">
-                <p className="text-sm font-medium text-gray-500 dark:text-gray-400 mb-3">{t("projects.technologies")}</p>
+                <p className="text-sm font-medium text-gray-500 dark:text-gray-400 mb-3">
+                  {t("projects.technologies")}
+                </p>
                 <div className="flex flex-wrap gap-2">
                   {selectedProject.technologies.map((tech) => (
                     <span
