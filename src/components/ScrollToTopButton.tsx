@@ -1,23 +1,17 @@
 import React, { useState, useEffect } from "react";
 import { ArrowUp } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
 
 const ScrollToTopButton: React.FC = () => {
   const [isVisible, setIsVisible] = useState<boolean>(false);
 
-  const handleScroll = () => {
-    if (window.scrollY > 200) {
-      setIsVisible(true);
-    } else {
-      setIsVisible(false);
-    }
-  };
-
   useEffect(() => {
-    window.addEventListener("scroll", handleScroll);
-
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
+    const handleScroll = () => {
+      setIsVisible(window.scrollY > 300);
     };
+    
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   const scrollToTop = () => {
@@ -25,13 +19,22 @@ const ScrollToTopButton: React.FC = () => {
   };
 
   return (
-    <button
-      onClick={scrollToTop}
-      className={`fixed bottom-20 right-8 p-3 rounded-full bg-blue-500 text-white shadow-lg ${!isVisible ? "hidden" : "animate-bounce"}`}
-      aria-label="Scroll to top"
-    >
-      <ArrowUp size={24} />
-    </button>
+    <AnimatePresence>
+      {isVisible && (
+        <motion.button
+          initial={{ opacity: 0, scale: 0.8, y: 20 }}
+          animate={{ opacity: 1, scale: 1, y: 0 }}
+          exit={{ opacity: 0, scale: 0.8, y: 20 }}
+          whileHover={{ scale: 1.1 }}
+          whileTap={{ scale: 0.9 }}
+          onClick={scrollToTop}
+          className="fixed bottom-24 right-6 p-3 rounded-xl bg-accent hover:bg-accent-dark text-white shadow-lg z-40 transition-colors"
+          aria-label="Scroll to top"
+        >
+          <ArrowUp size={20} />
+        </motion.button>
+      )}
+    </AnimatePresence>
   );
 };
 

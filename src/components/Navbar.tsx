@@ -1,11 +1,14 @@
 import React from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Sun, Moon, Github, FileText, Menu, X } from "lucide-react";
+import { Sun, Moon, Menu, X, Languages } from "lucide-react";
 import { useLocalStorage } from "react-use";
+import { useLanguage } from "../context/LanguageContext";
 
 const Navbar = () => {
   const [isDark, setIsDark] = useLocalStorage("darkMode", true);
+  const { lang, setLang, t } = useLanguage();
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
+  const [scrolled, setScrolled] = React.useState(false);
 
   React.useEffect(() => {
     if (isDark) {
@@ -15,183 +18,119 @@ const Navbar = () => {
     }
   }, [isDark]);
 
+  React.useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 20);
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
   const menuItems = [
-    { name: "Home", href: "#home" },
-    { name: "About", href: "#about" },
-    { name: "Projects", href: "#projects" },
+    { key: "nav.home", href: "#home" },
+    { key: "nav.about", href: "#about" },
+    { key: "nav.projects", href: "#projects" },
   ];
 
   const closeMenu = () => setIsMenuOpen(false);
 
   return (
     <>
-      <motion.nav
-        initial={{ y: -100 }}
-        animate={{ y: 0 }}
-        className="fixed top-6 left-1/2 -translate-x-1/2 z-50 w-[95%] max-w-2xl"
-      >
-        <div className="flex items-center justify-between px-6 py-3 bg-white/80 dark:bg-gray-800/80 backdrop-blur-md rounded-full shadow-lg">
-          {/* Mobile & Tablet menu button (visible below 1024px) */}
-          <button
-            className="lg:hidden p-2 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-full"
-            onClick={() => setIsMenuOpen(!isMenuOpen)}
-          >
-            {isMenuOpen ? (
-              <X className="w-5 h-5" />
-            ) : (
-              <Menu className="w-5 h-5" />
-            )}
-          </button>
+      <nav className="fixed top-4 left-0 right-0 z-50 px-4">
+        <motion.div
+          initial={{ y: -100, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          transition={{ duration: 0.5 }}
+          className={`max-w-xl mx-auto flex items-center justify-between px-4 py-3 rounded-2xl transition-all duration-300 ${
+            scrolled 
+              ? "bg-white/90 dark:bg-dark-200/90 backdrop-blur-xl border border-gray-200 dark:border-white/10 shadow-lg" 
+              : "bg-white/70 dark:bg-dark-200/70 backdrop-blur-lg border border-gray-200/50 dark:border-white/5"
+          }`}
+        >
+          {/* Logo */}
+          <a href="#home" className="font-bold text-lg text-accent shrink-0">
+            NA
+          </a>
 
-          {/* Desktop menu (visible above 1024px) */}
-          <div className="hidden lg:flex items-center gap-2">
+          {/* Desktop menu */}
+          <div className="hidden md:flex items-center gap-1 bg-gray-100 dark:bg-white/5 rounded-xl p-1">
             {menuItems.map((item) => (
-              <motion.a
-                key={item.name}
+              <a
+                key={item.key}
                 href={item.href}
-                whileHover={{ scale: 1.1 }}
-                whileTap={{ scale: 0.95 }}
-                className="relative group px-4 py-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
+                className="px-4 py-2 text-sm font-medium rounded-lg text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white hover:bg-white dark:hover:bg-white/10 transition-all"
               >
-                {item.name}
-                <span className="absolute bottom-0 left-0 w-full h-[5px] bg-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 100 10"
-                    preserveAspectRatio="none"
-                    className="w-full h-full"
-                  >
-                    <path
-                      d="M0,5 Q25,0 50,5 T100,5"
-                      fill="none"
-                      stroke="#2563eb"
-                      strokeWidth="1.5"
-                    />
-                  </svg>
-                </span>
-              </motion.a>
+                {t(item.key)}
+              </a>
             ))}
           </div>
 
-          {/* Right side buttons - only visible on desktop */}
-          <div className="hidden lg:flex items-center gap-2">
-            <motion.a
-              href="https://github.com/naufaljct48"
-              target="_blank"
-              rel="noopener noreferrer"
-              whileHover={{ scale: 1.1 }}
-              whileTap={{ scale: 0.95 }}
-              className="p-2 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-full"
+          {/* Right buttons - always visible */}
+          <div className="flex items-center gap-2 shrink-0">
+            {/* Language Toggle */}
+            <button
+              onClick={() => setLang(lang === "en" ? "id" : "en")}
+              className="flex items-center gap-1 px-2 py-2 rounded-lg bg-gray-100 dark:bg-white/10 text-sm font-medium"
             >
-              <Github className="w-5 h-5" />
-            </motion.a>
-            <motion.a
-              href="/Resume.pdf"
-              target="_blank"
-              rel="noopener noreferrer"
-              whileHover={{ scale: 1.1 }}
-              whileTap={{ scale: 0.95 }}
-              className="p-2 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-full"
-            >
-              <FileText className="w-5 h-5" />
-            </motion.a>
-            <div className="w-px h-6 bg-gray-300 dark:bg-gray-600" />
-            <motion.button
-              whileHover={{ scale: 1.1 }}
-              whileTap={{ scale: 0.95 }}
+              <Languages className="w-4 h-4" />
+              <span className="uppercase text-xs">{lang}</span>
+            </button>
+
+            {/* Theme Toggle */}
+            <button
               onClick={() => setIsDark(!isDark)}
-              className="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
+              className="p-2 rounded-lg bg-gray-100 dark:bg-white/10"
             >
               {isDark ? (
-                <Sun className="w-5 h-5" />
+                <Sun className="w-4 h-4 text-yellow-500" />
               ) : (
-                <Moon className="w-5 h-5" />
+                <Moon className="w-4 h-4 text-gray-600" />
               )}
-            </motion.button>
-          </div>
-        </div>
-      </motion.nav>
+            </button>
 
-      {/* Mobile & Tablet menu overlay (visible below 1024px) */}
+            {/* Hamburger - mobile only */}
+            <button
+              className="md:hidden p-2 rounded-lg bg-gray-100 dark:bg-white/10"
+              onClick={() => setIsMenuOpen(!isMenuOpen)}
+            >
+              {isMenuOpen ? (
+                <X className="w-4 h-4" />
+              ) : (
+                <Menu className="w-4 h-4" />
+              )}
+            </button>
+          </div>
+        </motion.div>
+      </nav>
+
+      {/* Mobile menu overlay */}
       <AnimatePresence>
         {isMenuOpen && (
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 bg-black/50 z-40 lg:hidden"
+            className="fixed inset-0 bg-black/50 backdrop-blur-sm z-40 md:hidden"
             onClick={closeMenu}
           >
             <motion.div
-              initial={{ y: "-100%" }}
-              animate={{ y: 0 }}
-              exit={{ y: "-100%" }}
-              className="absolute top-[4rem] right-2 w-[calc(50%-2rem)] sm:w-[320px] bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg"
+              initial={{ opacity: 0, y: -20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -20 }}
+              className="absolute top-20 left-4 right-4 bg-white dark:bg-dark-200 p-4 rounded-2xl shadow-xl border border-gray-200 dark:border-white/10"
               onClick={(e) => e.stopPropagation()}
             >
-              {/* Navigation Links */}
-              <div className="flex flex-col gap-4">
+              <div className="flex flex-col gap-2">
                 {menuItems.map((item) => (
-                  <motion.a
-                    key={item.name}
+                  <a
+                    key={item.key}
                     href={item.href}
                     onClick={closeMenu}
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
-                    className="flex items-center gap-2 px-4 py-3 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
+                    className="px-4 py-3 rounded-xl text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-white/10 transition-colors font-medium"
                   >
-                    {item.name}
-                  </motion.a>
+                    {t(item.key)}
+                  </a>
                 ))}
-
-                <div className="border-t border-gray-300 dark:border-gray-600 my-4" />
-
-                {/* Social & Utility Links */}
-                <motion.a
-                  href="https://github.com/naufaljct48"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  className="flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
-                >
-                  <Github className="w-5 h-5" />
-                  <span className="font-medium">GitHub</span>
-                </motion.a>
-
-                <motion.a
-                  href="https://naufaljct48.github.io/public/Resume.pdf"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  className="flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
-                >
-                  <FileText className="w-5 h-5" />
-                  <span className="font-medium">CV</span>
-                </motion.a>
-
-                <div className="border-t border-gray-300 dark:border-gray-600 my-4" />
-
-                {/* Theme Toggle */}
-                <motion.button
-                  onClick={() => {
-                    setIsDark(!isDark);
-                    closeMenu();
-                  }}
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  className="flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
-                >
-                  {isDark ? (
-                    <Sun className="w-5 h-5" />
-                  ) : (
-                    <Moon className="w-5 h-5" />
-                  )}
-                  <span className="font-medium">
-                    {isDark ? "Light Mode" : "Dark Mode"}
-                  </span>
-                </motion.button>
               </div>
             </motion.div>
           </motion.div>
