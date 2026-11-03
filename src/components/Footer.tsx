@@ -34,6 +34,7 @@ const Terminus = ({ label }: { label: string }) => {
     <svg data-reveal="draw" viewBox="0 0 1200 190" className="block w-full h-auto" aria-hidden="true">
       {ended(162, "var(--night-web3)", 430, 0)}
       {ended(130, "var(--night-dharmais)", 640, 120)}
+      {run(8, "var(--night-security)", 700, 180)}
       {run(32, "var(--night-dimensi)", 780, 240)}
       {run(64, "var(--night-navitek)", 820, 360)}
       <path className="draw-path" pathLength={1} style={{ ["--d" as string]: "60ms" }} d={`M-10 ${MAIN} H1060`} stroke="#eef0f2" strokeWidth={9} strokeLinecap="round" fill="none" />

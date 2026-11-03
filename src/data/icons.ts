@@ -39,10 +39,17 @@ const slugs: Record<string, string> = {
   "Caddy": "caddy",
   "Git": "git",
   "shadcn/ui": "shadcn-ui",
+  "SQLite": "sqlite",
+  "PowerShell": "powershell",
+  "Bash": "gnu-bash",
+  "OWASP API Top 10": "owasp",
+  "Bugcrowd": "bugcrowd",
+  "HackerOne": "hackerone",
+  "Intigriti": "intigriti",
 };
 
 // Logos drawn in black; inverted in dark mode so they stay visible.
-const inkLogos = new Set(["prisma", "rust", "express", "threejs", "shadcn-ui", "expo", "caddy"]);
+const inkLogos = new Set(["prisma", "rust", "express", "threejs", "shadcn-ui", "expo", "caddy", "owasp", "hackerone", "intigriti"]);
 // Logos drawn in white; inverted in light mode instead.
 const paperLogos = new Set(["nextjs"]);
 

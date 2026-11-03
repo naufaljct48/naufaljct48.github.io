@@ -4,12 +4,14 @@ import { useLanguage } from "../context/LanguageContext";
 
 // Time-scaled route map. 2019–2023 is compressed; 2024 onward is where the lines live.
 const W = 1200;
-const H = 380;
-const AXIS_Y = 350;
+const H = 455;
+const AXIS_Y = 425;
 const TRUNK_Y = 230;
-const LINE_Y: Record<LineId, number> = { dimensi: 90, dharmais: 170, origin: TRUNK_Y, navitek: 300, web3: 300 };
-const DRAW_ORDER: LineId[] = ["web3", "navitek", "dharmais", "dimensi"];
-const DELAY: Record<LineId, number> = { origin: 0, dharmais: 150, web3: 300, dimensi: 450, navitek: 600 };
+// Security leaves the person line at the same point as Web3 (both 45° from Oct 2024 / Jan 2025)
+// and runs below it, so the two share a short stretch of track before they split.
+const LINE_Y: Record<LineId, number> = { dimensi: 90, dharmais: 170, origin: TRUNK_Y, navitek: 300, web3: 300, security: 370 };
+const DRAW_ORDER: LineId[] = ["security", "web3", "navitek", "dharmais", "dimensi"];
+const DELAY: Record<LineId, number> = { origin: 0, dharmais: 150, web3: 300, dimensi: 450, navitek: 600, security: 750 };
 
 const now = new Date();
 const NOW = now.getFullYear() + now.getMonth() / 12;
@@ -41,6 +43,8 @@ const spread = (n: number, a: number, b: number) =>
 const CROSS_X = x(lineById("dimensi").from) - (LINE_Y.dharmais - LINE_Y.dimensi);
 
 const stopXs = (id: LineId, n: number, a: number, b: number) => {
+  // Web3 shares its first stretch with the Security branch: start its stops past that diagonal
+  if (id === "web3") return spread(n, a + 50, b);
   if (id !== "dharmais") return spread(n, a, b);
   const before = Math.ceil(n / 2);
   return [...spread(before, a, CROSS_X - 64), ...spread(n - before, CROSS_X + 78, b)];

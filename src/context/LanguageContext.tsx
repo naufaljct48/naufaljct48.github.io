@@ -48,7 +48,7 @@ const translations: Record<Lang, Record<string, string>> = {
     "lines.shot": "Show screenshot",
 
     "about.title": "Timetable",
-    "about.bio": "Currently leading Dimensi HRIS at Dimensi Software (PT Dimensi Pratama Sukses) — a multi-tenant HR & payroll SaaS with a Flutter mobile app, a Go bridge for attendance machines, and Airis, an in-app AI agent. Previously built an EMR platform with 20+ modules used by 500+ healthcare users at RS Kanker Dharmais and advanced ATiDar into a BPOM/CPOB-certified blood transfusion application. On the side I run Navitek, where I built Clippeak (400+ users in 3 months) and Cuanten.",
+    "about.bio": "Currently leading Dimensi HRIS at Dimensi Software (PT Dimensi Pratama Sukses) — a multi-tenant HR & payroll SaaS with a Flutter mobile app, a Go bridge for attendance machines, and Airis, an in-app AI agent. Previously built an EMR platform with 20+ modules used by 500+ healthcare users at RS Kanker Dharmais and advanced ATiDar into a BPOM/CPOB-certified blood transfusion application. On the side I run Navitek, where I built Clippeak (400+ users in 3 months) and Cuanten. I also do independent security research on authorized bug bounty programs, focused on access control and APIs.",
     "about.line": "Line",
     "about.role": "Role",
     "about.org": "Company",
@@ -105,7 +105,7 @@ const translations: Record<Lang, Record<string, string>> = {
     "lines.shot": "Tampilkan tangkapan layar",
 
     "about.title": "Jadwal",
-    "about.bio": "Saat ini memimpin pengembangan Dimensi HRIS di Dimensi Software (PT Dimensi Pratama Sukses) — SaaS HR & payroll multi-tenant dengan aplikasi mobile Flutter, bridge Go untuk mesin absensi, dan Airis, AI agent di dalam aplikasi. Sebelumnya membangun platform EMR dengan 20+ modul yang dipakai 500+ tenaga kesehatan di RS Kanker Dharmais dan mengembangkan ATiDar menjadi aplikasi transfusi darah bersertifikat BPOM/CPOB. Di luar kantor saya menjalankan Navitek, tempat saya membangun Clippeak (400+ pengguna dalam 3 bulan) dan Cuanten.",
+    "about.bio": "Saat ini memimpin pengembangan Dimensi HRIS di Dimensi Software (PT Dimensi Pratama Sukses) — SaaS HR & payroll multi-tenant dengan aplikasi mobile Flutter, bridge Go untuk mesin absensi, dan Airis, AI agent di dalam aplikasi. Sebelumnya membangun platform EMR dengan 20+ modul yang dipakai 500+ tenaga kesehatan di RS Kanker Dharmais dan mengembangkan ATiDar menjadi aplikasi transfusi darah bersertifikat BPOM/CPOB. Di luar kantor saya menjalankan Navitek, tempat saya membangun Clippeak (400+ pengguna dalam 3 bulan) dan Cuanten. Saya juga melakukan riset security independen di program bug bounty resmi, dengan fokus access control dan API.",
     "about.line": "Jalur",
     "about.role": "Peran",
     "about.org": "Perusahaan",

@@ -1,6 +1,6 @@
 export type Lang = "en" | "id";
 export type Text = Record<Lang, string>;
-export type LineId = "dimensi" | "navitek" | "dharmais" | "web3" | "origin";
+export type LineId = "dimensi" | "navitek" | "security" | "dharmais" | "web3" | "origin";
 
 export interface Line {
   id: LineId;
@@ -50,6 +50,16 @@ export const lines: Line[] = [
     from: 2026,
     to: null,
     period: { en: "Jan 2026 – now", id: "Jan 2026 – sekarang" },
+  },
+  {
+    id: "security",
+    code: "SEC",
+    name: { en: "Security Line", id: "Lin Security" },
+    org: "Independent · Bugcrowd · HackerOne · Intigriti · YesWeHack",
+    role: { en: "Security researcher · authorized bug bounty", id: "Security researcher · bug bounty resmi" },
+    from: 2025,
+    to: null,
+    period: { en: "2025 – now", id: "2025 – sekarang" },
   },
   {
     id: "dharmais",
@@ -275,6 +285,39 @@ export const stations: Station[] = [
     tech: ["Nuxt 3", "Vue 3", "TypeScript", "Solana", "IPFS"],
     images: ["/images/bytelaunch.webp"],
   },
+  // Security: independent research on authorized bug bounty programs (no targets or findings named)
+  {
+    id: "bounty-toolkit",
+    line: "security",
+    name: "Bounty Hunter Toolkit",
+    short: "Hunter Toolkit",
+    desc: {
+      en: "My own operator kit for authorized bug bounty work: a 24-skill multi-agent pack (recon, access-control matrices, RBAC hierarchy checks, async surfaces, report triage), a save-point vault for checkpoints, test sessions, TOTP and a hypothesis ledger with a false-positive graveyard, and wire-level verifiers. Every engagement runs on a fail-closed scope allowlist.",
+      id: "Toolkit buatan sendiri untuk bug bounty resmi: paket 24 skill multi-agent (recon, matriks access control, cek hierarki RBAC, permukaan async, triase laporan), vault save-point untuk checkpoint, sesi tes, TOTP, dan catatan hipotesis lengkap dengan kuburan false positive, plus verifier di level wire. Tiap engagement jalan di atas allowlist scope yang fail-closed.",
+    },
+    tech: ["Python", "SQLite", "Bash", "PowerShell", "Chrome DevTools Protocol"],
+  },
+  {
+    id: "authz-research",
+    line: "security",
+    name: "Authorization & API research",
+    short: "AuthZ Research",
+    desc: {
+      en: "Access-control testing on multi-tenant SaaS and APIs: cross-account matrices between my own test personas, IDOR and RBAC parity, OAuth and session handling, cache-key and race-condition checks. Nothing is called a finding until a deterministic oracle confirms it. Several issues found so far; no public disclosures yet.",
+      id: "Pengujian access control di SaaS multi-tenant dan API: matriks lintas akun antar persona tes milik sendiri, paritas IDOR dan RBAC, penanganan OAuth dan sesi, cek cache-key dan race condition. Tidak ada yang disebut temuan sebelum dikonfirmasi oracle yang deterministik. Sudah menemukan beberapa celah; belum ada disclosure publik.",
+    },
+    tech: ["Access control", "IDOR", "OAuth", "Wire-level verification", "OWASP API Top 10"],
+  },
+  {
+    id: "cve-digest",
+    line: "security",
+    name: "CVE Digest",
+    desc: {
+      en: "A CVE trend fetcher with daily volume and monthly digests, kernel sweeps and runtime version scans, to spot exposed dependencies fast.",
+      id: "Pengambil tren CVE dengan volume harian dan digest bulanan, sweep kernel, dan scan versi runtime, supaya dependensi yang rentan cepat ketahuan.",
+    },
+    tech: ["Python", "OSV", "CVE triage"],
+  },
   // Origin: earlier and side work
   {
     id: "demon",
@@ -371,6 +414,7 @@ export const certifications: { name: string; issuer: string; year: number }[] = 
 export const timetable: { line: LineId; role: Text; org: string; from: string; to: Text }[] = [
   { line: "dimensi", role: { en: "Full-Stack Developer · PT Dimensi Pratama Sukses", id: "Full-Stack Developer · PT Dimensi Pratama Sukses" }, org: "Dimensi Software", from: "08/2025", to: { en: "now", id: "sekarang" } },
   { line: "navitek", role: { en: "Founder & Product Engineer", id: "Founder & Product Engineer" }, org: "Navitek", from: "01/2026", to: { en: "now", id: "sekarang" } },
+  { line: "security", role: { en: "Security researcher (bug bounty)", id: "Security researcher (bug bounty)" }, org: "Independent", from: "2025", to: { en: "now", id: "sekarang" } },
   { line: "dharmais", role: { en: "Full-Stack Developer", id: "Full-Stack Developer" }, org: "RS Kanker Dharmais", from: "01/2024", to: { en: "06/2026", id: "06/2026" } },
   { line: "web3", role: { en: "Full-Stack Developer (contract)", id: "Full-Stack Developer (kontrak)" }, org: "DreamsHive", from: "05/2025", to: { en: "11/2025", id: "11/2025" } },
   { line: "web3", role: { en: "Blockchain Developer (freelance)", id: "Blockchain Developer (freelance)" }, org: "Enclavium (DAO)", from: "10/2024", to: { en: "10/2025", id: "10/2025" } },
@@ -386,6 +430,7 @@ export const skills: { group: Text; items: string[] }[] = [
   { group: { en: "Domain", id: "Domain" }, items: ["Indonesian payroll (PPh21 TER, BPJS, SPT)", "HR operations", "EMR & clinical workflows", "Regulated delivery"] },
   { group: { en: "Data & ops", id: "Data & ops" }, items: ["MySQL", "PostgreSQL", "Prisma", "Docker", "Linux VPS", "Caddy", "Git"] },
   { group: { en: "Web3", id: "Web3" }, items: ["Solana", "SPL tokens", "Wallets", "IPFS"] },
+  { group: { en: "Security", id: "Security" }, items: ["Access control & RBAC", "IDOR / API authz", "OAuth & sessions", "Recon", "CVE triage", "EC-Council CASE (Java)", "Bugcrowd", "HackerOne", "Intigriti", "YesWeHack"] },
 ];
 
 export const lineById = (id: LineId) => lines.find((l) => l.id === id)!;

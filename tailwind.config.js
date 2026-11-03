@@ -18,6 +18,7 @@ export default {
         "line-navitek": "var(--line-navitek)",
         "line-dharmais": "var(--line-dharmais)",
         "line-web3": "var(--line-web3)",
+        "line-security": "var(--line-security)",
         "line-origin": "var(--line-origin)",
       },
       maxWidth: {

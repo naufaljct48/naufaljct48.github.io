@@ -51,6 +51,7 @@
     --line-navitek: #0b7a3d;
     --line-dharmais: #d21a2e;
     --line-web3: #7a4a2b;
+    --line-security: #6a3fc8;
     --line-origin: var(--ink);
 
     --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
@@ -70,6 +71,7 @@
     --line-navitek: #2bb566;
     --line-dharmais: #f2485a;
     --line-web3: #c4855c;
+    --line-security: #a58bf2;
     color-scheme: dark;
   }
 
@@ -420,6 +422,7 @@
   --night-navitek: #2bb566;
   --night-dharmais: #f2485a;
   --night-web3: #c4855c;
+  --night-security: #a58bf2;
 }
 
 .dark {
