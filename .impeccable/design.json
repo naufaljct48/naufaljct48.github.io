@@ -1,0 +1,774 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-11-03T12:00:00+07:00",
+  "title": "Design System: Naufal Aziz",
+  "extensions": {
+    "colorMeta": {
+      "ground": {
+        "role": "neutral",
+        "displayName": "Platform White",
+        "canonical": "oklch(98.4% 0.003 228.8)",
+        "cssVar": "--ground",
+        "tonalRamp": [
+          "#0a0b0c",
+          "#232425",
+          "#3e4041",
+          "#5c5e5f",
+          "#7f8081",
+          "#a3a5a6",
+          "#c9cbcc",
+          "#edeff0"
+        ]
+      },
+      "surface": {
+        "role": "neutral",
+        "displayName": "Concourse Grey",
+        "canonical": "oklch(95.7% 0.005 247.9)",
+        "cssVar": "--surface",
+        "tonalRamp": [
+          "#090b0d",
+          "#222426",
+          "#3e4042",
+          "#5b5e60",
+          "#7e8083",
+          "#a2a5a8",
+          "#c8cbce",
+          "#eceff2"
+        ]
+      },
+      "ink": {
+        "role": "neutral",
+        "displayName": "Track Ink",
+        "canonical": "oklch(19.0% 0.007 258.4)",
+        "cssVar": "--ink",
+        "tonalRamp": [
+          "#090b0e",
+          "#222427",
+          "#3d4043",
+          "#5b5e62",
+          "#7e8084",
+          "#a2a5a9",
+          "#c8cbcf",
+          "#eceff3"
+        ]
+      },
+      "ink-2": {
+        "role": "neutral",
+        "displayName": "Timetable Grey",
+        "canonical": "oklch(43.7% 0.017 258.4)",
+        "cssVar": "--ink-2",
+        "tonalRamp": [
+          "#070b12",
+          "#1f242c",
+          "#3a4049",
+          "#585e67",
+          "#7a818a",
+          "#9ea5af",
+          "#c4cbd6",
+          "#e8effa"
+        ]
+      },
+      "rule": {
+        "role": "neutral",
+        "displayName": "Rail Rule",
+        "canonical": "oklch(91.1% 0.005 247.9)",
+        "cssVar": "--rule",
+        "tonalRamp": [
+          "#090b0d",
+          "#222426",
+          "#3e4042",
+          "#5b5e60",
+          "#7e8083",
+          "#a2a5a8",
+          "#c8cbce",
+          "#eceff2"
+        ]
+      },
+      "on-ink": {
+        "role": "neutral",
+        "displayName": "On Ink",
+        "canonical": "oklch(98.8% 0.001 106.4)",
+        "cssVar": "--on-ink",
+        "tonalRamp": [
+          "#0b0b0b",
+          "#242423",
+          "#40403f",
+          "#5e5e5d",
+          "#80807f",
+          "#a4a4a4",
+          "#cacac9",
+          "#eeeeed"
+        ]
+      },
+      "on-line": {
+        "role": "neutral",
+        "displayName": "On Line",
+        "canonical": "#ffffff",
+        "cssVar": "--on-line",
+        "tonalRamp": [
+          "#0b0b0b",
+          "#242424",
+          "#404040",
+          "#5e5e5e",
+          "#808080",
+          "#a4a4a4",
+          "#cacaca",
+          "#eeeeee"
+        ]
+      },
+      "line-dimensi": {
+        "role": "primary",
+        "displayName": "Dimensi Line Blue",
+        "canonical": "oklch(50.4% 0.153 253.4)",
+        "cssVar": "--line-dimensi",
+        "tonalRamp": [
+          "#000a21",
+          "#00244a",
+          "#043f79",
+          "#095dac",
+          "#3282d8",
+          "#5ea8fd",
+          "#a7cefd",
+          "#e4f0ff"
+        ]
+      },
+      "line-navitek": {
+        "role": "secondary",
+        "displayName": "Navitek Line Green",
+        "canonical": "oklch(50.9% 0.131 151.7)",
+        "cssVar": "--line-navitek",
+        "tonalRamp": [
+          "#001003",
+          "#002d11",
+          "#034d24",
+          "#077137",
+          "#359657",
+          "#5ebc7a",
+          "#85e39f",
+          "#c8fed5"
+        ]
+      },
+      "line-dharmais": {
+        "role": "secondary",
+        "displayName": "Dharmais Line Red",
+        "canonical": "oklch(55.3% 0.212 23.8)",
+        "cssVar": "--line-dharmais",
+        "tonalRamp": [
+          "#200001",
+          "#4a0108",
+          "#7c0214",
+          "#b00621",
+          "#e3323c",
+          "#fe726e",
+          "#fdb5b0",
+          "#ffe9e7"
+        ]
+      },
+      "line-web3": {
+        "role": "secondary",
+        "displayName": "Web3 Line Brown",
+        "canonical": "oklch(45.8% 0.079 52.4)",
+        "cssVar": "--line-web3",
+        "tonalRamp": [
+          "#1a0400",
+          "#3d1800",
+          "#603212",
+          "#815031",
+          "#a67353",
+          "#cd9776",
+          "#f5bd9b",
+          "#ffeadd"
+        ]
+      },
+      "ground-night": {
+        "role": "neutral",
+        "displayName": "Night Platform",
+        "canonical": "oklch(17.2% 0.010 255.7)",
+        "cssVar": "--ground (.dark)",
+        "tonalRamp": [
+          "#090b0f",
+          "#212429",
+          "#3c4045",
+          "#5a5e63",
+          "#7c8186",
+          "#a1a5ab",
+          "#c6cbd1",
+          "#eaeff5"
+        ]
+      },
+      "surface-night": {
+        "role": "neutral",
+        "displayName": "Night Concourse",
+        "canonical": "oklch(21.6% 0.013 258.4)",
+        "cssVar": "--surface (.dark)",
+        "tonalRamp": [
+          "#080b11",
+          "#20242b",
+          "#3b4047",
+          "#595e65",
+          "#7b8188",
+          "#a0a5ad",
+          "#c5cbd3",
+          "#e9eff8"
+        ]
+      },
+      "ink-night": {
+        "role": "neutral",
+        "displayName": "Night Ink",
+        "canonical": "oklch(94.8% 0.005 258.3)",
+        "cssVar": "--ink (.dark)",
+        "tonalRamp": [
+          "#0a0b0d",
+          "#232426",
+          "#3e4042",
+          "#5c5e60",
+          "#7e8083",
+          "#a3a5a7",
+          "#c9cbcd",
+          "#edeff2"
+        ]
+      },
+      "ink-2-night": {
+        "role": "neutral",
+        "displayName": "Night Timetable Grey",
+        "canonical": "oklch(74.2% 0.016 257.2)",
+        "cssVar": "--ink-2 (.dark)",
+        "tonalRamp": [
+          "#070b12",
+          "#1f242c",
+          "#3a4049",
+          "#585e67",
+          "#7a818a",
+          "#9ea5af",
+          "#c4cbd5",
+          "#e8effa"
+        ]
+      },
+      "rule-night": {
+        "role": "neutral",
+        "displayName": "Night Rule",
+        "canonical": "oklch(29.5% 0.018 258.4)",
+        "cssVar": "--rule (.dark)",
+        "tonalRamp": [
+          "#070b13",
+          "#1f242d",
+          "#3a404a",
+          "#575e68",
+          "#7a818c",
+          "#9ea5b0",
+          "#c3cbd7",
+          "#e7effb"
+        ]
+      },
+      "line-dimensi-night": {
+        "role": "primary",
+        "displayName": "Dimensi Line Blue (night)",
+        "canonical": "oklch(66.4% 0.141 251.3)",
+        "cssVar": "--line-dimensi (.dark)",
+        "tonalRamp": [
+          "#000b1f",
+          "#002447",
+          "#004076",
+          "#005fa9",
+          "#3583d1",
+          "#5ca9f9",
+          "#a4cffe",
+          "#e3f0ff"
+        ]
+      },
+      "line-navitek-night": {
+        "role": "secondary",
+        "displayName": "Navitek Line Green (night)",
+        "canonical": "oklch(68.3% 0.163 152.8)",
+        "cssVar": "--line-navitek (.dark)",
+        "tonalRamp": [
+          "#001004",
+          "#002d13",
+          "#054d26",
+          "#0d703b",
+          "#039950",
+          "#3cc171",
+          "#69e996",
+          "#c7ffd5"
+        ]
+      },
+      "line-dharmais-night": {
+        "role": "secondary",
+        "displayName": "Dharmais Line Red (night)",
+        "canonical": "oklch(64.9% 0.205 19.3)",
+        "cssVar": "--line-dharmais (.dark)",
+        "tonalRamp": [
+          "#200002",
+          "#4b000d",
+          "#7a061f",
+          "#ae0f30",
+          "#e0354c",
+          "#fc737a",
+          "#feb4b4",
+          "#fee9e8"
+        ]
+      },
+      "line-web3-night": {
+        "role": "secondary",
+        "displayName": "Web3 Line Brown (night)",
+        "canonical": "oklch(67.1% 0.096 53.4)",
+        "cssVar": "--line-web3 (.dark)",
+        "tonalRamp": [
+          "#190500",
+          "#3c1900",
+          "#642f03",
+          "#874d24",
+          "#ad7047",
+          "#d4946b",
+          "#fcba8f",
+          "#feeade"
+        ]
+      },
+      "board-night": {
+        "role": "neutral",
+        "displayName": "Board Night",
+        "canonical": "oklch(18.1% 0.010 255.6)",
+        "tonalRamp": [
+          "#090b0f",
+          "#212429",
+          "#3c4045",
+          "#5a5e63",
+          "#7c8186",
+          "#a1a5ab",
+          "#c6cbd1",
+          "#eaeff5"
+        ]
+      },
+      "board-paper": {
+        "role": "neutral",
+        "displayName": "Board Paper",
+        "canonical": "oklch(94.2% 0.005 247.9)",
+        "tonalRamp": [
+          "#090b0d",
+          "#222426",
+          "#3e4042",
+          "#5b5e60",
+          "#7e8083",
+          "#a2a5a8",
+          "#c8cbce",
+          "#eceff2"
+        ]
+      },
+      "board-dim": {
+        "role": "neutral",
+        "displayName": "Board Dim",
+        "canonical": "oklch(75.4% 0.015 254.6)",
+        "tonalRamp": [
+          "#070b11",
+          "#1f242b",
+          "#3a4048",
+          "#585e66",
+          "#7a8189",
+          "#9ea5ae",
+          "#c4cbd4",
+          "#e8eff9"
+        ]
+      },
+      "signal-amber": {
+        "role": "tertiary",
+        "displayName": "Signal Amber",
+        "canonical": "oklch(81.7% 0.166 76.3)",
+        "tonalRamp": [
+          "#140800",
+          "#331f00",
+          "#563901",
+          "#7d5504",
+          "#a97510",
+          "#d99609",
+          "#ffbd53",
+          "#ffebd0"
+        ]
+      },
+      "led-housing": {
+        "role": "neutral",
+        "displayName": "LED Housing",
+        "canonical": "oklch(15.8% 0.013 74.5)",
+        "tonalRamp": [
+          "#0e0a06",
+          "#28231d",
+          "#443f38",
+          "#625d56",
+          "#857f78",
+          "#a9a49c",
+          "#d0c9c2",
+          "#f4ede5"
+        ]
+      },
+      "night": {
+        "role": "neutral",
+        "displayName": "Night",
+        "canonical": "oklch(17.0% 0.008 264)",
+        "cssVar": "--night",
+        "tonalRamp": [
+          "#090b0f",
+          "#212429",
+          "#3c4045",
+          "#5a5e63",
+          "#7c8186",
+          "#a1a5ab",
+          "#c6cbd1",
+          "#eaeff5"
+        ]
+      },
+      "night-dark": {
+        "role": "neutral",
+        "displayName": "Night (dark theme)",
+        "canonical": "oklch(10.5% 0.004 248)",
+        "cssVar": "--night (.dark)",
+        "tonalRamp": [
+          "#090b0f",
+          "#212429",
+          "#3c4045",
+          "#5a5e63",
+          "#7c8186",
+          "#a1a5ab",
+          "#c6cbd1",
+          "#eaeff5"
+        ]
+      },
+      "night-ink": {
+        "role": "neutral",
+        "displayName": "Night Ink",
+        "canonical": "oklch(95.3% 0.003 248)",
+        "tonalRamp": [
+          "#0a0b0d",
+          "#232426",
+          "#3e4042",
+          "#5c5e60",
+          "#7e8083",
+          "#a3a5a7",
+          "#c9cbcd",
+          "#edeff2"
+        ]
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "Display",
+        "purpose": "The name in the hero; the footer closing headline uses the same face at a 9vw slope. Bonbance Bold Condensed, one face file."
+      },
+      "display-section": {
+        "displayName": "Display Section",
+        "purpose": "Section titles (lines, timetable)."
+      },
+      "display-platform": {
+        "displayName": "Display Platform",
+        "purpose": "Line names on full-bleed platform signs."
+      },
+      "headline": {
+        "displayName": "Headline",
+        "purpose": "Station (product) names in the strip map, 1.5rem to 2.25rem; sub-section heads."
+      },
+      "title": {
+        "displayName": "Title",
+        "purpose": "Nav wordmark, peek-card and chat headers, station plate names."
+      },
+      "body": {
+        "displayName": "Body",
+        "purpose": "Station descriptions, max 62ch."
+      },
+      "lead": {
+        "displayName": "Lead",
+        "purpose": "Hero positioning line in ink-2, 1.125rem on phones to 1.375rem from sm; footer lead runs 1.125rem to 1.25rem in Board Dim."
+      },
+      "label-badge": {
+        "displayName": "Line Badge Label",
+        "purpose": "Line codes in solid pills. Source declares weight 750; resolves to the Bold face."
+      },
+      "label-chip": {
+        "displayName": "Chip Label",
+        "purpose": "Tech chip text beside a brand logo."
+      },
+      "label-board": {
+        "displayName": "Board Head",
+        "purpose": "Departure board column heads and footer contact-board field labels; uppercase, amber."
+      },
+      "display-wordmark": {
+        "displayName": "Display Wordmark",
+        "purpose": "Oversized footer name cut by the bottom edge; once per page."
+      }
+    },
+    "shadows": [
+      {
+        "name": "ink-pill",
+        "value": "0 1px 2px rgb(0 0 0 / 0.12), 0 8px 20px -8px rgb(0 0 0 / 0.35)",
+        "purpose": "Primary ink button at rest."
+      },
+      {
+        "name": "ink-pill-hover",
+        "value": "0 2px 4px rgb(0 0 0 / 0.12), 0 14px 28px -10px rgb(0 0 0 / 0.4)",
+        "purpose": "Primary ink button on hover, with a 1px lift."
+      },
+      {
+        "name": "poster",
+        "value": "0 2px 4px rgb(0 0 0 / 0.08), 0 30px 60px -28px rgb(10 40 80 / 0.6)",
+        "purpose": "Hero portrait station poster; blue-tinted drop."
+      },
+      {
+        "name": "screenshot",
+        "value": "0 1px 2px rgb(0 0 0 / 0.06), 0 18px 40px -28px rgb(0 0 0 / 0.45)",
+        "purpose": "Product screenshots in the strip map."
+      },
+      {
+        "name": "float",
+        "value": "0 4px 8px rgb(0 0 0 / 0.08), 0 24px 48px -20px rgb(0 0 0 / 0.45)",
+        "purpose": "Station peek card."
+      },
+      {
+        "name": "float-panel",
+        "value": "0 4px 8px rgb(0 0 0 / 0.08), 0 30px 60px -24px rgb(0 0 0 / 0.45)",
+        "purpose": "Chat panel."
+      },
+      {
+        "name": "fab",
+        "value": "0 2px 4px rgb(0 0 0 / 0.15), 0 14px 30px -10px rgb(0 0 0 / 0.5)",
+        "purpose": "Chat launcher circle (with a 2px ground border)."
+      },
+      {
+        "name": "board",
+        "value": "inset 0 0 0 1px rgb(255 255 255 / 0.06), 0 2px 4px rgb(0 0 0 / 0.1), 0 30px 60px -30px rgb(0 0 0 / 0.55)",
+        "purpose": "Departure board."
+      },
+      {
+        "name": "led-bezel",
+        "value": "inset 0 0 0 1px rgb(255 255 255 / 0.06), inset 0 2px 10px rgb(0 0 0 / 0.6)",
+        "purpose": "Recessed LED passenger display."
+      },
+      {
+        "name": "nav-scrolled",
+        "value": "0 1px 0 var(--rule), 0 8px 24px -16px rgb(0 0 0 / 0.25)",
+        "purpose": "Fixed nav once scrolled past 12px."
+      },
+      {
+        "name": "night-pill",
+        "value": "0 1px 2px rgb(0 0 0 / 0.3), 0 14px 30px -12px rgb(0 0 0 / 0.8)",
+        "purpose": "Light LinkedIn pill on the night footer."
+      },
+      {
+        "name": "ground-halo",
+        "value": "0 0 0 2px var(--ground)",
+        "purpose": "Back-to-top button: ground ring outside its 2px ink border."
+      },
+      {
+        "name": "night-edge",
+        "value": "inset 0 1px 0 rgb(255 255 255 / 0.06)",
+        "purpose": "Top edge of the night terminus block."
+      }
+    ],
+    "motion": [
+      {
+        "name": "ease-out",
+        "value": "cubic-bezier(0.16, 1, 0.3, 1)",
+        "purpose": "The system easing (--ease-out): buttons, solo fades, draw-in, chat panel."
+      },
+      {
+        "name": "draw-track",
+        "value": "1.6s var(--ease-out), per-line delay 0 to 600ms",
+        "purpose": "Route map tracks draw in once on load."
+      },
+      {
+        "name": "stop-in",
+        "value": "500ms var(--ease-out), staggered 70 to 90ms",
+        "purpose": "Stations, interchanges and terminus bars fade in after their track."
+      },
+      {
+        "name": "now-pulse",
+        "value": "2.4s var(--ease-out) infinite, scale 1 to 2.6",
+        "purpose": "Ring around the now-station."
+      },
+      {
+        "name": "train-run",
+        "value": "3.2s, keySplines 0.45 0 0.2 1, once",
+        "purpose": "Two-car train runs each live line and stops at now."
+      },
+      {
+        "name": "solo",
+        "value": "opacity 220ms var(--ease-out), inactive lines to 0.12",
+        "purpose": "Line solo on hover or focus."
+      },
+      {
+        "name": "press",
+        "value": "translateY(1px) scale(0.98)",
+        "purpose": "Button active state."
+      },
+      {
+        "name": "led-scroll",
+        "value": "22 columns per second",
+        "purpose": "LED message scroll when it overflows; disabled under reduced motion. Dot pitch 4px in the hero, 3px in the sticky display and footer."
+      },
+      {
+        "name": "reduced-motion",
+        "value": "prefers-reduced-motion: no-preference gates draw-in, stops, pulse, trains, LED scroll and smooth scroll",
+        "purpose": "Accessibility floor."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "sm",
+        "value": "640px"
+      },
+      {
+        "name": "md",
+        "value": "768px"
+      },
+      {
+        "name": "lg",
+        "value": "1024px"
+      },
+      {
+        "name": "route-map-compact",
+        "value": "720px",
+        "note": "Map column width (ResizeObserver, not viewport). Below it: compact mode, stroke scale k = 2.2, station names and milestone labels hidden; the map never scrolls sideways."
+      }
+    ]
+  },
+  "components": [
+    {
+      "name": "Ink Pill Button",
+      "kind": "button",
+      "refersTo": "button-ink",
+      "description": "The one primary action (connect on LinkedIn).",
+      "html": "<a class=\"ds-btn ds-btn-ink\" href=\"#\"><svg width=\"20\" height=\"20\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z\"/><rect width=\"4\" height=\"12\" x=\"2\" y=\"9\"/><circle cx=\"4\" cy=\"4\" r=\"2\"/></svg>Connect on LinkedIn</a>",
+      "css": ".ds-btn { display: inline-flex; align-items: center; gap: 0.6rem; height: 3.25rem; padding: 0 1.4rem; border-radius: 999px; font-family: 'BDO Grotesk', system-ui, sans-serif; font-weight: 650; font-size: 1rem; text-decoration: none; transition: transform 240ms cubic-bezier(0.16, 1, 0.3, 1), background-color 200ms, box-shadow 240ms cubic-bezier(0.16, 1, 0.3, 1); } .ds-btn:active { transform: translateY(1px) scale(0.98); } .ds-btn:focus-visible { outline: 3px solid var(--line-dimensi, #0a64b8); outline-offset: 3px; } .ds-btn-ink { background: var(--ink, #121417); color: var(--on-ink, #fbfbfa); box-shadow: 0 1px 2px rgb(0 0 0 / 0.12), 0 8px 20px -8px rgb(0 0 0 / 0.35); } .ds-btn-ink:hover { box-shadow: 0 2px 4px rgb(0 0 0 / 0.12), 0 14px 28px -10px rgb(0 0 0 / 0.4); transform: translateY(-1px); }"
+    },
+    {
+      "name": "Line Button",
+      "kind": "button",
+      "refersTo": "button-line",
+      "description": "Secondary action (download CV): 2px ink outline pill.",
+      "html": "<a class=\"ds-btn-line\" href=\"#\"><svg width=\"20\" height=\"20\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4\"/><polyline points=\"7 10 12 15 17 10\"/><line x1=\"12\" x2=\"12\" y1=\"15\" y2=\"3\"/></svg>Download CV</a>",
+      "css": ".ds-btn-line { display: inline-flex; align-items: center; gap: 0.6rem; height: 3.25rem; padding: 0 1.4rem; border-radius: 999px; border: 2px solid var(--ink, #121417); color: var(--ink, #121417); background: transparent; font-family: 'BDO Grotesk', system-ui, sans-serif; font-weight: 650; font-size: 1rem; text-decoration: none; transition: transform 240ms cubic-bezier(0.16, 1, 0.3, 1), background-color 200ms; } .ds-btn-line:hover { background: var(--surface, #eef1f4); } .ds-btn-line:active { transform: translateY(1px) scale(0.98); } .ds-btn-line:focus-visible { outline: 3px solid var(--line-dimensi, #0a64b8); outline-offset: 3px; }"
+    },
+    {
+      "name": "Line Badge",
+      "kind": "chip",
+      "refersTo": "line-badge",
+      "description": "Solid pill in the line's colour carrying the line code; reads the scoped --line variable.",
+      "html": "<span class=\"ds-badge\" style=\"--line: var(--line-dimensi, #0a64b8)\">DPS</span> <span class=\"ds-badge\" style=\"--line: var(--line-navitek, #0b7a3d)\">NVK</span> <span class=\"ds-badge\" style=\"--line: var(--line-dharmais, #d21a2e)\">DMS</span> <span class=\"ds-badge\" style=\"--line: var(--line-web3, #7a4a2b)\">W3</span>",
+      "css": ".ds-badge { display: inline-flex; align-items: center; justify-content: center; min-width: 2.5rem; height: 1.75rem; padding: 0 0.6rem; border-radius: 999px; background: var(--line); color: var(--on-line, #ffffff); font-family: 'BDO Grotesk', system-ui, sans-serif; font-weight: 750; font-size: 0.8125rem; letter-spacing: 0.02em; font-variant-numeric: tabular-nums; }"
+    },
+    {
+      "name": "Tech Chip",
+      "kind": "chip",
+      "refersTo": "tech-chip",
+      "description": "Outline pill with a real brand logo; never filled, never line-coloured.",
+      "html": "<span class=\"ds-chip\"><svg width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" aria-hidden=\"true\"><circle cx=\"12\" cy=\"12\" r=\"2.2\" fill=\"#149eca\"/><g fill=\"none\" stroke=\"#149eca\" stroke-width=\"1.2\"><ellipse cx=\"12\" cy=\"12\" rx=\"10\" ry=\"4\"/><ellipse cx=\"12\" cy=\"12\" rx=\"10\" ry=\"4\" transform=\"rotate(60 12 12)\"/><ellipse cx=\"12\" cy=\"12\" rx=\"10\" ry=\"4\" transform=\"rotate(120 12 12)\"/></g></svg>React</span>",
+      "css": ".ds-chip { display: inline-flex; align-items: center; gap: 0.375rem; height: 1.75rem; padding: 0 0.7rem; border-radius: 999px; border: 1.5px solid var(--rule, #dfe2e5); color: var(--ink-2, #4c525b); font-family: 'BDO Grotesk', system-ui, sans-serif; font-size: 0.8125rem; font-weight: 500; white-space: nowrap; }"
+    },
+    {
+      "name": "Navigation Bar",
+      "kind": "nav",
+      "refersTo": "icon-button",
+      "description": "Fixed ground bar: ink roundel, pill links, EN/ID segmented pill, icon buttons.",
+      "html": "<nav class=\"ds-nav\"><a class=\"ds-nav-brand\" href=\"#\"><span class=\"ds-nav-roundel\">NA</span>Naufal Aziz</a><ul class=\"ds-nav-links\"><li><a href=\"#\">Map</a></li><li><a href=\"#\">Lines</a></li><li><a href=\"#\">Timetable</a></li><li><a href=\"#\">Contact</a></li></ul><div class=\"ds-nav-tools\"><button class=\"ds-lang\" type=\"button\"><span class=\"on\">EN</span><span>ID</span></button><button class=\"ds-icon-btn\" type=\"button\" aria-label=\"Theme\"><svg width=\"18\" height=\"18\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z\"/></svg></button></div></nav>",
+      "css": ".ds-nav { display: flex; align-items: center; justify-content: space-between; gap: 1rem; height: 4rem; padding: 0 1rem; background: var(--ground, #f8fafb); color: var(--ink, #121417); font-family: 'BDO Grotesk', system-ui, sans-serif; } .ds-nav-brand { display: flex; align-items: center; gap: 0.75rem; font-weight: 700; font-size: 1.125rem; letter-spacing: -0.01em; color: inherit; text-decoration: none; } .ds-nav-roundel { width: 2.5rem; height: 2.5rem; border-radius: 999px; background: var(--ink, #121417); color: var(--on-ink, #fbfbfa); display: grid; place-items: center; font-weight: 800; font-size: 0.875rem; } .ds-nav-links { display: flex; gap: 0.25rem; list-style: none; margin: 0; padding: 0; } .ds-nav-links a { display: block; padding: 0.5rem 0.875rem; border-radius: 999px; font-weight: 600; font-size: 0.975rem; color: inherit; text-decoration: none; transition: background-color 150ms; } .ds-nav-links a:hover { background: var(--surface, #eef1f4); } .ds-nav-links a:focus-visible, .ds-icon-btn:focus-visible, .ds-lang:focus-visible { outline: 3px solid var(--line-dimensi, #0a64b8); outline-offset: 3px; } .ds-nav-tools { display: flex; gap: 0.5rem; } .ds-lang { height: 2.5rem; display: flex; align-items: center; padding: 0.25rem; border-radius: 999px; border: 2px solid var(--rule, #dfe2e5); background: transparent; font: 700 0.875rem 'BDO Grotesk', system-ui, sans-serif; color: var(--ink-2, #4c525b); transition: border-color 150ms; } .ds-lang:hover { border-color: var(--ink, #121417); } .ds-lang span { padding: 0.25rem 0.625rem; border-radius: 999px; } .ds-lang .on { background: var(--ink, #121417); color: var(--on-ink, #fbfbfa); } .ds-icon-btn { width: 2.5rem; height: 2.5rem; display: inline-flex; align-items: center; justify-content: center; border-radius: 999px; border: 2px solid var(--rule, #dfe2e5); background: transparent; color: var(--ink, #121417); transition: border-color 150ms; } .ds-icon-btn:hover { border-color: var(--ink, #121417); }"
+    },
+    {
+      "name": "Chat Input",
+      "kind": "input",
+      "refersTo": "chat-input",
+      "description": "Concourse-grey pill input with an ink send circle.",
+      "html": "<form class=\"ds-chat-form\"><input class=\"ds-chat-input\" type=\"text\" placeholder=\"Ask about my work\"><button class=\"ds-chat-send\" type=\"submit\" aria-label=\"Send\"><svg width=\"20\" height=\"20\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"m5 12 7-7 7 7\"/><path d=\"M12 19V5\"/></svg></button></form>",
+      "css": ".ds-chat-form { display: flex; gap: 0.5rem; padding: 0.75rem; } .ds-chat-input { flex: 1; min-width: 0; height: 2.75rem; padding: 0 1rem; border: none; border-radius: 999px; background: var(--surface, #eef1f4); color: var(--ink, #121417); font: 400 1rem 'BDO Grotesk', system-ui, sans-serif; } .ds-chat-input::placeholder { color: var(--ink-2, #4c525b); } .ds-chat-input:focus { outline: none; } .ds-chat-input:focus-visible { outline: 3px solid var(--line-dimensi, #0a64b8); outline-offset: 3px; } .ds-chat-send { width: 2.75rem; height: 2.75rem; flex-shrink: 0; border: none; border-radius: 999px; display: grid; place-items: center; background: var(--ink, #121417); color: var(--on-ink, #fbfbfa); transition: opacity 150ms; } .ds-chat-send:disabled { opacity: 0.35; } .ds-chat-send:focus-visible { outline: 3px solid var(--line-dimensi, #0a64b8); outline-offset: 3px; }"
+    },
+    {
+      "name": "Platform Sign and Strip Stop",
+      "kind": "custom",
+      "refersTo": "platform-sign",
+      "description": "A line's full-bleed header in its colour, then the vertical strip map with ink-ringed station dots; the latest stop on a running line fills.",
+      "html": "<article class=\"ds-line\" style=\"--line: var(--line-dimensi, #0a64b8)\"><header class=\"ds-platform\"><span class=\"ds-roundel\">DPS</span><h3 class=\"ds-platform-name\">Dimensi Line</h3></header><div class=\"ds-strip\"><div class=\"ds-stop\"><span class=\"ds-dot\"></span><h4>Dimensi HRIS</h4><p>Payroll, tax and attendance SaaS.</p></div><div class=\"ds-stop\"><span class=\"ds-dot current\"></span><h4>Help Center</h4><p>Latest stop on a running line.</p></div></div></article>",
+      "css": ".ds-line { font-family: 'BDO Grotesk', system-ui, sans-serif; color: var(--ink, #121417); } .ds-platform { display: flex; align-items: center; gap: 1.5rem; padding: 2.5rem 1rem; background: var(--line); color: var(--on-line, #ffffff); } .ds-roundel { display: grid; place-items: center; width: 4.5rem; height: 4.5rem; border-radius: 999px; background: var(--on-line, #ffffff); color: var(--line); font: 800 1.6rem 'Bonbance', 'BDO Grotesk', sans-serif; letter-spacing: -0.01em; flex-shrink: 0; } .ds-platform-name { margin: 0; font: 700 clamp(2.5rem, 6.5vw, 5rem)/0.94 'Bonbance', 'BDO Grotesk', system-ui, sans-serif; letter-spacing: 0.01em; } .ds-strip { position: relative; padding: 2.5rem 1rem 0; } .ds-strip::before { content: ''; position: absolute; left: 2.0625rem; top: 3rem; bottom: 0; width: 0.625rem; border-radius: 999px 999px 0 0; background: var(--line); -webkit-mask-image: linear-gradient(to bottom, #000 calc(100% - 4rem), transparent); mask-image: linear-gradient(to bottom, #000 calc(100% - 4rem), transparent); } .ds-stop { position: relative; padding: 0 0 4rem 4rem; } .ds-stop h4 { margin: 0; font-weight: 700; font-size: 2.25rem; line-height: 1.08; letter-spacing: -0.01em; } .ds-stop p { margin: 0.75rem 0 0; color: var(--ink-2, #4c525b); font-size: 1.0625rem; line-height: 1.625; max-width: 62ch; } .ds-dot { position: absolute; left: 0.4375rem; top: 0.35rem; width: 1.875rem; height: 1.875rem; box-sizing: border-box; border-radius: 999px; background: var(--ground, #f8fafb); border: 5px solid var(--ink, #121417); } .ds-dot.current { background: var(--line); }"
+    },
+    {
+      "name": "Departure Board Row",
+      "kind": "card",
+      "refersTo": "departure-board",
+      "description": "Night-dark timetable with amber heads, line badges and tabular dates; dark in both themes.",
+      "html": "<div class=\"ds-board\"><table><thead><tr><th>Line</th><th>Role</th><th class=\"r\">From</th><th class=\"r\">To</th></tr></thead><tbody><tr><td><span class=\"ds-board-badge\" style=\"background: var(--line-dimensi, #0a64b8)\">DPS</span></td><td><b>PT Dimensi Pratama Sukses</b><span>Full-Stack Developer</span></td><td class=\"r\">08/2025</td><td class=\"r now\"><i></i>now</td></tr><tr><td><span class=\"ds-board-badge\" style=\"background: var(--line-dharmais, #d21a2e)\">DMS</span></td><td><b>RS Kanker Dharmais</b><span>Full-Stack Developer</span></td><td class=\"r\">01/2024</td><td class=\"r dim\">06/2026</td></tr></tbody></table></div>",
+      "css": ".ds-board { background: #0f1216; color: #e9ecef; border-radius: 1.25rem; box-shadow: inset 0 0 0 1px rgb(255 255 255 / 0.06), 0 2px 4px rgb(0 0 0 / 0.1), 0 30px 60px -30px rgb(0 0 0 / 0.55); overflow: hidden; font-family: 'BDO Grotesk', system-ui, sans-serif; } .ds-board table { width: 100%; border-collapse: collapse; text-align: left; } .ds-board th { padding: 1.25rem 1rem 0.75rem 1.25rem; font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.12em; color: #ffb21e; } .ds-board td { padding: 1rem 1rem 1rem 1.25rem; border-top: 1px solid rgb(255 255 255 / 0.1); vertical-align: top; } .ds-board .r { text-align: right; font-variant-numeric: tabular-nums; font-weight: 600; white-space: nowrap; } .ds-board b { display: block; font-size: 1.0625rem; } .ds-board td span:not(.ds-board-badge) { display: block; color: #a9b0b9; } .ds-board .now { color: #ffb21e; font-weight: 700; } .ds-board .now i { display: inline-block; width: 0.5rem; height: 0.5rem; margin-right: 0.5rem; border-radius: 999px; background: #ffb21e; vertical-align: middle; } .ds-board .dim { color: #a9b0b9; font-weight: 700; } .ds-board-badge { display: inline-flex; align-items: center; justify-content: center; min-width: 2.5rem; height: 1.75rem; padding: 0 0.6rem; border-radius: 999px; color: #ffffff; font-weight: 750; font-size: 0.8125rem; letter-spacing: 0.02em; }"
+    },
+    {
+      "name": "LED Passenger Display",
+      "kind": "custom",
+      "refersTo": "led-display",
+      "description": "Recessed warm-black bezel with an amber 5x7 dot-matrix message (canvas in the build; static dot pattern here).",
+      "html": "<div class=\"ds-led\" role=\"img\" aria-label=\"NEXT STATION\"><span>NEXT STATION: YOUR TEAM</span></div>",
+      "css": ".ds-led { border-radius: 0.75rem; background: #100c07; padding: 0.5rem 0.75rem; box-shadow: inset 0 0 0 1px rgb(255 255 255 / 0.06), inset 0 2px 10px rgb(0 0 0 / 0.6); background-image: radial-gradient(circle, rgba(255, 178, 30, 0.08) 1.3px, transparent 1.5px); background-size: 4px 4px; } .ds-led span { display: block; text-align: center; font: 700 1.25rem/2.25rem ui-monospace, monospace; letter-spacing: 0.18em; color: #ffb21e; text-shadow: 0 0 6px rgba(255, 178, 30, 0.45); }"
+    },
+    {
+      "name": "Night Terminus Contact Board",
+      "kind": "custom",
+      "refersTo": "night-terminus",
+      "description": "Footer in both themes: night ground, departure-board contact rows with amber uppercase labels, light night pill.",
+      "html": "<div class=\"ds-night\"><a class=\"ds-night-pill\" href=\"#\">Connect on LinkedIn</a><ul class=\"ds-night-list\"><li><a href=\"#\"><span class=\"ds-night-ico\"><svg width=\"17\" height=\"17\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><rect width=\"20\" height=\"16\" x=\"2\" y=\"4\" rx=\"2\"/><path d=\"m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7\"/></svg></span><span><b>Email</b><i>naufaljct48@gmail.com</i></span></a></li><li><a href=\"#\"><span class=\"ds-night-ico\"><svg width=\"17\" height=\"17\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4\"/><polyline points=\"7 10 12 15 17 10\"/><line x1=\"12\" x2=\"12\" y1=\"15\" y2=\"3\"/></svg></span><span><b>CV</b><i>Resume.pdf</i></span></a></li></ul></div>",
+      "css": ".ds-night { background: var(--night, #0e1014); color: #eef0f2; padding: 2rem 1rem; box-shadow: inset 0 1px 0 rgb(255 255 255 / 0.06); font-family: 'BDO Grotesk', system-ui, sans-serif; display: grid; gap: 1.5rem; } .ds-night-pill { justify-self: start; display: inline-flex; align-items: center; height: 3.25rem; padding: 0 1.4rem; border-radius: 999px; background: #eef0f2; color: #0e1014; font-weight: 650; text-decoration: none; box-shadow: 0 1px 2px rgb(0 0 0 / 0.3), 0 14px 30px -12px rgb(0 0 0 / 0.8); transition: transform 240ms cubic-bezier(0.16, 1, 0.3, 1), background-color 200ms; } .ds-night-pill:hover { background: #fff; transform: translateY(-1px); } .ds-night-pill:focus-visible, .ds-night-list a:focus-visible { outline: 3px solid var(--line-dimensi, #0a64b8); outline-offset: 3px; } .ds-night-list { list-style: none; margin: 0; padding: 0; border: 1px solid rgb(255 255 255 / 0.1); border-radius: 1rem; overflow: hidden; } .ds-night-list li + li { border-top: 1px solid rgb(255 255 255 / 0.1); } .ds-night-list a { display: grid; grid-template-columns: 2.25rem 1fr; align-items: center; gap: 0.75rem; padding: 1rem; color: inherit; text-decoration: none; transition: background-color 150ms; } .ds-night-list a:hover { background: rgb(255 255 255 / 0.04); } .ds-night-ico { width: 2.25rem; height: 2.25rem; border-radius: 999px; display: grid; place-items: center; background: rgb(255 255 255 / 0.07); } .ds-night-list b { display: block; font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.12em; color: #ffb21e; } .ds-night-list i { display: block; font-style: normal; font-weight: 600; }"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Commuter Line Map",
+    "overview": "The whole site is a KRL Jabodetabek route diagram. One ink person-line runs left to right along a time axis; every job is a coloured line that leaves it at its real start month, carries its products as stations, and either ends at a terminus bar or keeps running past \"now\". Everything else is station furniture: line badges, platform signs, a strip map down each line, a departure board, an in-car amber LED passenger display, and a night terminus where the running lines arrive. The visitor reads a network, not a portfolio grid.\n\nDensity is calm and wide: a cool white ground, big poster type, thick strokes, and generous vertical travel between stops. Colour is never decoration; each hue is a line, and a line's colour only appears where that line is present. Depth is soft and physical (lifted pills, screenshots, boards) over a flat ground. Motion belongs to the network: tracks draw in once, trains run once and stop at \"now\", a pulse rings the now-station, lines solo on hover or focus.\n\nDark mode is a night platform, not an inverted page: ground goes to deep blue-black, ink to near-white, line colours brighten so they still read as the same lines. The departure board, the LED display and the terminus footer are night objects in both themes.",
+    "keyCharacteristics": [
+      "A time-scaled route map is the signature, in its own section straight after a full-screen station-board hero; everything else (sections, nav, contact) reuses its vocabulary.",
+      "One colour per line, applied through a single scoped line-colour variable.",
+      "Bonbance condensed poster type for station-board names; BDO Grotesk for every label, body and control.",
+      "Round-capped thick strokes, 45 degree bends, ground-filled dots with ink rings, pill shapes for everything interactive.",
+      "Tabular numerals on every date, count and year."
+    ],
+    "rules": [
+      {
+        "name": "The Line Owns Its Colour Rule",
+        "body": "A line colour appears only on things that belong to that line: its track, badge, platform sign, strip, current-stop fill, screenshot-switcher selection and link underline. Components read one scoped variable (`--line`) set on the line's container; they never hard-code a line hue. The only multi-line uses are keys to the whole network (the legend, the chat panel's five-colour top stripe, and the terminus footer's converging lines).",
+        "section": "colors"
+      },
+      {
+        "name": "The Night Board Rule",
+        "body": "The departure board, the LED displays and the night terminus footer stay dark in light and dark themes alike. Amber lives only on them (inside the footer: the LED, the contact-board labels and text selection).",
+        "section": "colors"
+      },
+      {
+        "name": "The Tabular Timetable Rule",
+        "body": "Every date, year, count and switcher index sets in tabular numerals.",
+        "section": "typography"
+      },
+      {
+        "name": "The Poster Name Rule",
+        "body": "Bonbance is for names on boards (person, sections, lines, line roundels) and nothing smaller than about 1.6rem. Running text, labels and controls are always BDO Grotesk.",
+        "section": "typography"
+      },
+      {
+        "name": "The Board Caps Rule",
+        "body": "Uppercase is reserved for transit hardware: the LED display, the departure board's column heads and the footer contact board's field labels. No other uppercase labels.",
+        "section": "typography"
+      },
+      {
+        "name": "The Lifted Object Rule",
+        "body": "Shadows belong to things that sit on the platform, never to the ground or to a line's own signage.",
+        "section": "elevation"
+      }
+    ],
+    "dos": [
+      "Do set a line's colour once, as `--line` on its container, and let badges, strips, dots, platform signs and underlines read it.",
+      "Do keep station dots ground-filled with ink rings; fill only the latest stop on a running line.",
+      "Do bend lines at 45 degrees only, with round caps and joins.",
+      "Do set every date and count in tabular numerals.",
+      "Do make every control a full pill (official store badges keep their own artwork), with the 3px Dimensi blue focus ring at 3px offset.",
+      "Do let the route map fit its column; below 720px switch to compact mode (2.2x strokes, names hidden) instead of scrolling sideways.",
+      "Do give floating buttons a ground-coloured outline.",
+      "Do gate draw-in, trains, pulse and LED scrolling behind `prefers-reduced-motion: no-preference`.",
+      "Do use the real theSVG brand logo on tech chips."
+    ],
+    "donts": [
+      "Don't use a line colour for anything that isn't that line, and don't add a line colour without a real job behind it.",
+      "Don't use amber anywhere except the LED displays, the departure board and the night terminus footer.",
+      "Don't set running text, labels or controls in Bonbance.",
+      "Don't add uppercase tracked labels outside the board and LED hardware.",
+      "Don't put shadows on the ground, platform signs or strips, and don't use hard offset shadows.",
+      "Don't fall back to same-size project cards or a skills bento; products are stations on their line."
+    ]
+  }
+}

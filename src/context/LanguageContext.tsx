@@ -1,110 +1,162 @@
-import React, { createContext, useContext, ReactNode } from "react";
+import { createContext, useContext, useEffect, ReactNode } from "react";
 import { useLocalStorage } from "react-use";
-
-type Lang = "en" | "id";
+import type { Lang, Text } from "../data/career";
 
 interface LanguageContextType {
   lang: Lang;
   setLang: (lang: Lang) => void;
   t: (key: string) => string;
+  pick: (text: Text) => string;
 }
 
 const translations: Record<Lang, Record<string, string>> = {
   en: {
-    // Navbar
-    "nav.home": "Home",
-    "nav.about": "About",
-    "nav.projects": "Projects",
+    "nav.map": "Map",
+    "nav.lines": "Lines",
+    "nav.timetable": "Timetable",
+    "nav.contact": "Contact",
+    "nav.menu": "Open menu",
+    "nav.close": "Close menu",
+    "nav.theme": "Switch light or dark",
+    "nav.lang": "Bahasa Indonesia",
 
-    // Hero
-    "hero.greeting": "Hi, I'm",
-    "hero.available": "Available for work",
-    "hero.description": "Full-Stack Developer with expertise in AI Integration, Blockchain, and Enterprise Systems.",
+    "hero.description": "Full-Stack Developer shipping production SaaS end to end — web, mobile, hardware integration, payments, and AI.",
+    "hero.now": "Now at",
+    "hero.nowRole": "leading Dimensi HRIS",
+    "hero.linkedin": "Connect on LinkedIn",
     "hero.download": "Download CV",
-    "hero.viewProjects": "View Projects",
-    "hero.currentWork": "Currently working at",
-    "hero.connect": "Connect with me",
+    "hero.available": "Available for work",
+    "hero.station": "Tangerang, Indonesia",
 
-    // About
-    "about.title": "About",
-    "about.me": "Me",
-    "about.description": "Full-Stack Developer with expertise in AI Integration, Blockchain, and Enterprise Systems.",
-    "about.role": "Full-Stack Developer",
-    "about.bio": "Experienced in full-stack development using JavaScript, TypeScript, PHP, and Python. Proven track record at RS Kanker Dharmais, reducing data processing time by 98% through automation. Skilled in designing SaaS platforms (HRIS) and decentralized applications.",
-    "about.experience": "Experience",
-    "about.tools": "Tools & DevOps",
+    "led.hero": "NOW: DIMENSI SOFTWARE  >  NEXT STATION: YOUR TEAM",
+    "led.at": "NOW:",
+    "led.next": "NEXT:",
+    "led.end": "END OF LINE",
 
-    // Projects
-    "projects.title": "My",
-    "projects.highlight": "Projects",
-    "projects.subtitle": "Some of the projects I have worked on",
-    "projects.all": "All Projects",
-    "projects.featured": "Featured",
-    "projects.technologies": "Technologies",
-    "projects.view": "View Project",
+    "map.title": "The route so far",
+    "map.label": "Career route map, 2019 to now. Each coloured line is a job, each station a product.",
+    "map.now": "You are here",
+    "map.hint": "Hover or focus a line to isolate it. Every station jumps to its product.",
+    "map.swipe": "Swipe the map",
 
-    // Footer
-    "footer.description": "Full-Stack Developer with passion in AI, Blockchain, and Enterprise Systems.",
-    "footer.quickLinks": "Quick Links",
-    "footer.connect": "Connect",
-    "footer.madeWith": "Made with",
-    "footer.by": "by Naufal",
-    "footer.builtWith": "Built with React + TailwindCSS",
+    "lines.title": "What I've built, line by line",
+    "lines.subtitle": "Each line is a place I worked; each stop is something that shipped. Ended lines close with a terminus bar.",
+    "lines.stations": "stations",
+    "lines.running": "Running",
+    "lines.ended": "Ended",
+    "lines.visit": "Visit",
+    "lines.shot": "Show screenshot",
+
+    "about.title": "Timetable",
+    "about.bio": "Currently leading Dimensi HRIS at Dimensi Software (PT Dimensi Pratama Sukses) — a multi-tenant HR & payroll SaaS with a Flutter mobile app, a Go bridge for attendance machines, and Airis, an in-app AI agent. Previously built an EMR platform with 20+ modules used by 500+ healthcare users at RS Kanker Dharmais and advanced ATiDar into a BPOM/CPOB-certified blood transfusion application. On the side I run Navitek, where I built Clippeak (400+ users in 3 months) and Cuanten.",
+    "about.line": "Line",
+    "about.role": "Role",
+    "about.org": "Company",
+    "about.from": "From",
+    "about.to": "Until",
+    "about.certs": "Certifications",
+    "about.legend": "Map legend: skills",
+
+    "contact.title": "Next station: your team.",
+    "contact.body": "Hiring, or have a product to build? LinkedIn is the fastest way to reach me.",
+    "contact.email": "Email",
+    "contact.station": "Your team",
+    "contact.cv": "Resume (PDF)",
+    "contact.end": "END OF LINE  ·  THANKS FOR RIDING",
+    "footer.built": "Built with React and Tailwind. Set in Bonbance and BDO Grotesk.",
+    "footer.top": "Back to top",
+
+    "chat.open": "Ask the AI assistant about Naufal",
+    "chat.close": "Close chat",
+    "chat.title": "Ask about Naufal",
+    "chat.subtitle": "AI assistant",
+    "chat.empty": "Ask about his projects, experience, or how to reach him.",
+    "chat.placeholder": "Type a question…",
+    "chat.send": "Send",
+    "chat.error": "The assistant could not answer just now. Try again, or reach Naufal on LinkedIn.",
   },
   id: {
-    // Navbar
-    "nav.home": "Beranda",
-    "nav.about": "Tentang",
-    "nav.projects": "Proyek",
+    "nav.map": "Peta",
+    "nav.lines": "Jalur",
+    "nav.timetable": "Jadwal",
+    "nav.contact": "Kontak",
+    "nav.menu": "Buka menu",
+    "nav.close": "Tutup menu",
+    "nav.theme": "Ganti terang atau gelap",
+    "nav.lang": "English",
 
-    // Hero
-    "hero.greeting": "Halo, saya",
-    "hero.available": "Tersedia untuk bekerja",
-    "hero.description": "Full-Stack Developer dengan keahlian di AI Integration, Blockchain, dan Enterprise Systems.",
+    "hero.description": "Full-Stack Developer yang membangun SaaS produksi dari ujung ke ujung — web, mobile, integrasi hardware, pembayaran, dan AI.",
+    "hero.now": "Sekarang di",
+    "hero.nowRole": "memimpin Dimensi HRIS",
+    "hero.linkedin": "Terhubung di LinkedIn",
     "hero.download": "Unduh CV",
-    "hero.viewProjects": "Lihat Proyek",
-    "hero.currentWork": "Saat ini bekerja di",
-    "hero.connect": "Hubungi saya",
+    "hero.available": "Tersedia untuk bekerja",
+    "hero.station": "Tangerang, Indonesia",
 
-    // About
-    "about.title": "Tentang",
-    "about.me": "Saya",
-    "about.description": "Full-Stack Developer dengan keahlian di AI Integration, Blockchain, dan Enterprise Systems.",
-    "about.role": "Full-Stack Developer",
-    "about.bio": "Berpengalaman dalam pengembangan full-stack menggunakan JavaScript, TypeScript, PHP, dan Python. Rekam jejak terbukti di RS Kanker Dharmais, mengurangi waktu pemrosesan data hingga 98% melalui otomasi. Terampil dalam merancang platform SaaS (HRIS) dan aplikasi terdesentralisasi.",
-    "about.experience": "Pengalaman",
-    "about.tools": "Tools & DevOps",
+    "led.hero": "SEKARANG: DIMENSI SOFTWARE  >  BERIKUTNYA: TIM ANDA",
+    "led.at": "SEKARANG:",
+    "led.next": "BERIKUTNYA:",
+    "led.end": "STASIUN AKHIR",
 
-    // Projects
-    "projects.title": "Proyek",
-    "projects.highlight": "Saya",
-    "projects.subtitle": "Beberapa proyek yang sudah saya kerjakan",
-    "projects.all": "Semua Proyek",
-    "projects.featured": "Unggulan",
-    "projects.technologies": "Teknologi",
-    "projects.view": "Lihat Proyek",
+    "map.title": "Rute sejauh ini",
+    "map.label": "Peta jalur karier, 2019 sampai sekarang. Tiap garis berwarna adalah satu pekerjaan, tiap stasiun satu produk.",
+    "map.now": "Anda di sini",
+    "map.hint": "Arahkan atau fokus ke satu jalur untuk menyorotnya. Tiap stasiun mengarah ke produknya.",
+    "map.swipe": "Geser peta",
 
-    // Footer
-    "footer.description": "Full-Stack Developer dengan passion di AI, Blockchain, dan Enterprise Systems.",
-    "footer.quickLinks": "Tautan Cepat",
-    "footer.connect": "Hubungi",
-    "footer.madeWith": "Dibuat dengan",
-    "footer.by": "oleh Naufal",
-    "footer.builtWith": "Dibangun dengan React + TailwindCSS",
+    "lines.title": "Yang sudah saya bangun, per jalur",
+    "lines.subtitle": "Tiap jalur adalah tempat saya bekerja; tiap pemberhentian adalah sesuatu yang sudah rilis. Jalur yang selesai ditutup dengan palang terminus.",
+    "lines.stations": "stasiun",
+    "lines.running": "Beroperasi",
+    "lines.ended": "Berakhir",
+    "lines.visit": "Kunjungi",
+    "lines.shot": "Tampilkan tangkapan layar",
+
+    "about.title": "Jadwal",
+    "about.bio": "Saat ini memimpin pengembangan Dimensi HRIS di Dimensi Software (PT Dimensi Pratama Sukses) — SaaS HR & payroll multi-tenant dengan aplikasi mobile Flutter, bridge Go untuk mesin absensi, dan Airis, AI agent di dalam aplikasi. Sebelumnya membangun platform EMR dengan 20+ modul yang dipakai 500+ tenaga kesehatan di RS Kanker Dharmais dan mengembangkan ATiDar menjadi aplikasi transfusi darah bersertifikat BPOM/CPOB. Di luar kantor saya menjalankan Navitek, tempat saya membangun Clippeak (400+ pengguna dalam 3 bulan) dan Cuanten.",
+    "about.line": "Jalur",
+    "about.role": "Peran",
+    "about.org": "Perusahaan",
+    "about.from": "Mulai",
+    "about.to": "Sampai",
+    "about.certs": "Sertifikasi",
+    "about.legend": "Legenda peta: keahlian",
+
+    "contact.title": "Stasiun berikutnya: tim Anda.",
+    "contact.body": "Sedang merekrut, atau punya produk untuk dibangun? Cara tercepat menghubungi saya lewat LinkedIn.",
+    "contact.email": "Email",
+    "contact.station": "Tim Anda",
+    "contact.cv": "CV (PDF)",
+    "contact.end": "STASIUN AKHIR  ·  TERIMA KASIH SUDAH NAIK",
+    "footer.built": "Dibangun dengan React dan Tailwind. Huruf Bonbance dan BDO Grotesk.",
+    "footer.top": "Kembali ke atas",
+
+    "chat.open": "Tanya asisten AI soal Naufal",
+    "chat.close": "Tutup chat",
+    "chat.title": "Tanya soal Naufal",
+    "chat.subtitle": "Asisten AI",
+    "chat.empty": "Tanyakan proyek, pengalaman, atau cara menghubunginya.",
+    "chat.placeholder": "Tulis pertanyaan…",
+    "chat.send": "Kirim",
+    "chat.error": "Asisten belum bisa menjawab sekarang. Coba lagi, atau hubungi Naufal di LinkedIn.",
   },
 };
 
 const LanguageContext = createContext<LanguageContextType | undefined>(undefined);
 
 export const LanguageProvider = ({ children }: { children: ReactNode }) => {
-  const [lang, setLang] = useLocalStorage<Lang>("lang", "en");
+  const [stored, setLang] = useLocalStorage<Lang>("lang", "en");
+  const lang = stored || "en";
 
-  const t = (key: string): string => {
-    return translations[lang || "en"][key] || key;
-  };
+  useEffect(() => {
+    document.documentElement.lang = lang;
+  }, [lang]);
+
+  const t = (key: string): string => translations[lang][key] || key;
+  const pick = (text: Text) => text[lang];
 
   return (
-    <LanguageContext.Provider value={{ lang: lang || "en", setLang: setLang as (lang: Lang) => void, t }}>
+    <LanguageContext.Provider value={{ lang, setLang: setLang as (lang: Lang) => void, t, pick }}>
       {children}
     </LanguageContext.Provider>
   );

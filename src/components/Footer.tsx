@@ -1,92 +1,121 @@
-import React from "react";
-import { Github, Linkedin, Mail, Heart } from "lucide-react";
-import { motion } from "framer-motion";
+import { ArrowUpRight, Download, Github, Linkedin, Mail } from "lucide-react";
+import LedBoard from "./LedBoard";
+import { LINKEDIN, GITHUB, EMAIL } from "../data/career";
 import { useLanguage } from "../context/LanguageContext";
+
+// Terminus: the lines still running bend into one track and arrive at "Your team";
+// the lines that ended stop short on their terminus bars.
+const Terminus = ({ label }: { label: string }) => {
+  const MAIN = 96;
+  const run = (y: number, color: string, bendAt: number) => {
+    const dy = MAIN - y;
+    return (
+      <path
+        d={`M-10 ${y} H${bendAt} L${bendAt + Math.abs(dy)} ${MAIN} H1060`}
+        stroke={color}
+        strokeWidth={9}
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        fill="none"
+      />
+    );
+  };
+  const ended = (y: number, color: string, endX: number) => (
+    <g>
+      <path d={`M-10 ${y} H${endX}`} stroke={color} strokeWidth={9} strokeLinecap="round" fill="none" />
+      <line x1={endX} x2={endX} y1={y - 12} y2={y + 12} stroke={color} strokeWidth={9} strokeLinecap="round" />
+    </g>
+  );
+
+  return (
+    <svg viewBox="0 0 1200 190" className="block w-full h-auto" aria-hidden="true">
+      {ended(162, "var(--night-web3)", 430)}
+      {ended(130, "var(--night-dharmais)", 640)}
+      {run(32, "var(--night-dimensi)", 780)}
+      {run(64, "var(--night-navitek)", 820)}
+      <path d={`M-10 ${MAIN} H1060`} stroke="#eef0f2" strokeWidth={9} strokeLinecap="round" fill="none" />
+      <rect x={1040} y={MAIN - 26} width={120} height={52} rx={26} fill="var(--night)" stroke="#eef0f2" strokeWidth={7} />
+      <text x={1100} y={MAIN + 62} textAnchor="middle" fill="#eef0f2" fontSize="22" fontWeight="700">
+        {label}
+      </text>
+    </svg>
+  );
+};
 
 const Footer = () => {
   const { t } = useLanguage();
 
+  const rows = [
+    { icon: Linkedin, label: "LinkedIn", value: "linkedin.com/in/naufal-aziz", href: LINKEDIN, external: true },
+    { icon: Mail, label: t("contact.email"), value: EMAIL, href: `mailto:${EMAIL}`, external: false },
+    { icon: Download, label: t("contact.cv"), value: "Resume.pdf", href: "/Resume.pdf", external: true },
+    { icon: Github, label: "GitHub", value: "github.com/naufaljct48", href: GITHUB, external: true },
+  ];
+
   return (
-    <footer className="relative py-16 mt-20">
-      {/* Border top */}
-      <div className="absolute top-0 left-0 right-0 h-px bg-gray-200 dark:bg-white/10" />
+    <footer id="contact" className="night relative overflow-hidden">
+      <div className="pt-16 sm:pt-24">
+        <Terminus label={t("contact.station")} />
+      </div>
 
-      <div className="max-w-6xl mx-auto px-4">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
-          {/* Brand */}
+      <div className="px-4">
+        <div className="max-w-page mx-auto pt-14 sm:pt-20 grid lg:grid-cols-[minmax(0,7fr)_minmax(0,5fr)] gap-12 lg:gap-16 items-end">
           <div>
-            <h3 className="text-2xl font-bold text-accent mb-3">Naufal Aziz</h3>
-            <p className="text-gray-600 dark:text-gray-400 text-sm">
-              {t("footer.description")}
-            </p>
+            <h2 className="display text-[clamp(3.25rem,9vw,6rem)] max-w-[12ch]">{t("contact.title")}</h2>
+            <p className="mt-6 text-lg sm:text-xl text-[#a9b0b9] max-w-[34rem] leading-relaxed">{t("contact.body")}</p>
+            <a
+              href={LINKEDIN}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn mt-9 bg-[#eef0f2] text-[#0e1014] shadow-[0_1px_2px_rgb(0_0_0/0.3),0_14px_30px_-12px_rgb(0_0_0/0.8)] hover:bg-white hover:-translate-y-px"
+            >
+              <Linkedin className="w-5 h-5" aria-hidden="true" />
+              {t("hero.linkedin")}
+            </a>
           </div>
 
-          {/* Quick Links */}
+          {/* contact as a departure board */}
           <div>
-            <h4 className="font-semibold text-gray-900 dark:text-white mb-4">{t("footer.quickLinks")}</h4>
-            <div className="flex flex-col gap-2">
-              <a href="#home" className="text-gray-600 dark:text-gray-400 hover:text-accent transition-colors text-sm">
-                {t("nav.home")}
-              </a>
-              <a href="#about" className="text-gray-600 dark:text-gray-400 hover:text-accent transition-colors text-sm">
-                {t("nav.about")}
-              </a>
-              <a href="#projects" className="text-gray-600 dark:text-gray-400 hover:text-accent transition-colors text-sm">
-                {t("nav.projects")}
-              </a>
-              <a href="/Resume.pdf" target="_blank" className="text-gray-600 dark:text-gray-400 hover:text-accent transition-colors text-sm">
-                Resume
-              </a>
-            </div>
-          </div>
-
-          {/* Connect */}
-          <div>
-            <h4 className="font-semibold text-gray-900 dark:text-white mb-4">{t("footer.connect")}</h4>
-            <div className="flex gap-3">
-              <motion.a
-                href="https://github.com/naufaljct48"
-                target="_blank"
-                rel="noopener noreferrer"
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className="p-3 rounded-xl bg-gray-100 dark:bg-white/5 hover:bg-gray-200 dark:hover:bg-white/10 transition-colors"
-              >
-                <Github className="w-5 h-5" />
-              </motion.a>
-              <motion.a
-                href="https://linkedin.com/in/naufal-aziz"
-                target="_blank"
-                rel="noopener noreferrer"
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className="p-3 rounded-xl bg-gray-100 dark:bg-white/5 hover:bg-gray-200 dark:hover:bg-white/10 transition-colors"
-              >
-                <Linkedin className="w-5 h-5" />
-              </motion.a>
-              <motion.a
-                href="mailto:naufaljct48@gmail.com"
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className="p-3 rounded-xl bg-gray-100 dark:bg-white/5 hover:bg-gray-200 dark:hover:bg-white/10 transition-colors"
-              >
-                <Mail className="w-5 h-5" />
-              </motion.a>
-            </div>
+            <LedBoard text={t("contact.end")} pitch={3} className="mb-4" />
+            <ul className="rounded-2xl border border-white/10 overflow-hidden">
+              {rows.map((r) => (
+                <li key={r.label} className="border-t border-white/10 first:border-t-0">
+                  <a
+                    href={r.href}
+                    {...(r.external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+                    className="group grid grid-cols-[2.25rem_minmax(0,1fr)_auto] items-center gap-3 px-4 sm:px-5 py-4 transition-colors hover:bg-white/[0.04]"
+                  >
+                    <span className="w-9 h-9 rounded-full grid place-items-center bg-white/[0.07]">
+                      <r.icon className="w-[1.05rem] h-[1.05rem]" aria-hidden="true" />
+                    </span>
+                    <span className="min-w-0">
+                      <span className="block text-xs uppercase tracking-[0.12em] font-bold text-[#ffb21e]">{r.label}</span>
+                      <span className="block font-semibold truncate group-hover:underline underline-offset-4">{r.value}</span>
+                    </span>
+                    <ArrowUpRight
+                      className="w-5 h-5 text-[#a9b0b9] transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-[#eef0f2]"
+                      aria-hidden="true"
+                    />
+                  </a>
+                </li>
+              ))}
+            </ul>
           </div>
         </div>
 
-        {/* Bottom */}
-        <div className="pt-8 border-t border-gray-200 dark:border-white/10">
-          <div className="flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-gray-600 dark:text-gray-400">
-            <p className="flex items-center gap-1">
-              © {new Date().getFullYear()} {t("footer.madeWith")}{" "}
-              <Heart className="w-4 h-4 text-red-500 fill-red-500" /> {t("footer.by")}
-            </p>
-            <p>{t("footer.builtWith")}</p>
-          </div>
+        <div className="max-w-page mx-auto mt-16 sm:mt-24 pt-6 border-t border-white/10 flex flex-col sm:flex-row gap-3 justify-between text-sm text-[#a9b0b9] sm:pr-20">
+          <p className="tnum">© {new Date().getFullYear()} Naufal Aziz Albaaqie · Tangerang, Indonesia</p>
+          <p>{t("footer.built")}</p>
         </div>
       </div>
+
+      {/* oversized wordmark, cut by the bottom edge like a platform name painted on the wall */}
+      <p
+        aria-hidden="true"
+        className="display select-none whitespace-nowrap text-center leading-[0.8] text-[clamp(5rem,20.5vw,22rem)] mt-6 -mb-[0.16em] text-[#eef0f2]"
+      >
+        Naufal Aziz
+      </p>
     </footer>
   );
 };

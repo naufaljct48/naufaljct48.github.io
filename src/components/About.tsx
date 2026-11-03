@@ -1,190 +1,92 @@
-import React from "react";
-import { motion } from "framer-motion";
-import {
-  Cpu,
-  Database,
-  Globe,
-  Smartphone,
-  Brain,
-  Wallet,
-  Server,
-  GitBranch,
-} from "lucide-react";
+import { lineById, timetable, certifications, skills } from "../data/career";
 import { useLanguage } from "../context/LanguageContext";
+import TechChip from "./TechChip";
 
 const About = () => {
-  const { t } = useLanguage();
-
-  const skills = [
-    {
-      category: "Frontend",
-      icon: <Globe className="w-5 h-5" />,
-      items: ["React.js", "Next.js", "Vue.js", "Nuxt.js", "TailwindCSS"],
-    },
-    {
-      category: "Backend",
-      icon: <Server className="w-5 h-5" />,
-      items: ["Node.js", "Express", "Laravel", "PHP", "Python"],
-    },
-    {
-      category: "Database",
-      icon: <Database className="w-5 h-5" />,
-      items: ["MySQL", "PostgreSQL", "MongoDB", "Prisma ORM"],
-    },
-    {
-      category: "Mobile",
-      icon: <Smartphone className="w-5 h-5" />,
-      items: ["React Native", "Expo"],
-    },
-    {
-      category: "AI & ML",
-      icon: <Brain className="w-5 h-5" />,
-      items: ["LLM Integration", "Gemini AI", "RAG", "ChromaDB"],
-    },
-    {
-      category: "Blockchain",
-      icon: <Wallet className="w-5 h-5" />,
-      items: ["Solana", "Web3.js", "SPL Tokens"],
-    },
-  ];
-
-  const experiences = [
-    {
-      company: "RS Kanker Dharmais",
-      role: "Full-Stack Developer",
-      period: "Jan 2024 - Present",
-    },
-    {
-      company: "PT. Dimensi Sukses Pratama",
-      role: "Full-Stack Developer",
-      period: "Aug 2025 - Present",
-    },
-    {
-      company: "DreamsHive",
-      role: "Full-Stack Developer",
-      period: "May 2025 - Present",
-    },
-  ];
+  const { t, pick } = useLanguage();
 
   return (
-    <section id="about" className="py-20 px-4">
-      <div className="max-w-6xl mx-auto">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-          viewport={{ once: true }}
-          className="text-center mb-12"
-        >
-          <h2 className="text-3xl md:text-4xl font-bold mb-4 text-gray-900 dark:text-white">
-            {t("about.title")} <span className="text-accent">{t("about.me")}</span>
-          </h2>
-          <p className="text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
-            {t("about.description")}
-          </p>
-        </motion.div>
+    <section id="about" className="py-20 sm:py-28 px-4 bg-surface">
+      <div className="max-w-page mx-auto">
+        <div className="grid lg:grid-cols-[minmax(0,5fr)_minmax(0,7fr)] gap-10 lg:gap-16">
+          <div className="min-w-0">
+            <h2 className="display text-[clamp(2.75rem,7vw,5.5rem)]">{t("about.title")}</h2>
+            <p className="mt-6 text-lg leading-relaxed max-w-[60ch]">{t("about.bio")}</p>
+          </div>
 
-        {/* Bento Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-          {/* About Text Card */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-            viewport={{ once: true }}
-            className="bento-card lg:col-span-2"
-          >
-            <div className="flex items-start gap-4">
-              <div className="p-3 rounded-xl bg-accent/10 text-accent">
-                <Cpu className="w-6 h-6" />
-              </div>
-              <div>
-                <h3 className="text-xl font-bold mb-3 text-gray-900 dark:text-white">{t("about.role")}</h3>
-                <p className="text-gray-600 dark:text-gray-400 leading-relaxed">
-                  {t("about.bio")}
-                </p>
-              </div>
+          <div className="lg:pt-4 min-w-0">
+            {/* departure board */}
+            <div className="board overflow-x-auto">
+              <table className="w-full min-w-[32rem] text-left border-collapse">
+                <thead>
+                  <tr className="text-xs uppercase tracking-[0.12em] amber">
+                    <th scope="col" className="pt-5 pb-3 pl-5 pr-3 font-bold w-16">{t("about.line")}</th>
+                    <th scope="col" className="pt-5 pb-3 pr-4 font-bold">{t("about.role")}</th>
+                    <th scope="col" className="pt-5 pb-3 pr-4 font-bold text-right">{t("about.from")}</th>
+                    <th scope="col" className="pt-5 pb-3 pr-5 font-bold text-right">{t("about.to")}</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {timetable.map((row) => {
+                    const line = lineById(row.line);
+                    const running = row.to.en === "now";
+                    const pill =
+                      line.id === "origin"
+                        ? { ["--line" as string]: "#e9ecef", color: "#0f1216" }
+                        : { ["--line" as string]: `var(--line-${line.id})` };
+                    return (
+                      <tr key={row.org + row.from} className="border-t border-white/10 align-top">
+                        <td className="py-4 pl-5 pr-3">
+                          <span className="badge" style={pill}>
+                            {line.code}
+                          </span>
+                        </td>
+                        <td className="py-4 pr-4">
+                          <span className="block font-bold text-[1.0625rem] leading-snug">{row.org}</span>
+                          <span className="block text-[#a9b0b9]">{pick(row.role)}</span>
+                        </td>
+                        <td className="py-4 pr-4 text-right tnum font-semibold whitespace-nowrap">{row.from}</td>
+                        <td className={`py-4 pr-5 text-right tnum whitespace-nowrap font-bold ${running ? "amber" : "text-[#a9b0b9]"}`}>
+                          {running && <span className="inline-block w-2 h-2 rounded-full bg-[#ffb21e] mr-2 align-middle" aria-hidden="true" />}
+                          {pick(row.to)}
+                        </td>
+                      </tr>
+                    );
+                  })}
+                </tbody>
+              </table>
             </div>
-          </motion.div>
 
-          {/* Experience Card */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.1 }}
-            viewport={{ once: true }}
-            className="bento-card"
-          >
-            <h3 className="text-lg font-bold mb-4 text-gray-900 dark:text-white">{t("about.experience")}</h3>
-            <div className="space-y-3">
-              {experiences.map((exp, index) => (
-                <div key={index} className="flex items-start gap-3">
-                  <div className="w-2 h-2 rounded-full bg-accent mt-2 flex-shrink-0" />
-                  <div>
-                    <p className="font-medium text-sm text-gray-900 dark:text-white">{exp.company}</p>
-                    <p className="text-xs text-gray-500 dark:text-gray-400">{exp.role}</p>
-                    <p className="text-xs text-accent">{exp.period}</p>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </motion.div>
-
-          {/* Skills Grid */}
-          {skills.map((skill, index) => (
-            <motion.div
-              key={skill.category}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: index * 0.05 }}
-              viewport={{ once: true }}
-              className="bento-card"
-            >
-              <div className="flex items-center gap-3 mb-4">
-                <div className="p-2 rounded-xl bg-gray-100 dark:bg-white/10 text-gray-700 dark:text-gray-300">
-                  {skill.icon}
-                </div>
-                <h3 className="font-bold text-gray-900 dark:text-white">{skill.category}</h3>
-              </div>
-              <div className="flex flex-wrap gap-2">
-                {skill.items.map((item) => (
-                  <span
-                    key={item}
-                    className="px-3 py-1 text-xs font-medium rounded-lg bg-gray-100 dark:bg-white/10 text-gray-600 dark:text-gray-300"
-                  >
-                    {item}
+            <h3 className="heading text-2xl mt-12">{t("about.certs")}</h3>
+            <ul className="mt-4">
+              {certifications.map((c) => (
+                <li key={c.name} className="flex items-baseline justify-between gap-6 py-3 border-b border-rule">
+                  <span>
+                    <span className="font-semibold">{c.name}</span>
+                    <span className="text-ink-2"> · {c.issuer}</span>
                   </span>
-                ))}
-              </div>
-            </motion.div>
-          ))}
-
-          {/* Tools Card */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.3 }}
-            viewport={{ once: true }}
-            className="bento-card lg:col-span-3"
-          >
-            <div className="flex items-center gap-3 mb-4">
-              <div className="p-2 rounded-xl bg-gray-100 dark:bg-white/10 text-gray-700 dark:text-gray-300">
-                <GitBranch className="w-5 h-5" />
-              </div>
-              <h3 className="font-bold text-gray-900 dark:text-white">{t("about.tools")}</h3>
-            </div>
-            <div className="flex flex-wrap gap-2">
-              {["Git", "Docker", "GitHub Actions", "Vercel", "REST APIs", "JWT", "Postman", "VS Code", "Bun Runtime"].map((item) => (
-                <span
-                  key={item}
-                  className="px-3 py-1.5 text-sm font-medium rounded-lg bg-gray-100 dark:bg-white/10 text-gray-600 dark:text-gray-300"
-                >
-                  {item}
-                </span>
+                  <span className="tnum font-semibold">{c.year}</span>
+                </li>
               ))}
-            </div>
-          </motion.div>
+            </ul>
+          </div>
         </div>
+
+        <h3 className="heading text-3xl sm:text-4xl mt-20">{t("about.legend")}</h3>
+        <dl className="mt-8 grid sm:grid-cols-2 gap-x-12">
+          {skills.map((s) => (
+            <div key={s.group.en} className="grid grid-cols-[8.5rem_1fr] gap-4 py-4 border-t-2 border-ink">
+              <dt className="font-bold">{pick(s.group)}</dt>
+              <dd>
+                <ul className="flex flex-wrap gap-1.5">
+                  {s.items.map((item) => (
+                    <TechChip key={item} label={item} />
+                  ))}
+                </ul>
+              </dd>
+            </div>
+          ))}
+        </dl>
       </div>
     </section>
   );

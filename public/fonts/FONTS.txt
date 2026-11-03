@@ -1,0 +1,5 @@
+Bonbance Bold Condensed — © 2023 Louna Bourdon, published by ESAD Valence. SIL Open Font License 1.1.
+BDO Grotesk (Regular, Medium, DemiBold, Bold) — © 2017 Lokal Container, designed by Deni Anggara. SIL Open Font License 1.1.
+Source files: bestfreefonts.com (bonbance, bdo-grotesk). License text: https://openfontlicense.org/
+
+Brand icons in /icons are from theSVG (https://thesvg.org), used to label the technologies each project was built with.

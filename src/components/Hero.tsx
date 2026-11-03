@@ -1,146 +1,74 @@
-import React from "react";
-import { motion } from "framer-motion";
-import { Github, Linkedin, Mail, Download, ArrowRight, Briefcase, Calendar } from "lucide-react";
+import { Download, Linkedin } from "lucide-react";
+import LedBoard from "./LedBoard";
+import { LINKEDIN } from "../data/career";
 import { useLanguage } from "../context/LanguageContext";
 
 const Hero = () => {
   const { t } = useLanguage();
 
   return (
-    <section id="home" className="min-h-screen flex items-center px-4 pt-24 pb-12 lg:pt-32">
-      <div className="max-w-6xl mx-auto w-full">
-        {/* Bento Grid Layout */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-5">
-          {/* Main intro card - spans 2 cols on lg */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-            className="bento-card lg:col-span-2 flex flex-col justify-center min-h-[280px]"
-          >
-            <div className="space-y-4">
-              <motion.div
-                initial={{ opacity: 0, x: -20 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ delay: 0.2 }}
-                className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-accent/10 border border-accent/20 text-accent text-sm font-medium"
-              >
-                <span className="relative flex h-2 w-2">
-                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-accent opacity-75"></span>
-                  <span className="relative inline-flex rounded-full h-2 w-2 bg-accent"></span>
-                </span>
+    <section id="home" className="min-h-[100svh] flex flex-col pt-28 sm:pt-32 pb-5 px-4">
+      <div className="max-w-page w-full mx-auto flex-1 flex flex-col">
+        <div className="flex-1 grid md:grid-cols-[minmax(0,1fr)_auto] gap-10 md:gap-16 items-center">
+          <div className="min-w-0">
+            <div className="flex items-end gap-4">
+              {/* small station board beside the name on phones */}
+              <div className="md:hidden relative w-[4.5rem] h-[5.5rem] shrink-0 rounded-xl overflow-hidden bg-line-dimensi">
+                <img src="/images/naufal2.webp" alt="" className="absolute inset-x-0 bottom-0 w-full scale-[1.25] origin-bottom" />
+              </div>
+              <h1 className="display text-[clamp(3.25rem,10vw,6rem)]">Naufal Aziz</h1>
+            </div>
+            <p className="mt-6 max-w-[36rem] text-lg sm:text-[1.375rem] leading-snug text-ink-2">{t("hero.description")}</p>
+
+            <p className="mt-6 flex items-start gap-3 text-base sm:text-lg">
+              <span className="badge shrink-0" style={{ ["--line" as string]: "var(--line-dimensi)" }}>
+                DPS
+              </span>
+              <span>
+                {t("hero.now")} <strong className="font-bold">Dimensi Software</strong>
+                <span className="hidden sm:inline"> (PT Dimensi Pratama Sukses)</span>, {t("hero.nowRole")}
+              </span>
+            </p>
+
+            <div className="mt-9 flex flex-wrap items-center gap-2.5 sm:gap-3">
+              <a href={LINKEDIN} target="_blank" rel="noopener noreferrer" className="btn btn-ink max-sm:h-11 max-sm:px-3.5 max-sm:gap-2 max-sm:text-[0.9rem]">
+                <Linkedin className="w-5 h-5" aria-hidden="true" />
+                {t("hero.linkedin")}
+              </a>
+              <a href="/Resume.pdf" target="_blank" rel="noopener" className="btn btn-line max-sm:h-11 max-sm:px-3.5 max-sm:gap-2 max-sm:text-[0.9rem]">
+                <Download className="w-5 h-5 max-sm:hidden" aria-hidden="true" />
+                {t("hero.download")}
+              </a>
+              <span className="hidden sm:flex items-center gap-2 pl-1 text-sm text-ink-2">
+                <span className="w-2.5 h-2.5 rounded-full bg-line-navitek" aria-hidden="true" />
                 {t("hero.available")}
-              </motion.div>
-              
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight text-gray-900 dark:text-white">
-                {t("hero.greeting")}{" "}
-                <span className="text-accent">Naufal Aziz</span>
-              </h1>
-              
-              <p className="text-lg md:text-xl text-gray-600 dark:text-gray-400 max-w-xl">
-                {t("hero.description")}
-              </p>
-
-              <div className="flex flex-wrap gap-3 pt-2">
-                <motion.a
-                  href="/Resume.pdf"
-                  target="_blank"
-                  whileHover={{ scale: 1.02 }}
-                  whileTap={{ scale: 0.98 }}
-                  className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-accent hover:bg-accent-dark text-white font-medium transition-colors"
-                >
-                  <Download className="w-4 h-4" />
-                  {t("hero.download")}
-                </motion.a>
-                <motion.a
-                  href="#projects"
-                  whileHover={{ scale: 1.02 }}
-                  whileTap={{ scale: 0.98 }}
-                  className="inline-flex items-center gap-2 px-6 py-3 rounded-xl border border-gray-300 dark:border-white/20 text-gray-700 dark:text-gray-300 font-medium hover:bg-gray-100 dark:hover:bg-white/5 transition-colors"
-                >
-                  {t("hero.viewProjects")}
-                  <ArrowRight className="w-4 h-4" />
-                </motion.a>
-              </div>
+              </span>
             </div>
-          </motion.div>
+          </div>
 
-          {/* Profile Picture Card - No rounded, square with slight border radius */}
-          <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.5, delay: 0.1 }}
-            className="bento-card p-0 overflow-hidden md:row-span-2"
-          >
+          {/* station poster: the cutout portrait on the Dimensi line colour, name plate below */}
+          <figure className="hidden md:block relative w-[17rem] lg:w-[21rem] aspect-[4/5] rounded-[2rem] overflow-hidden bg-line-dimensi shadow-[0_2px_4px_rgb(0_0_0/0.08),0_30px_60px_-28px_rgb(10_40_80/0.6)]">
             <img
-              src="/images/naufal.webp"
+              src="/images/naufal2.webp"
               alt="Naufal Aziz"
-              className="w-full h-full object-cover min-h-[300px]"
+              width={431}
+              height={579}
+              className="absolute inset-x-0 bottom-0 w-full h-auto scale-[1.12] origin-bottom"
             />
-          </motion.div>
-
-          {/* Current Work + Social Links Combined Card */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.2 }}
-            className="bento-card lg:col-span-2"
-          >
-            {/* Current Work Section */}
-            <div className="flex items-start gap-4 mb-6 pb-6 border-b border-gray-200 dark:border-white/10">
-              <div className="p-3 rounded-xl bg-accent/10">
-                <Briefcase className="w-5 h-5 text-accent" />
-              </div>
-              <div className="flex-1">
-                <p className="text-sm text-gray-500 dark:text-gray-400 mb-1">{t("hero.currentWork")}</p>
-                <p className="font-semibold text-gray-900 dark:text-white">RS Kanker Dharmais</p>
-                <p className="text-sm text-accent">Full-Stack Developer</p>
-                <div className="flex items-center gap-2 mt-2 text-xs text-gray-500 dark:text-gray-400">
-                  <Calendar className="w-3 h-3" />
-                  <span>Jan 2024 - Present</span>
-                </div>
-              </div>
-            </div>
-
-            {/* Social Links Section */}
-            <div>
-              <p className="text-sm text-gray-500 dark:text-gray-400 mb-4">{t("hero.connect")}</p>
-              <div className="flex flex-wrap gap-3">
-                <motion.a
-                  href="https://github.com/naufaljct48"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  className="flex items-center gap-2 px-4 py-2.5 rounded-xl bg-gray-100 dark:bg-white/10 hover:bg-gray-200 dark:hover:bg-white/20 transition-colors"
-                >
-                  <Github className="w-5 h-5" />
-                  <span className="font-medium">GitHub</span>
-                </motion.a>
-                <motion.a
-                  href="https://linkedin.com/in/naufal-aziz"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  className="flex items-center gap-2 px-4 py-2.5 rounded-xl bg-gray-100 dark:bg-white/10 hover:bg-gray-200 dark:hover:bg-white/20 transition-colors"
-                >
-                  <Linkedin className="w-5 h-5" />
-                  <span className="font-medium">LinkedIn</span>
-                </motion.a>
-                <motion.a
-                  href="mailto:naufaljct48@gmail.com"
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  className="flex items-center gap-2 px-4 py-2.5 rounded-xl bg-gray-100 dark:bg-white/10 hover:bg-gray-200 dark:hover:bg-white/20 transition-colors"
-                >
-                  <Mail className="w-5 h-5" />
-                  <span className="font-medium">Email</span>
-                </motion.a>
-              </div>
-            </div>
-          </motion.div>
+            <figcaption className="absolute left-3.5 right-3.5 bottom-3.5 flex items-center gap-3 rounded-2xl bg-ink text-on-ink pl-3 pr-4 py-3">
+              <span className="badge" style={{ ["--line" as string]: "var(--line-dimensi)" }}>
+                DPS
+              </span>
+              <span className="leading-tight">
+                <span className="block heading text-xl">Tangerang</span>
+                <span className="block text-xs opacity-75">Indonesia</span>
+              </span>
+            </figcaption>
+          </figure>
         </div>
+
+        {/* the in-car passenger display closes the first screen */}
+        <LedBoard text={t("led.hero")} pitch={4} className="mt-10" />
       </div>
     </section>
   );

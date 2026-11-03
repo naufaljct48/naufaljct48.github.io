@@ -1,6 +1,8 @@
-import React, { useState, useRef, useEffect } from "react";
-import { MessageCircle, X, Send, Bot, User } from "lucide-react";
-import { motion, AnimatePresence } from "framer-motion";
+import { useState, useRef, useEffect } from "react";
+import { MessageCircle, X, ArrowUp } from "lucide-react";
+import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
+import { lines } from "../data/career";
+import { useLanguage } from "../context/LanguageContext";
 
 interface Message {
   role: "user" | "assistant";
@@ -8,60 +10,46 @@ interface Message {
 }
 
 const Chatbot = () => {
+  const { t } = useLanguage();
+  const reduce = useReducedMotion();
   const [isOpen, setIsOpen] = useState(false);
   const [messages, setMessages] = useState<Message[]>([]);
   const [input, setInput] = useState("");
   const [isLoading, setIsLoading] = useState(false);
-  const messagesEndRef = useRef<HTMLDivElement>(null);
-  const [sessionId, setSessionId] = useState<string>("");
-
-  const scrollToBottom = () => {
-    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
-  };
+  const [sessionId, setSessionId] = useState("");
+  const endRef = useRef<HTMLDivElement>(null);
+  const inputRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
-    scrollToBottom();
-  }, [messages]);
+    endRef.current?.scrollIntoView({ behavior: "smooth" });
+  }, [messages, isLoading]);
+
+  useEffect(() => {
+    if (isOpen) inputRef.current?.focus();
+  }, [isOpen]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!input.trim()) return;
+    const text = input.trim();
+    if (!text || isLoading) return;
 
-    const userMessage = input.trim();
     setInput("");
-    setMessages((prev) => [...prev, { role: "user", content: userMessage }]);
+    setMessages((prev) => [...prev, { role: "user", content: text }]);
     setIsLoading(true);
 
     try {
       const response = await fetch("/api/chat", {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          message: userMessage,
-          isFirstMessage: messages.length === 0,
-          sessionId,
-        }),
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ message: text, isFirstMessage: messages.length === 0, sessionId }),
       });
-
       const data = await response.json();
-      if (!sessionId) {
-        setSessionId(data.sessionId);
-      }
-      setMessages((prev) => [
-        ...prev,
-        { role: "assistant", content: data.response },
-      ]);
+      if (!response.ok || !data.response) throw new Error(data.error || `HTTP ${response.status}`);
+      if (!sessionId) setSessionId(data.sessionId);
+      setMessages((prev) => [...prev, { role: "assistant", content: data.response }]);
     } catch (error) {
       console.error("Error:", error);
-      setMessages((prev) => [
-        ...prev,
-        {
-          role: "assistant",
-          content: "Sorry, I encountered an error. Please try again.",
-        },
-      ]);
+      setMessages((prev) => [...prev, { role: "assistant", content: t("chat.error") }]);
     } finally {
       setIsLoading(false);
     }
@@ -69,131 +57,82 @@ const Chatbot = () => {
 
   return (
     <>
-      {/* Chat Button */}
-      <motion.button
+      <button
+        type="button"
         onClick={() => setIsOpen(!isOpen)}
-        className="fixed bottom-6 right-6 p-4 bg-accent hover:bg-accent-dark text-white shadow-lg z-50 rounded-2xl transition-colors"
-        whileHover={{ scale: 1.05 }}
-        whileTap={{ scale: 0.95 }}
+        aria-expanded={isOpen}
+        aria-controls="chat-panel"
+        aria-label={isOpen ? t("chat.close") : t("chat.open")}
+        className="fixed bottom-5 right-5 sm:bottom-6 sm:right-6 z-50 w-14 h-14 rounded-full grid place-items-center bg-ink text-on-ink border-2 border-ground shadow-[0_2px_4px_rgb(0_0_0/0.15),0_14px_30px_-10px_rgb(0_0_0/0.5)] transition-transform duration-300 hover:-translate-y-0.5"
       >
-        <MessageCircle size={24} />
-      </motion.button>
+        {isOpen ? <X className="w-6 h-6" /> : <MessageCircle className="w-6 h-6" />}
+      </button>
 
-      {/* Chat Window */}
       <AnimatePresence>
         {isOpen && (
           <motion.div
-            initial={{ opacity: 0, scale: 0.95, y: 20 }}
-            animate={{ opacity: 1, scale: 1, y: 0 }}
-            exit={{ opacity: 0, scale: 0.95, y: 20 }}
-            className="fixed bottom-24 right-6 w-[380px] max-w-[calc(100vw-3rem)] h-[500px] bg-white dark:bg-dark-200 rounded-2xl shadow-2xl overflow-hidden z-50 flex flex-col border border-gray-200 dark:border-white/10"
+            id="chat-panel"
+            role="dialog"
+            aria-label={t("chat.title")}
+            initial={reduce ? { opacity: 0 } : { opacity: 0, y: 16, scale: 0.98 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={reduce ? { opacity: 0 } : { opacity: 0, y: 12, scale: 0.98 }}
+            transition={{ duration: 0.28, ease: [0.16, 1, 0.3, 1] }}
+            className="fixed bottom-24 right-4 sm:right-6 z-50 w-[23.5rem] max-w-[calc(100vw-2rem)] h-[32rem] max-h-[calc(100dvh-8rem)] bg-ground text-ink rounded-3xl overflow-hidden flex flex-col border-2 border-ink shadow-[0_4px_8px_rgb(0_0_0/0.08),0_30px_60px_-24px_rgb(0_0_0/0.45)]"
           >
-            {/* Header */}
-            <div className="p-4 bg-accent text-white flex justify-between items-center">
-              <div className="flex items-center gap-3">
-                <div className="p-2 bg-white/20 rounded-xl">
-                  <Bot size={20} />
-                </div>
-                <div>
-                  <h3 className="font-semibold">AI Assistant</h3>
-                  <p className="text-xs text-white/80">Ask me anything</p>
-                </div>
-              </div>
-              <button
-                onClick={() => setIsOpen(false)}
-                className="p-2 hover:bg-white/20 rounded-xl transition-colors"
-              >
-                <X size={20} />
-              </button>
+            <div className="flex h-1.5" aria-hidden="true">
+              {lines.map((l) => (
+                <span key={l.id} className="flex-1" style={{ background: `var(--line-${l.id})` }} />
+              ))}
+            </div>
+            <div className="px-5 py-4 border-b border-rule">
+              <p className="heading text-xl">{t("chat.title")}</p>
+              <p className="text-sm text-ink-2">{t("chat.subtitle")}</p>
             </div>
 
-            {/* Messages */}
-            <div className="flex-1 overflow-y-auto p-4 space-y-4 bg-gray-50 dark:bg-dark-300">
-              {messages.length === 0 && (
-                <div className="text-center py-8">
-                  <div className="w-16 h-16 mx-auto mb-4 rounded-2xl bg-accent/10 flex items-center justify-center">
-                    <Bot size={32} className="text-accent" />
+            <div className="flex-1 overflow-y-auto px-4 py-4 space-y-3" aria-live="polite">
+              {messages.length === 0 && <p className="text-ink-2 px-1 pt-2 leading-relaxed">{t("chat.empty")}</p>}
+              {messages.map((m, i) => (
+                <div key={i} className={`flex ${m.role === "user" ? "justify-end" : ""}`}>
+                  <div
+                    className={`max-w-[82%] px-4 py-2.5 text-[0.95rem] leading-relaxed whitespace-pre-line break-words ${
+                      m.role === "user"
+                        ? "bg-ink text-on-ink rounded-[1.25rem] rounded-br-md"
+                        : "bg-surface rounded-[1.25rem] rounded-bl-md"
+                    }`}
+                  >
+                    {m.content}
                   </div>
-                  <p className="text-gray-600 dark:text-gray-400 text-sm">
-                    Hi! I'm Naufal's AI Assistant.
-                    <br />
-                    How can I help you today?
-                  </p>
                 </div>
-              )}
-              {messages.map((message, index) => (
-                <motion.div
-                  key={index}
-                  initial={{ opacity: 0, y: 10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  className={`flex gap-3 ${
-                    message.role === "user" ? "flex-row-reverse" : ""
-                  }`}
-                >
-                  <div
-                    className={`flex-shrink-0 w-8 h-8 rounded-xl flex items-center justify-center ${
-                      message.role === "user"
-                        ? "bg-accent text-white"
-                        : "bg-gray-200 dark:bg-white/10 text-gray-600 dark:text-gray-300"
-                    }`}
-                  >
-                    {message.role === "user" ? <User size={16} /> : <Bot size={16} />}
-                  </div>
-                  <div
-                    className={`max-w-[75%] p-3 rounded-2xl text-sm ${
-                      message.role === "user"
-                        ? "bg-accent text-white rounded-tr-none"
-                        : "bg-white dark:bg-dark-200 text-gray-800 dark:text-gray-200 rounded-tl-none border border-gray-200 dark:border-white/10"
-                    }`}
-                  >
-                    <div className="whitespace-pre-line break-words">
-                      {message.content}
-                    </div>
-                  </div>
-                </motion.div>
               ))}
               {isLoading && (
-                <motion.div
-                  initial={{ opacity: 0, y: 10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  className="flex gap-3"
-                >
-                  <div className="w-8 h-8 rounded-xl bg-gray-200 dark:bg-white/10 flex items-center justify-center">
-                    <Bot size={16} className="text-gray-600 dark:text-gray-300" />
-                  </div>
-                  <div className="bg-white dark:bg-dark-200 p-3 rounded-2xl rounded-tl-none border border-gray-200 dark:border-white/10">
-                    <div className="flex gap-1">
-                      <span className="w-2 h-2 bg-gray-400 rounded-full animate-bounce" style={{ animationDelay: "0ms" }} />
-                      <span className="w-2 h-2 bg-gray-400 rounded-full animate-bounce" style={{ animationDelay: "150ms" }} />
-                      <span className="w-2 h-2 bg-gray-400 rounded-full animate-bounce" style={{ animationDelay: "300ms" }} />
-                    </div>
-                  </div>
-                </motion.div>
+                <div className="flex gap-1.5 px-4 py-3.5 bg-surface rounded-[1.25rem] rounded-bl-md w-fit" aria-label="…">
+                  {[0, 150, 300].map((d) => (
+                    <span key={d} className="w-2 h-2 rounded-full bg-ink-2 animate-pulse" style={{ animationDelay: `${d}ms` }} />
+                  ))}
+                </div>
               )}
-              <div ref={messagesEndRef} />
+              <div ref={endRef} />
             </div>
 
-            {/* Input */}
-            <form
-              onSubmit={handleSubmit}
-              className="p-4 border-t border-gray-200 dark:border-white/10 bg-white dark:bg-dark-200"
-            >
-              <div className="flex gap-2">
-                <input
-                  type="text"
-                  value={input}
-                  onChange={(e) => setInput(e.target.value)}
-                  placeholder="Type a message..."
-                  className="flex-1 px-4 py-3 rounded-xl border border-gray-200 dark:border-white/10 bg-gray-50 dark:bg-dark-300 focus:outline-none focus:ring-2 focus:ring-accent/50 text-sm"
-                />
-                <button
-                  type="submit"
-                  disabled={isLoading}
-                  className="p-3 bg-accent hover:bg-accent-dark text-white rounded-xl disabled:opacity-50 transition-colors"
-                >
-                  <Send size={18} />
-                </button>
-              </div>
+            <form onSubmit={handleSubmit} className="p-3 border-t border-rule flex gap-2">
+              <input
+                ref={inputRef}
+                type="text"
+                value={input}
+                onChange={(e) => setInput(e.target.value)}
+                placeholder={t("chat.placeholder")}
+                aria-label={t("chat.placeholder")}
+                className="flex-1 min-w-0 h-11 px-4 rounded-full bg-surface placeholder:text-ink-2 focus:outline-none focus-visible:outline-[3px] focus-visible:outline-line-dimensi"
+              />
+              <button
+                type="submit"
+                disabled={isLoading || !input.trim()}
+                aria-label={t("chat.send")}
+                className="w-11 h-11 shrink-0 rounded-full grid place-items-center bg-ink text-on-ink disabled:opacity-35 transition-opacity"
+              >
+                <ArrowUp className="w-5 h-5" />
+              </button>
             </form>
           </motion.div>
         )}

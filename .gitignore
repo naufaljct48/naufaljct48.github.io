@@ -31,3 +31,7 @@ dist-ssr
 
 # AI Agent System Files
 .memory/
+
+# impeccable review captures
+.impeccable/review/
+.impeccable/questions/
