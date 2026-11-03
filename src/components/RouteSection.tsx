@@ -11,7 +11,7 @@ const RouteSection = () => {
     <section id="map" className="py-20 sm:py-24 px-4 border-t border-rule">
       <div className="max-w-page mx-auto">
         <div className="flex flex-wrap items-end justify-between gap-x-10 gap-y-4 mb-8">
-          <h2 className="display text-[clamp(2.75rem,7vw,5.5rem)]">{t("map.title")}</h2>
+          <h2 data-reveal="wipe" className="display text-[clamp(2.75rem,7vw,5.5rem)]">{t("map.title")}</h2>
           <p className="hidden sm:block text-ink-2 max-w-[26rem] text-right">{t("map.hint")}</p>
         </div>
 

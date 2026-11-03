@@ -26,8 +26,8 @@ Visitors arrive from the PDF resume, LinkedIn, GitHub, or a shared link, on desk
 
 ## Capabilities and Constraints
 
-- Stack: Vite + React 18 + TypeScript + Tailwind 3 + framer-motion + lucide-react; deployed on Vercel (also GitHub Pages script). `api/chat.js` is a Vercel function for the chatbot.
-- Must keep: EN/ID language toggle (`src/context/LanguageContext.tsx`), AI chatbot (`src/components/Chatbot.tsx` + `api/chat.js`), profile photo, dark/light theme toggle.
+- Stack: Vite + React 18 + TypeScript + Tailwind 3 + framer-motion + lucide-react; deployed on Vercel (also GitHub Pages script).
+- Must keep: EN/ID language toggle (`src/context/LanguageContext.tsx`), profile photo, dark/light theme toggle (light is the default). The AI chatbot was removed on the owner's request (3 Nov 2026).
 - `public/Resume.pdf` is the downloadable resume and must match `D:\Data Pribadi\Resume - Naufal Aziz (Nov 2026).pdf`.
 - No phone number on the site.
 

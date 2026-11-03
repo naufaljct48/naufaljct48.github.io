@@ -14,6 +14,7 @@
       // apply the saved theme before first paint
       try {
         if (JSON.parse(localStorage.getItem("theme") || "\"light\"") === "dark") document.documentElement.classList.add("dark");
+        if (!matchMedia("(prefers-reduced-motion: reduce)").matches) document.documentElement.classList.add("motion-ok");
       } catch (e) {}
     </script>
   </head>

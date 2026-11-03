@@ -72,17 +72,31 @@ interface Peek {
   below: boolean;
 }
 
-// A two-car set in the line colour: runs the line once after the draw-in and stops at "now".
-const Train = ({ path, color, dur, begin, k }: { path: string; color: string; dur: number; begin: number; k: number }) => (
-  <g opacity={0}>
-    <g transform={`scale(${k})`}>
-      <rect x={-30} y={-5.5} width={27} height={11} rx={4} fill={color} />
-      <rect x={-1} y={-5.5} width={29} height={11} rx={5.5} fill={color} />
+// A two-car set in the line colour: once the map has been drawn it runs the line once
+// and stops at "now". SMIL waits ("indefinite") until the map is actually on screen.
+const Train = ({ path, color, dur, begin, k, go }: { path: string; color: string; dur: number; begin: number; k: number; go: boolean }) => {
+  const set = useRef<SVGSetElement>(null);
+  const move = useRef<SVGAnimateMotionElement>(null);
+  useEffect(() => {
+    if (!go) return;
+    const id = window.setTimeout(() => {
+      set.current?.beginElement();
+      move.current?.beginElement();
+    }, begin * 1000);
+    return () => window.clearTimeout(id);
+  }, [go, begin]);
+
+  return (
+    <g opacity={0}>
+      <g transform={`scale(${k})`}>
+        <rect x={-30} y={-5.5} width={27} height={11} rx={4} fill={color} />
+        <rect x={-1} y={-5.5} width={29} height={11} rx={5.5} fill={color} />
+      </g>
+      <set ref={set} attributeName="opacity" to="1" begin="indefinite" fill="freeze" />
+      <animateMotion ref={move} dur={`${dur}s`} begin="indefinite" fill="freeze" rotate="auto" path={path} keyPoints="0;1" keyTimes="0;1" calcMode="spline" keySplines="0.45 0 0.2 1" />
     </g>
-    <set attributeName="opacity" to="1" begin={`${begin}s`} fill="freeze" />
-    <animateMotion dur={`${dur}s`} begin={`${begin}s`} fill="freeze" rotate="auto" path={path} keyPoints="0;1" keyTimes="0;1" calcMode="spline" keySplines="0.45 0 0.2 1" />
-  </g>
-);
+  );
+};
 
 const RouteMap = ({ solo, setSolo }: Props) => {
   const { t, pick } = useLanguage();
@@ -90,8 +104,25 @@ const RouteMap = ({ solo, setSolo }: Props) => {
   const [compact, setCompact] = useState(false);
   const [peek, setPeek] = useState<Peek | null>(null);
   const [motion, setMotion] = useState(false);
+  const [drawn, setDrawn] = useState(false);
 
   useEffect(() => setMotion(!reduceMotion()), []);
+
+  // draw the map the first time a good part of it is on screen
+  useEffect(() => {
+    const el = plate.current;
+    if (!el) return;
+    const io = new IntersectionObserver(
+      ([e]) => {
+        if (!e.isIntersecting) return;
+        setDrawn(true);
+        io.disconnect();
+      },
+      { threshold: 0.35 }
+    );
+    io.observe(el);
+    return () => io.disconnect();
+  }, []);
 
   // The map always fits its column. When the column is narrow, station names drop
   // (each product is listed in the Lines section) and strokes thicken so the diagram stays legible.
@@ -129,14 +160,15 @@ const RouteMap = ({ solo, setSolo }: Props) => {
           <svg
             viewBox={`0 0 ${W} ${compact ? H + 32 : H}`}
             className="route block w-full h-auto select-none"
-            aria-labelledby="route-title"
+            data-drawn={drawn || undefined}
+            role="group"
+            aria-label={t("map.label")}
             data-solo={solo ?? undefined}
             onMouseLeave={() => {
               setSolo(null);
               setPeek(null);
             }}
           >
-            <title id="route-title">{t("map.label")}</title>
 
             {/* year axis */}
             <g className="tnum" fill="var(--ink-2)" fontSize={compact ? 30 : 13} fontWeight="500">
@@ -167,7 +199,7 @@ const RouteMap = ({ solo, setSolo }: Props) => {
                       y={i === 0 ? TRUNK_Y - 22 : TRUNK_Y + 30}
                       textAnchor={i === 0 ? "start" : "middle"}
                       fontSize="14"
-                      fontWeight="650"
+                      fontWeight="600"
                       fill="var(--ink)"
                      
                     >
@@ -222,7 +254,7 @@ const RouteMap = ({ solo, setSolo }: Props) => {
                       opacity={0.6}
                     />
                   )}
-                  {motion && !ended && <Train path={track} color={color(id)} dur={3.2} begin={1.7 + d / 1000} k={k} />}
+                  {motion && !ended && <Train path={track} color={color(id)} dur={3.2} begin={1.7 + d / 1000} k={k} go={drawn} />}
                   {stops.map((s, i) => {
                     const current = !ended && i === stops.length - 1;
                     return (
@@ -258,7 +290,7 @@ const RouteMap = ({ solo, setSolo }: Props) => {
                           transform={above ? `translate(${xs[i] + 3} ${y - 16}) rotate(-45)` : `translate(${xs[i]} ${y + 30})`}
                           textAnchor={above ? "start" : "middle"}
                           fontSize="14.5"
-                          fontWeight="680"
+                          fontWeight="600"
                           fill="var(--ink)"
                          
                         >
@@ -272,6 +304,7 @@ const RouteMap = ({ solo, setSolo }: Props) => {
             })}
 
             {/* interchanges where each job line leaves the person line */}
+            <g className="interchanges">
             {lineGeo.map(({ line, junction }) => (
               <rect
                 key={line.id}
@@ -287,6 +320,7 @@ const RouteMap = ({ solo, setSolo }: Props) => {
                 strokeWidth={4 * k}
               />
             ))}
+            </g>
 
 
             {/* you are here */}
@@ -316,7 +350,7 @@ const RouteMap = ({ solo, setSolo }: Props) => {
           {/* station preview */}
           {peek && (
             <div
-              className="pointer-events-none absolute z-10 w-[280px] rounded-2xl bg-ground border-2 border-ink overflow-hidden shadow-[0_4px_8px_rgb(0_0_0/0.08),0_24px_48px_-20px_rgb(0_0_0/0.45)]"
+              className="glass peek pointer-events-none absolute z-10 w-[280px] rounded-[1.4rem] overflow-hidden p-1.5"
               style={{
                 left: peek.left,
                 top: peek.top,
@@ -325,9 +359,9 @@ const RouteMap = ({ solo, setSolo }: Props) => {
               }}
             >
               {peek.station.images?.[0] && (
-                <img src={peek.station.images[0]} alt="" className="w-full aspect-video object-cover object-top border-b-2 border-ink" />
+                <img src={peek.station.images[0]} alt="" className="w-full aspect-video object-cover object-top rounded-[1rem]" />
               )}
-              <div className="p-3.5">
+              <div className="px-2.5 pt-3 pb-2">
                 <p className="flex items-center gap-2">
                   <span className="badge">{lineById(peek.station.line).code}</span>
                   <span className="heading text-lg">{peek.station.name}</span>

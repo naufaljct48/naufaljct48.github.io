@@ -182,7 +182,7 @@ export const stations: Station[] = [
       en: "An enterprise electronic medical record application with 20+ modules used by 500+ healthcare users, including doctors and nurses, covering clinical administration, patient data and internal service workflows.",
       id: "Aplikasi rekam medis elektronik skala enterprise dengan 20+ modul yang dipakai 500+ tenaga kesehatan, termasuk dokter dan perawat, mencakup administrasi klinis, data pasien, dan alur layanan internal.",
     },
-    tech: ["Next.js", "TypeScript", "PHP", "MySQL"],
+    tech: ["PHP", "CodeIgniter"],
   },
   {
     id: "atidar",

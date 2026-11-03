@@ -5,10 +5,14 @@ import Projects from "./components/Projects";
 import RouteSection from "./components/RouteSection";
 import Footer from "./components/Footer";
 import ScrollToTopButton from "./components/ScrollToTopButton";
-import Chatbot from "./components/Chatbot";
 import NextStation from "./components/NextStation";
+import { useScrollMotion } from "./hooks/useScrollMotion";
+import { useSpotlight } from "./hooks/useSpotlight";
 
 function App() {
+  useScrollMotion();
+  useSpotlight();
+
   return (
     <div className="min-h-screen overflow-x-clip">
       <a
@@ -27,7 +31,7 @@ function App() {
       </main>
       <Footer />
       <ScrollToTopButton />
-      <Chatbot />
+      <div className="spotlight" aria-hidden="true" />
     </div>
   );
 }

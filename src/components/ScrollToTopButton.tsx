@@ -18,7 +18,7 @@ const ScrollToTopButton = () => {
       onClick={() => window.scrollTo({ top: 0 })}
       aria-label={t("footer.top")}
       tabIndex={visible ? 0 : -1}
-      className={`fixed bottom-[5.75rem] right-5 sm:right-6 z-40 w-11 h-11 rounded-full grid place-items-center bg-ground text-ink border-2 border-ink shadow-[0_0_0_2px_var(--ground)] transition-all duration-300 ${
+      className={`glass-btn fixed bottom-5 right-5 sm:bottom-6 sm:right-6 z-40 w-12 h-12 rounded-full grid place-items-center text-ink transition-all duration-300 ${
         visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-3 pointer-events-none"
       }`}
     >

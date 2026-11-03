@@ -9,7 +9,7 @@ related_targets: []
 
 Mode: Experience (the work leads from the first viewport), with one Persuade action: connect on LinkedIn.
 Audience: recruiters skimming + business owners looking for a builder. Proof: live products, real numbers from the Nov 2026 resume.
-Constraints: keep EN/ID toggle, chatbot, profile photo, dark/light toggle. Fonts pinned by the owner: Bonbance (display) + BDO Grotesk (text), replacing Bricolage Grotesque on 3 Nov 2026 because it read too tight. Brand icons from thesvg.org.
+Constraints: keep EN/ID toggle, profile photo, dark/light toggle (light default); chatbot removed by the owner. Fonts pinned by the owner: Bonbance (display) + BDO Grotesk (text), replacing Bricolage Grotesque on 3 Nov 2026 because it read too tight. Brand icons from thesvg.org.
 Build path: code-led (no image generation in this harness).
 
 ## Direction contract
@@ -32,3 +32,4 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
 - SiKetik belongs to the Dharmais line (owner correction).
 - Finish review round 2: multi-trip card removed (faked physical chip, duplicate CTA); LED rebuilt on a 5x7 bitmap face with passenger copy; trains run once and park; store links use the official badges; PHP, Filament and Go chips are text-only. Verdict: all scored fixes resolved.
 - 3 Nov 2026 (owner): company is Dimensi Software (PT Dimensi Pratama Sukses); codes DPS / NVK / DMS; hero is a full screen with the LED at its foot and the map moved to its own section with no sideways scroll; footer rebuilt as a night terminus block (converging lines into "Your team", departure-board contacts, oversized wordmark) after footer.design references.
+- 3 Nov 2026 (owner): one glass button family (ink glass primary, clear glass secondary, glass round controls, Apple-style glass nav); phone hero leads with a full-width station-board poster; timetable folds dates under the role on phones; chatbot removed; EMR is PHP + CodeIgniter.

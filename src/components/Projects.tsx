@@ -13,7 +13,7 @@ const Shot = ({ station }: { station: Station }) => {
 
   return (
     <figure className="w-full">
-      <div className="aspect-video rounded-xl sm:rounded-2xl overflow-hidden border border-rule bg-surface shadow-[0_1px_2px_rgb(0_0_0/0.06),0_18px_40px_-28px_rgb(0_0_0/0.45)]">
+      <div className="spot-edge aspect-video rounded-xl sm:rounded-2xl overflow-hidden border border-rule bg-surface shadow-[0_1px_2px_rgb(0_0_0/0.06),0_18px_40px_-28px_rgb(0_0_0/0.45)]">
         <img
           src={images[i]}
           alt={`${station.name} screenshot ${images.length > 1 ? i + 1 : ""}`.trim()}
@@ -30,12 +30,8 @@ const Shot = ({ station }: { station: Station }) => {
               onClick={() => setI(n)}
               aria-pressed={n === i}
               aria-label={`${t("lines.shot")} ${n + 1}`}
-              className="tnum w-8 h-8 rounded-full text-sm font-bold border-2 transition-colors"
-              style={
-                n === i
-                  ? { background: "var(--line)", borderColor: "var(--line)", color: "var(--on-line)" }
-                  : { borderColor: "var(--rule)", color: "var(--ink-2)" }
-              }
+              className={`tnum w-9 h-9 rounded-full text-sm font-bold transition-colors ${n === i ? "" : "glass-btn text-ink-2"}`}
+              style={n === i ? { background: "var(--line)", color: "var(--on-line)" } : undefined}
             >
               {n + 1}
             </button>
@@ -99,7 +95,7 @@ const Stop = ({ station, compact, current }: { station: Station; compact: boolea
       {!hasShot ? (
         text
       ) : compact ? (
-        <div className="grid sm:grid-cols-[minmax(0,1fr)_14rem] lg:grid-cols-[minmax(0,5fr)_minmax(0,7fr)] gap-5 sm:gap-8 lg:gap-12 items-start [&>figure]:max-sm:order-first [&>figure]:lg:max-w-[22rem]">
+        <div className="grid sm:grid-cols-[minmax(0,1fr)_14rem] lg:grid-cols-[minmax(0,5fr)_minmax(0,7fr)] gap-5 sm:gap-8 lg:gap-12 items-start [&>figure]:lg:max-w-[22rem]">
           {text}
           <Shot station={station} />
         </div>
@@ -126,8 +122,8 @@ const LineBlock = ({ line }: { line: Line }) => {
       <header className="platform px-4 py-8 sm:py-10">
         <div className="max-w-page mx-auto flex flex-wrap items-end justify-between gap-x-10 gap-y-6">
           <div className="flex items-center gap-4 sm:gap-6">
-            <span className="roundel max-sm:!w-14 max-sm:!h-14 max-sm:!text-xl">{line.code}</span>
-            <h3 className="display text-[clamp(2.5rem,6.5vw,5rem)]">{pick(line.name)}</h3>
+            <span data-reveal="pop" className="roundel max-sm:!w-14 max-sm:!h-14 max-sm:!text-xl">{line.code}</span>
+            <h3 data-reveal="wipe" className="display text-[clamp(2.5rem,6.5vw,5rem)]">{pick(line.name)}</h3>
           </div>
           <dl className="grid grid-cols-[auto_auto] gap-x-6 gap-y-1 text-[0.975rem] sm:text-base">
             <dt className="sr-only">{t("about.org")}</dt>
@@ -161,7 +157,7 @@ const Projects = () => {
   return (
     <section id="lines" className="pt-20 sm:pt-28 pb-12 border-t border-rule">
       <div className="max-w-page mx-auto px-4">
-        <h2 className="display text-[clamp(2.75rem,7vw,5.5rem)] max-w-[14ch]">{t("lines.title")}</h2>
+        <h2 data-reveal="wipe" className="display text-[clamp(2.75rem,7vw,5.5rem)] max-w-[14ch]">{t("lines.title")}</h2>
         <p className="mt-5 max-w-[46rem] text-lg text-ink-2 leading-relaxed">{t("lines.subtitle")}</p>
       </div>
       {lines.map((line) => (

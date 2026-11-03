@@ -66,14 +66,6 @@ const translations: Record<Lang, Record<string, string>> = {
     "footer.built": "Built with React and Tailwind. Set in Bonbance and BDO Grotesk.",
     "footer.top": "Back to top",
 
-    "chat.open": "Ask the AI assistant about Naufal",
-    "chat.close": "Close chat",
-    "chat.title": "Ask about Naufal",
-    "chat.subtitle": "AI assistant",
-    "chat.empty": "Ask about his projects, experience, or how to reach him.",
-    "chat.placeholder": "Type a question…",
-    "chat.send": "Send",
-    "chat.error": "The assistant could not answer just now. Try again, or reach Naufal on LinkedIn.",
   },
   id: {
     "nav.map": "Peta",
@@ -131,14 +123,6 @@ const translations: Record<Lang, Record<string, string>> = {
     "footer.built": "Dibangun dengan React dan Tailwind. Huruf Bonbance dan BDO Grotesk.",
     "footer.top": "Kembali ke atas",
 
-    "chat.open": "Tanya asisten AI soal Naufal",
-    "chat.close": "Tutup chat",
-    "chat.title": "Tanya soal Naufal",
-    "chat.subtitle": "Asisten AI",
-    "chat.empty": "Tanyakan proyek, pengalaman, atau cara menghubunginya.",
-    "chat.placeholder": "Tulis pertanyaan…",
-    "chat.send": "Kirim",
-    "chat.error": "Asisten belum bisa menjawab sekarang. Coba lagi, atau hubungi Naufal di LinkedIn.",
   },
 };
 

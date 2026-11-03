@@ -175,24 +175,56 @@
     transform: translateY(1px) scale(0.98);
   }
 
+  /* One button family, all glass: primary is ink glass (a lit top edge and sheen over
+     the ink), secondary is clear glass. Small round controls use .glass-btn. */
   .btn-ink {
-    background: var(--ink);
+    background:
+      linear-gradient(180deg, rgb(255 255 255 / 0.18), rgb(255 255 255 / 0) 55%),
+      var(--ink);
     color: var(--on-ink);
-    box-shadow: 0 1px 2px rgb(0 0 0 / 0.12), 0 8px 20px -8px rgb(0 0 0 / 0.35);
+    box-shadow:
+      inset 0 1px 0 rgb(255 255 255 / 0.28),
+      inset 0 -1px 0 rgb(0 0 0 / 0.25),
+      0 1px 2px rgb(0 0 0 / 0.12),
+      0 10px 24px -10px rgb(0 0 0 / 0.45);
   }
 
   .btn-ink:hover {
-    box-shadow: 0 2px 4px rgb(0 0 0 / 0.12), 0 14px 28px -10px rgb(0 0 0 / 0.4);
     transform: translateY(-1px);
+    box-shadow:
+      inset 0 1px 0 rgb(255 255 255 / 0.32),
+      inset 0 -1px 0 rgb(0 0 0 / 0.25),
+      0 2px 4px rgb(0 0 0 / 0.12),
+      0 16px 30px -12px rgb(0 0 0 / 0.5);
   }
 
   .btn-line {
-    border: 2px solid var(--ink);
     color: var(--ink);
+    background: color-mix(in srgb, var(--ground) 55%, transparent);
+    -webkit-backdrop-filter: blur(16px) saturate(175%);
+    backdrop-filter: blur(16px) saturate(175%);
+    box-shadow:
+      inset 0 0 0 1.5px color-mix(in srgb, var(--ink) 16%, transparent),
+      inset 0 1px 0 rgb(255 255 255 / 0.75),
+      0 1px 2px rgb(0 0 0 / 0.05),
+      0 10px 24px -14px rgb(15 25 40 / 0.35);
+  }
+
+  .dark .btn-line {
+    background: rgb(255 255 255 / 0.06);
+    box-shadow:
+      inset 0 0 0 1.5px rgb(255 255 255 / 0.14),
+      inset 0 1px 0 rgb(255 255 255 / 0.14),
+      0 10px 24px -14px rgb(0 0 0 / 0.7);
   }
 
   .btn-line:hover {
-    background: var(--surface);
+    background: color-mix(in srgb, var(--ground) 85%, transparent);
+    transform: translateY(-1px);
+  }
+
+  .dark .btn-line:hover {
+    background: rgb(255 255 255 / 0.1);
   }
 
   .chip {
@@ -241,25 +273,30 @@
   text-decoration-thickness: 2px;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .route .track {
-    stroke-dasharray: 1;
-    stroke-dashoffset: 1;
-    animation: draw-track 1.6s var(--ease-out) forwards;
-    animation-delay: var(--delay, 0ms);
-  }
+/* the map waits off screen, then draws once when it comes into view (data-drawn) */
+.motion-ok .route .track {
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+}
 
-  .route .stop {
-    opacity: 0;
-    animation: stop-in 500ms var(--ease-out) forwards;
-    animation-delay: var(--delay, 0ms);
-  }
+.motion-ok .route .stop {
+  opacity: 0;
+}
 
-  .route .now-pulse {
-    animation: pulse 2.4s var(--ease-out) infinite;
-    transform-box: fill-box;
-    transform-origin: center;
-  }
+.motion-ok .route[data-drawn] .track {
+  animation: draw-track 1.6s var(--ease-out) forwards;
+  animation-delay: var(--delay, 0ms);
+}
+
+.motion-ok .route[data-drawn] .stop {
+  animation: stop-in 500ms var(--ease-out) forwards;
+  animation-delay: var(--delay, 0ms);
+}
+
+.motion-ok .route .now-pulse {
+  animation: pulse 2.4s var(--ease-out) infinite;
+  transform-box: fill-box;
+  transform-origin: center;
 }
 
 @keyframes draw-track {
@@ -460,8 +497,12 @@
 }
 
 .glass-btn {
-  background: color-mix(in srgb, var(--ground) 45%, transparent);
-  box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--ink) 10%, transparent);
+  background: color-mix(in srgb, var(--ground) 50%, transparent);
+  -webkit-backdrop-filter: blur(14px) saturate(175%);
+  backdrop-filter: blur(14px) saturate(175%);
+  box-shadow:
+    inset 0 0 0 1px color-mix(in srgb, var(--ink) 12%, transparent),
+    inset 0 1px 0 rgb(255 255 255 / 0.7);
   transition:
     background-color 200ms,
     box-shadow 200ms;
@@ -470,6 +511,17 @@
 .glass-btn:hover {
   background: color-mix(in srgb, var(--ground) 80%, transparent);
   box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--ink) 22%, transparent);
+}
+
+.dark .glass-btn {
+  background: rgb(255 255 255 / 0.06);
+  box-shadow:
+    inset 0 0 0 1px rgb(255 255 255 / 0.12),
+    inset 0 1px 0 rgb(255 255 255 / 0.12);
+}
+
+.dark .glass-btn:hover {
+  background: rgb(255 255 255 / 0.12);
 }
 
 @supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
@@ -495,4 +547,339 @@
     border-color 400ms ease,
     fill 400ms ease,
     stroke 400ms ease !important;
+}
+
+/* ---------- Scroll choreography (only with .motion-ok) ---------- */
+
+/* the rail is drawn as you read: a ghost track, filled by the train (--p, 0→1) */
+.motion-ok .strip::before {
+  opacity: 0.2;
+}
+
+.motion-ok .strip::after {
+  content: "";
+  position: absolute;
+  left: 1.0625rem;
+  top: 0.5rem;
+  bottom: var(--strip-end, 0);
+  width: 0.625rem;
+  border-radius: 999px;
+  background: var(--line);
+  transform-origin: top;
+  transform: scaleY(var(--p, 0));
+  transition: transform 140ms linear;
+}
+
+.motion-ok .strip[data-running]::after {
+  bottom: 0;
+  border-radius: 999px 999px 0 0;
+  -webkit-mask-image: linear-gradient(to bottom, #000 calc(100% - 4rem), transparent);
+  mask-image: linear-gradient(to bottom, #000 calc(100% - 4rem), transparent);
+}
+
+.motion-ok .strip-dot {
+  z-index: 1;
+  transform: scale(0.62);
+  border-color: color-mix(in srgb, var(--ink) 28%, transparent);
+  transition:
+    transform 600ms var(--ease-out),
+    border-color 300ms,
+    background-color 300ms;
+}
+
+.motion-ok .strip-stop:not([data-reached]) .strip-dot[data-current] {
+  background: var(--ground);
+}
+
+.motion-ok .strip-stop[data-reached] .strip-dot {
+  transform: scale(1);
+  border-color: var(--ink);
+}
+
+/* the station's content arrives from the rail side */
+.motion-ok .strip-stop > :not(.strip-dot) {
+  opacity: 0;
+  transform: translateX(-1.25rem);
+  transition:
+    opacity 600ms var(--ease-out) 90ms,
+    transform 800ms var(--ease-out) 90ms;
+}
+
+.motion-ok .strip-stop[data-reached] > :not(.strip-dot) {
+  opacity: 1;
+  transform: none;
+}
+
+/* screenshots open like a door from the rail */
+.motion-ok .strip-stop figure > div:first-child {
+  clip-path: inset(0 100% 0 0 round 1rem);
+  transition: clip-path 1000ms var(--ease-out) 260ms;
+}
+
+.motion-ok .strip-stop[data-reached] figure > div:first-child {
+  clip-path: inset(0 0 0 0 round 1rem);
+}
+
+.motion-ok .strip .terminus {
+  opacity: clamp(0, calc((var(--p, 0) - 0.94) * 18), 1);
+}
+
+/* display names are unveiled like a sign: a wipe from the left */
+.motion-ok [data-reveal="wipe"] {
+  clip-path: inset(-0.15em 100% -0.3em -0.1em);
+  transition: clip-path 1100ms var(--ease-out);
+}
+
+.motion-ok [data-reveal="wipe"][data-shown] {
+  clip-path: inset(-0.15em -0.15em -0.3em -0.1em);
+}
+
+/* line roundels roll in */
+.motion-ok [data-reveal="pop"] {
+  opacity: 0;
+  transform: scale(0.4) rotate(-120deg);
+  transition:
+    transform 900ms var(--ease-out),
+    opacity 400ms;
+}
+
+.motion-ok [data-reveal="pop"][data-shown] {
+  opacity: 1;
+  transform: none;
+}
+
+/* departure board rows flip down like a split-flap display */
+.motion-ok [data-reveal="flap"] {
+  opacity: 0;
+  transform: perspective(700px) rotateX(-80deg);
+  transform-origin: top;
+  transition:
+    transform 700ms var(--ease-out),
+    opacity 300ms;
+  transition-delay: calc(var(--i, 0) * 90ms);
+}
+
+.motion-ok [data-reveal="flap"][data-shown] {
+  opacity: 1;
+  transform: none;
+}
+
+/* terminus footer: the lines draw in and meet at "Your team" */
+.motion-ok [data-reveal="draw"] .draw-path {
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  transition: stroke-dashoffset 1700ms var(--ease-out);
+  transition-delay: var(--d, 0ms);
+}
+
+.motion-ok [data-reveal="draw"][data-shown] .draw-path {
+  stroke-dashoffset: 0;
+}
+
+.motion-ok [data-reveal="draw"] .draw-late {
+  opacity: 0;
+  transform: scale(0.6);
+  transform-box: fill-box;
+  transform-origin: center;
+  transition:
+    opacity 500ms 1400ms,
+    transform 800ms var(--ease-out) 1400ms;
+}
+
+.motion-ok [data-reveal="draw"][data-shown] .draw-late {
+  opacity: 1;
+  transform: none;
+}
+
+.route .interchanges {
+  transition: opacity 220ms var(--ease-out);
+}
+
+.route[data-solo] .interchanges {
+  opacity: 0.25;
+}
+
+/* the station preview floats over the map, so it is the most see-through glass */
+.peek.glass {
+  background: color-mix(in srgb, var(--ground) 48%, transparent);
+  -webkit-backdrop-filter: blur(22px) saturate(190%);
+  backdrop-filter: blur(22px) saturate(190%);
+}
+
+.dark .peek.glass {
+  background: color-mix(in srgb, #1a1f27 46%, transparent);
+}
+
+/* ---------- Cursor spotlight (fine pointers only, see useSpotlight) ---------- */
+
+/* a soft light that follows the cursor over the whole page */
+.spotlight {
+  position: fixed;
+  inset: 0;
+  z-index: 30;
+  pointer-events: none;
+  background: radial-gradient(
+    620px circle at var(--cx, -999px) var(--cy, -999px),
+    color-mix(in srgb, var(--line-dimensi) 8%, transparent),
+    transparent 65%
+  );
+  opacity: 0;
+  transition: opacity 400ms var(--ease-out);
+}
+
+.dark .spotlight {
+  background: radial-gradient(620px circle at var(--cx, -999px) var(--cy, -999px), rgb(120 175 255 / 0.1), transparent 65%);
+}
+
+html[data-spot] .spotlight {
+  opacity: 1;
+}
+
+/* lit edge: the element under the cursor catches the light on its border, from its own
+   local --ex/--ey (set only on that element), so nothing repaints while scrolling */
+.chip,
+.btn,
+.glass-btn,
+.board,
+.spot-edge {
+  position: relative;
+}
+
+.chip::after,
+.btn::after,
+.glass-btn::after,
+.board::after,
+.spot-edge::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1.5px;
+  pointer-events: none;
+  background: radial-gradient(
+    140px circle at var(--ex, 50%) var(--ey, 50%),
+    color-mix(in srgb, var(--line-dimensi) 95%, transparent),
+    transparent 75%
+  );
+  -webkit-mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  opacity: 0;
+  transition: opacity 250ms var(--ease-out);
+}
+
+.dark .chip::after,
+.dark .btn::after,
+.dark .glass-btn::after,
+.dark .spot-edge::after {
+  background: radial-gradient(140px circle at var(--ex, 50%) var(--ey, 50%), rgb(143 193 255 / 0.95), transparent 75%);
+}
+
+/* on the night hardware the light is amber, like the LED */
+.board::after,
+.night .spot-edge::after {
+  background: radial-gradient(220px circle at var(--ex, 50%) var(--ey, 50%), rgb(255 178 30 / 0.9), transparent 75%);
+}
+
+[data-lit]::after {
+  opacity: 1;
+}
+
+/* ---------- Hero: a giant switched-off LED board ---------- */
+@property --hx {
+  syntax: "<length-percentage>";
+  inherits: true;
+  initial-value: 68%;
+}
+
+@property --hy {
+  syntax: "<length-percentage>";
+  inherits: true;
+  initial-value: 42%;
+}
+
+@property --hl {
+  syntax: "<number>";
+  inherits: true;
+  initial-value: 0;
+}
+
+#home {
+  --hx: 68%;
+  --hy: 42%;
+  --hl: 0;
+  --dot-pitch: 18px;
+  --dot-off: color-mix(in srgb, var(--ink) 6%, transparent);
+  --dot-on: #e08e00;
+  transition:
+    --hx 320ms var(--ease-out),
+    --hy 320ms var(--ease-out),
+    --hl 500ms var(--ease-out);
+}
+
+.dark #home {
+  --dot-off: rgb(255 178 30 / 0.055);
+  --dot-on: #ffb21e;
+}
+
+#home[data-lit] {
+  --hl: 1;
+}
+
+.hero-dots > * {
+  background-size: var(--dot-pitch) var(--dot-pitch);
+  background-position: center top;
+}
+
+/* the board, switched off: it fades out toward the left and right edges and before the
+   next section, so only the middle of the screen carries the pattern */
+.hero-dots-base {
+  background-image: radial-gradient(circle, var(--dot-off) 1.5px, transparent 2px);
+  -webkit-mask-image:
+    linear-gradient(90deg, transparent 0%, #000 22%, #000 78%, transparent 100%),
+    linear-gradient(180deg, #000 0%, #000 65%, transparent 100%);
+  -webkit-mask-composite: source-in;
+  mask-image:
+    linear-gradient(90deg, transparent 0%, #000 22%, #000 78%, transparent 100%),
+    linear-gradient(180deg, #000 0%, #000 65%, transparent 100%);
+  mask-composite: intersect;
+}
+
+/* the dots near the cursor switch on */
+.hero-dots-lit {
+  background-image: radial-gradient(circle, var(--dot-on) 2px, transparent 2.6px);
+  opacity: calc(0.06 + var(--hl) * 0.6);
+  -webkit-mask-image: radial-gradient(230px circle at var(--hx) var(--hy), #000 0%, rgb(0 0 0 / 0.55) 40%, transparent 72%);
+  mask-image: radial-gradient(230px circle at var(--hx) var(--hy), #000 0%, rgb(0 0 0 / 0.55) 40%, transparent 72%);
+}
+
+/* the warm bloom lit LEDs throw on the wall around them */
+.hero-dots-glow {
+  background-image: radial-gradient(280px circle at var(--hx) var(--hy), rgb(255 178 30 / calc(0.02 + var(--hl) * 0.06)), transparent 70%);
+  background-size: auto;
+}
+
+/* touch screens: the lit patch wanders slowly by itself */
+@media (hover: none) and (prefers-reduced-motion: no-preference) {
+  #home {
+    --hl: 0.75;
+    animation: dots-drift 14s ease-in-out infinite alternate;
+  }
+}
+
+@keyframes dots-drift {
+  0% {
+    --hx: 80%;
+    --hy: 18%;
+  }
+  50% {
+    --hx: 25%;
+    --hy: 46%;
+  }
+  100% {
+    --hx: 72%;
+    --hy: 74%;
+  }
 }
