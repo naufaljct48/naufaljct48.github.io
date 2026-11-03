@@ -303,8 +303,8 @@ export const stations: Station[] = [
     name: "Authorization & API research",
     short: "AuthZ Research",
     desc: {
-      en: "Access-control testing on multi-tenant SaaS and APIs: cross-account matrices between my own test personas, IDOR and RBAC parity, OAuth and session handling, cache-key and race-condition checks. Nothing is called a finding until a deterministic oracle confirms it. Several issues found so far; no public disclosures yet.",
-      id: "Pengujian access control di SaaS multi-tenant dan API: matriks lintas akun antar persona tes milik sendiri, paritas IDOR dan RBAC, penanganan OAuth dan sesi, cek cache-key dan race condition. Tidak ada yang disebut temuan sebelum dikonfirmasi oracle yang deterministik. Sudah menemukan beberapa celah; belum ada disclosure publik.",
+      en: "Access-control testing on multi-tenant SaaS and APIs: cross-account matrices between my own test personas, IDOR and RBAC parity, OAuth and session handling, cache-key and race-condition checks. Nothing is called a finding until a deterministic oracle confirms it. Multiple reports submitted across programs.",
+      id: "Pengujian access control di SaaS multi-tenant dan API: matriks lintas akun antar persona tes milik sendiri, paritas IDOR dan RBAC, penanganan OAuth dan sesi, cek cache-key dan race condition. Tidak ada yang disebut temuan sebelum dikonfirmasi oracle yang deterministik. Sudah mengirim beberapa laporan di berbagai program.",
     },
     tech: ["Access control", "IDOR", "OAuth", "Wire-level verification", "OWASP API Top 10"],
   },
