@@ -33,7 +33,8 @@ const Hero = () => {
               </figcaption>
             </figure>
             <h1 className="display text-[clamp(3.25rem,13vw,6rem)]">Naufal Aziz</h1>
-            <p className="mt-4 sm:mt-6 max-w-[36rem] text-[1.0625rem] sm:text-[1.375rem] leading-snug text-ink-2">{t("hero.description")}</p>
+            <p className="mt-3 sm:mt-4 heading text-[1.25rem] sm:text-[1.75rem]">{t("hero.title")}</p>
+            <p className="mt-3 sm:mt-4 max-w-[37rem] text-[1.0625rem] sm:text-[1.25rem] leading-snug text-ink-2 text-pretty">{t("hero.description")}</p>
 
             <p className="mt-4 sm:mt-6 flex items-start gap-3 text-base sm:text-lg">
               <span className="badge shrink-0" style={{ ["--line" as string]: "var(--line-dimensi)" }}>

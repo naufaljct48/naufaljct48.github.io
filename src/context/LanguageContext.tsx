@@ -20,7 +20,8 @@ const translations: Record<Lang, Record<string, string>> = {
     "nav.theme": "Switch light or dark",
     "nav.lang": "Bahasa Indonesia",
 
-    "hero.description": "Full-Stack Developer shipping production SaaS end to end — web, mobile, hardware integration, payments, and AI.",
+    "hero.title": "Full-Stack & Application Security Engineer",
+    "hero.description": "I ship production SaaS end to end — web, mobile, hardware, payments, AI — and test it the way an attacker would.",
     "hero.now": "Now at",
     "hero.nowRole": "leading Dimensi HRIS",
     "hero.linkedin": "Connect on LinkedIn",
@@ -77,7 +78,8 @@ const translations: Record<Lang, Record<string, string>> = {
     "nav.theme": "Ganti terang atau gelap",
     "nav.lang": "English",
 
-    "hero.description": "Full-Stack Developer yang membangun SaaS produksi dari ujung ke ujung — web, mobile, integrasi hardware, pembayaran, dan AI.",
+    "hero.title": "Full-Stack & Application Security Engineer",
+    "hero.description": "Saya membangun SaaS produksi dari ujung ke ujung — web, mobile, hardware, pembayaran, AI — lalu mengujinya seperti penyerang.",
     "hero.now": "Sekarang di",
     "hero.nowRole": "memimpin Dimensi HRIS",
     "hero.linkedin": "Terhubung di LinkedIn",
