@@ -13,7 +13,7 @@
     <script>
       // apply the saved theme before first paint
       try {
-        if (JSON.parse(localStorage.getItem("darkMode") || "false")) document.documentElement.classList.add("dark");
+        if (JSON.parse(localStorage.getItem("theme") || "\"light\"") === "dark") document.documentElement.classList.add("dark");
       } catch (e) {}
     </script>
   </head>

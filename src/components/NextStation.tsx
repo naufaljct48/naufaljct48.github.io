@@ -48,7 +48,7 @@ const NextStation = () => {
   return (
     <div
       aria-hidden={!show}
-      className={`fixed top-16 inset-x-0 z-40 px-4 pt-2 transition-all duration-300 ease-out ${
+      className={`fixed top-[4.6rem] inset-x-0 z-40 px-4 pt-2 transition-all duration-300 ease-out ${
         show ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-3 pointer-events-none"
       }`}
     >
